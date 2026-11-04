@@ -177,4 +177,12 @@ class SinglyLinkedListTest {
         assertEquals(-1, list.search("A"));
         assertEquals(0, list.getLastSearchSteps());
     }
+
+    @Test
+    void containsReflectsPresence() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        assertTrue(list.contains("A"));
+        assertFalse(list.contains("B"));
+    }
 }
