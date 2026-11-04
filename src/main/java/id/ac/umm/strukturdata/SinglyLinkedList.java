@@ -85,7 +85,18 @@ public class SinglyLinkedList<T> {
             size--;
             return removed;
         }
-        throw new UnsupportedOperationException("belum diimplementasi");
+
+        Node<T> prev = head;
+        for (int i = 0; i < position - 1; i++) {
+            prev = prev.next;
+        }
+        Node<T> target = prev.next;
+        prev.next = target.next;
+        if (target == tail) {
+            tail = prev;
+        }
+        size--;
+        return target.data;
     }
 
 
