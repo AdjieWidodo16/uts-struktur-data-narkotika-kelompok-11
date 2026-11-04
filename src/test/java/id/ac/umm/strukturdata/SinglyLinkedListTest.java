@@ -185,4 +185,18 @@ class SinglyLinkedListTest {
         assertTrue(list.contains("A"));
         assertFalse(list.contains("B"));
     }
+
+    @Test
+    void clearEmptiesListAndAllowsReuse() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        list.addLast("B");
+        list.clear();
+        assertTrue(list.isEmpty());
+        assertEquals(0, list.size());
+        assertEquals(-1, list.search("A"));
+        list.addLast("C"); // pastikan head dan tail sudah bersih
+        assertEquals(1, list.size());
+        assertEquals("C", list.get(0));
+    }
 }
