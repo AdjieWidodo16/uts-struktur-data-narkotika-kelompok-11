@@ -73,4 +73,20 @@ public class SinglyLinkedList<T> {
         prev.next = node;
         size++;
     }
+
+    public T remove(int position) {
+        checkIndex(position);
+        if (position == 0) {
+            T removed = head.data;
+            head = head.next;
+            if (head == null) {
+                tail = null; // list jadi kosong
+            }
+            size--;
+            return removed;
+        }
+        throw new UnsupportedOperationException("belum diimplementasi");
+    }
+
+
 }
