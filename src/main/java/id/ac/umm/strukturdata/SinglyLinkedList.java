@@ -99,5 +99,28 @@ public class SinglyLinkedList<T> {
         return target.data;
     }
 
+    private int lastSearchSteps;
 
+    public int getLastSearchSteps() {
+        return lastSearchSteps;
+    }
+
+    // mengembalikan posisi pertama yang cocok, atau -1 kalau tidak ada
+    public int search(T value) {
+        lastSearchSteps = 0;
+        Node<T> current = head;
+        int index = 0;
+        while (current != null) {
+            lastSearchSteps++;
+            boolean same = (value == null)
+                    ? current.data == null
+                    : value.equals(current.data);
+            if (same) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return -1;
+    }
 }
