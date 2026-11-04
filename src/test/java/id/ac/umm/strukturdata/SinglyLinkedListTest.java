@@ -109,4 +109,36 @@ class SinglyLinkedListTest {
         list.addLast("B"); // pastikan tail tidak rusak
         assertEquals("B", list.get(0));
     }
+
+    @Test
+    void removeMiddleRelinksNodes() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        list.addLast("B");
+        list.addLast("C");
+        assertEquals("B", list.remove(1));
+        assertEquals(2, list.size());
+        assertEquals("A", list.get(0));
+        assertEquals("C", list.get(1));
+    }
+
+    @Test
+    void removeLastUpdatesTail() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        list.addLast("B");
+        assertEquals("B", list.remove(1));
+        list.addLast("C"); // kalau tail salah, C tidak akan tersambung
+        assertEquals(2, list.size());
+        assertEquals("C", list.get(1));
+    }
+
+    @Test
+    void removeOutOfBoundsThrows() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        assertThrows(IndexOutOfBoundsException.class, () -> list.remove(0));
+        list.addLast("A");
+        assertThrows(IndexOutOfBoundsException.class, () -> list.remove(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.remove(-1));
+    }
 }
