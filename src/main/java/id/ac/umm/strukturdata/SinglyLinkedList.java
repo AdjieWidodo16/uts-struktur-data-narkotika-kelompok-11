@@ -1,6 +1,6 @@
 package id.ac.umm.strukturdata;
 
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T> implements StrukturData<T> {
     private Node<T> head;
     private Node<T> tail;
     private int size;
@@ -33,6 +33,11 @@ public class SinglyLinkedList<T> {
             tail = node;
         }
         size++;
+    }
+
+    @Override
+    public void add(T value) {
+        addLast(value);
     }
 
     public T get(int position) {
