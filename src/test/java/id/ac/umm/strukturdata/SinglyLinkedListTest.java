@@ -39,4 +39,23 @@ class SinglyLinkedListTest {
         list.addLast(2);
         assertEquals(3, list.size());
     }
+
+    @Test
+    void addFirstAndAddLastKeepOrder() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("B");
+        list.addFirst("A");
+        list.addLast("C");
+        assertEquals("A", list.get(0));
+        assertEquals("B", list.get(1));
+        assertEquals("C", list.get(2));
+    }
+
+    @Test
+    void getOutOfBoundsThrows() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        assertThrows(IndexOutOfBoundsException.class, () -> list.get(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.get(1));
+    }
 }
