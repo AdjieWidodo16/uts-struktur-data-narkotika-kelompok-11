@@ -58,4 +58,35 @@ class SinglyLinkedListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(-1));
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(1));
     }
+
+    @Test
+    void insertAtHeadMiddleAndTail() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("B");
+        list.addLast("D");
+        list.insert(0, "A");
+        list.insert(2, "C");
+        list.insert(4, "E");
+        assertEquals(5, list.size());
+        assertEquals("A", list.get(0));
+        assertEquals("B", list.get(1));
+        assertEquals("C", list.get(2));
+        assertEquals("D", list.get(3));
+        assertEquals("E", list.get(4));
+    }
+
+    @Test
+    void insertIntoEmptyListAtZero() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.insert(0, "A");
+        assertEquals(1, list.size());
+        assertEquals("A", list.get(0));
+    }
+
+    @Test
+    void insertOutOfBoundsThrows() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        assertThrows(IndexOutOfBoundsException.class, () -> list.insert(-1, "X"));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.insert(1, "X"));
+    }
 }
