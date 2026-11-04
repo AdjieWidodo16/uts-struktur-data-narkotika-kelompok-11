@@ -17,7 +17,10 @@ Struktur utama: Singly Linked List. Struktur sekunder: Stack (riwayat audit).
 
 ## Konsekuensi
 - Akses get(i) dan search bernilai O(n).
-- addLast O(1) hanya jika menyimpan pointer tail.
+- addLast bernilai O(1) karena list menyimpan pointer `tail` ke node terakhir
+  (tanpa tail, harus menelusuri dari `head` sehingga O(n)).
+- remove pada node terakhir tetap O(n) karena singly linked list tidak punya
+  pointer ke node sebelumnya.
 - Invariant yang dijaga: head/tail konsisten, node terakhir menunjuk null, size sesuai jumlah node.
 
 ## Alternatif yang dipertimbangkan
