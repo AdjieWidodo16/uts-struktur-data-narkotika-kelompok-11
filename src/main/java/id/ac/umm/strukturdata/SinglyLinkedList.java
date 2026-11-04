@@ -50,4 +50,27 @@ public class SinglyLinkedList<T> {
                     "Posisi " + position + " di luar batas, size = " + size);
         }
     }
+
+    public void insert(int position, T value) {
+        if (position < 0 || position > size) {
+            throw new IndexOutOfBoundsException(
+                    "Posisi " + position + " di luar batas, size = " + size);
+        }
+        if (position == 0) {
+            addFirst(value);
+            return;
+        }
+        if (position == size) {
+            addLast(value);
+            return;
+        }
+        Node<T> prev = head;
+        for (int i = 0; i < position - 1; i++) {
+            prev = prev.next;
+        }
+        Node<T> node = new Node<>(value);
+        node.next = prev.next;
+        prev.next = node;
+        size++;
+    }
 }
