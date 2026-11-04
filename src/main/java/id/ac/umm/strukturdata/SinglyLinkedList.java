@@ -34,4 +34,20 @@ public class SinglyLinkedList<T> {
         }
         size++;
     }
+
+    public T get(int position) {
+        checkIndex(position);
+        Node<T> current = head;
+        for (int i = 0; i < position; i++) {
+            current = current.next;
+        }
+        return current.data;
+    }
+
+    private void checkIndex(int position) {
+        if (position < 0 || position >= size) {
+            throw new IndexOutOfBoundsException(
+                    "Posisi " + position + " di luar batas, size = " + size);
+        }
+    }
 }
