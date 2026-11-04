@@ -127,4 +127,11 @@ public class SinglyLinkedList<T> {
     public boolean contains(T value) {
         return search(value) != -1;
     }
+
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+        lastSearchSteps = 0;
+    }
 }
