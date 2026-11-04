@@ -199,4 +199,30 @@ class SinglyLinkedListTest {
         assertEquals(1, list.size());
         assertEquals("C", list.get(0));
     }
+
+    @Test
+    void invariantHoldsAfterEveryOperation() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.validateInvariant();            // kosong
+        list.addLast("B");
+        list.validateInvariant();
+        list.addFirst("A");
+        list.validateInvariant();
+        list.addLast("D");
+        list.validateInvariant();
+        list.insert(2, "C");
+        list.validateInvariant();
+        list.remove(0);                      // awal
+        list.validateInvariant();
+        list.remove(1);                      // tengah
+        list.validateInvariant();
+        list.remove(list.size() - 1);        // akhir
+        list.validateInvariant();
+        list.remove(0);                      // elemen terakhir
+        list.validateInvariant();
+        assertTrue(list.isEmpty());
+        list.addLast("X");
+        list.clear();
+        list.validateInvariant();
+    }
 }
