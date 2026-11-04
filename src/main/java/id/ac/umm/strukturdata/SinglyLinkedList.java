@@ -123,4 +123,8 @@ public class SinglyLinkedList<T> {
         }
         return -1;
     }
+
+    public boolean contains(T value) {
+        return search(value) != -1;
+    }
 }
