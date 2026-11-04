@@ -89,4 +89,24 @@ class SinglyLinkedListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> list.insert(-1, "X"));
         assertThrows(IndexOutOfBoundsException.class, () -> list.insert(1, "X"));
     }
+
+    @Test
+    void removeFirstMovesHead() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        list.addLast("B");
+        assertEquals("A", list.remove(0));
+        assertEquals(1, list.size());
+        assertEquals("B", list.get(0));
+    }
+
+    @Test
+    void removeOnlyElementEmptiesList() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        assertEquals("A", list.remove(0));
+        assertTrue(list.isEmpty());
+        list.addLast("B"); // pastikan tail tidak rusak
+        assertEquals("B", list.get(0));
+    }
 }
