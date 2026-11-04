@@ -225,4 +225,17 @@ class SinglyLinkedListTest {
         list.clear();
         list.validateInvariant();
     }
+
+    @Test
+    void worksThroughStrukturDataInterface() {
+        StrukturData<String> data = new SinglyLinkedList<>();
+        data.add("A");
+        data.add("B");
+        assertEquals(2, data.size());
+        assertEquals("A", data.get(0));
+        assertTrue(data.contains("B"));
+        assertEquals("A", data.remove(0));
+        data.clear();
+        assertTrue(data.isEmpty());
+    }
 }
