@@ -134,4 +134,37 @@ public class SinglyLinkedList<T> {
         size = 0;
         lastSearchSteps = 0;
     }
+
+    public void validateInvariant() {
+        if (size < 0) {
+            throw new IllegalStateException("size negatif: " + size);
+        }
+        if (size == 0) {
+            if (head != null || tail != null) {
+                throw new IllegalStateException("List kosong tapi head/tail tidak null");
+            }
+            return;
+        }
+        if (head == null || tail == null) {
+            throw new IllegalStateException("List tidak kosong tapi head/tail null");
+        }
+        if (tail.next != null) {
+            throw new IllegalStateException("tail.next harus null");
+        }
+        int count = 0;
+        Node<T> current = head;
+        Node<T> last = null;
+        while (current != null && count <= size) { // batas count mencegah loop tak hingga jika ada siklus
+            count++;
+            last = current;
+            current = current.next;
+        }
+        if (count != size) {
+            throw new IllegalStateException(
+                    "Jumlah node " + count + " tidak sama dengan size " + size);
+        }
+        if (last != tail) {
+            throw new IllegalStateException("Node terakhir bukan tail");
+        }
+    }
 }
