@@ -4,6 +4,7 @@ public class SinglyLinkedList<T> {
     private Node<T> head;
     private Node<T> tail;
     private int size;
+    private int lastSearchSteps; // Memindahkan field keatas
 
     public int size() {
         return size;
@@ -99,7 +100,13 @@ public class SinglyLinkedList<T> {
         return target.data;
     }
 
-    private int lastSearchSteps;
+    
+
+/**
+ * Jumlah node yang dibandingkan pada pencarian terakhir.
+ * Catatan: disimpan sebagai field, sehingga class ini tidak thread-safe.
+ * Aman dipakai karena aplikasi ini single-thread.
+ */
 
     public int getLastSearchSteps() {
         return lastSearchSteps;
