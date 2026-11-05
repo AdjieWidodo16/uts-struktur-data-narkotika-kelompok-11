@@ -141,4 +141,48 @@ class SinglyLinkedListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> list.remove(1));
         assertThrows(IndexOutOfBoundsException.class, () -> list.remove(-1));
     }
+
+    @Test
+    void searchFindsFirstElementInOneStep() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        list.addLast("B");
+        list.addLast("C");
+        assertEquals(0, list.search("A"));
+        assertEquals(1, list.getLastSearchSteps());
+    }
+
+    @Test
+    void searchFindsLastElementInSizeSteps() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        list.addLast("B");
+        list.addLast("C");
+        assertEquals(2, list.search("C"));
+        assertEquals(3, list.getLastSearchSteps());
+    }
+
+    @Test
+    void searchMissingReturnsMinusOneAndScansAll() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        list.addLast("B");
+        assertEquals(-1, list.search("Z"));
+        assertEquals(2, list.getLastSearchSteps());
+    }
+
+    @Test
+    void searchOnEmptyListTakesZeroSteps() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        assertEquals(-1, list.search("A"));
+        assertEquals(0, list.getLastSearchSteps());
+    }
+
+    @Test
+    void containsReflectsPresence() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        assertTrue(list.contains("A"));
+        assertFalse(list.contains("B"));
+    }
 }

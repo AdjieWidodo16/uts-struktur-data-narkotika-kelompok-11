@@ -4,6 +4,7 @@ public class SinglyLinkedList<T> {
     private Node<T> head;
     private Node<T> tail;
     private int size;
+    private int lastSearchSteps; // Memindahkan field keatas
 
     public int size() {
         return size;
@@ -99,5 +100,38 @@ public class SinglyLinkedList<T> {
         return target.data;
     }
 
+    
 
+/**
+ * Jumlah node yang dibandingkan pada pencarian terakhir.
+ * Catatan: disimpan sebagai field, sehingga class ini tidak thread-safe.
+ * Aman dipakai karena aplikasi ini single-thread.
+ */
+
+    public int getLastSearchSteps() {
+        return lastSearchSteps;
+    }
+
+    // mengembalikan posisi pertama yang cocok, atau -1 kalau tidak ada
+    public int search(T value) {
+        lastSearchSteps = 0;
+        Node<T> current = head;
+        int index = 0;
+        while (current != null) {
+            lastSearchSteps++;
+            boolean same = (value == null)
+                    ? current.data == null
+                    : value.equals(current.data);
+            if (same) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return -1;
+    }
+
+    public boolean contains(T value) {
+        return search(value) != -1;
+    }
 }
