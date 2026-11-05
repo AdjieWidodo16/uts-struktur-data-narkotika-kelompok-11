@@ -1,6 +1,6 @@
 package id.ac.umm.strukturdata;
 
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T> implements StrukturData<T> {
     private Node<T> head;
     private Node<T> tail;
     private int size;
@@ -34,6 +34,11 @@ public class SinglyLinkedList<T> {
             tail = node;
         }
         size++;
+    }
+
+    @Override
+    public void add(T value) {
+        addLast(value);
     }
 
     public T get(int position) {
@@ -133,5 +138,45 @@ public class SinglyLinkedList<T> {
 
     public boolean contains(T value) {
         return search(value) != -1;
+    }
+
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+        lastSearchSteps = 0;
+    }
+
+    public void validateInvariant() {
+        if (size < 0) {
+            throw new IllegalStateException("size negatif: " + size);
+        }
+        if (size == 0) {
+            if (head != null || tail != null) {
+                throw new IllegalStateException("List kosong tapi head/tail tidak null");
+            }
+            return;
+        }
+        if (head == null || tail == null) {
+            throw new IllegalStateException("List tidak kosong tapi head/tail null");
+        }
+        if (tail.next != null) {
+            throw new IllegalStateException("tail.next harus null");
+        }
+        int count = 0;
+        Node<T> current = head;
+        Node<T> last = null;
+        while (current != null && count <= size) { // batas count mencegah loop tak hingga jika ada siklus
+            count++;
+            last = current;
+            current = current.next;
+        }
+        if (count != size) {
+            throw new IllegalStateException(
+                    "Jumlah node " + count + " tidak sama dengan size " + size);
+        }
+        if (last != tail) {
+            throw new IllegalStateException("Node terakhir bukan tail");
+        }
     }
 }

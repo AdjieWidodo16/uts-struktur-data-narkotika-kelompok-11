@@ -185,4 +185,57 @@ class SinglyLinkedListTest {
         assertTrue(list.contains("A"));
         assertFalse(list.contains("B"));
     }
+
+    @Test
+    void clearEmptiesListAndAllowsReuse() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        list.addLast("B");
+        list.clear();
+        assertTrue(list.isEmpty());
+        assertEquals(0, list.size());
+        assertEquals(-1, list.search("A"));
+        list.addLast("C"); // pastikan head dan tail sudah bersih
+        assertEquals(1, list.size());
+        assertEquals("C", list.get(0));
+    }
+
+    @Test
+    void invariantHoldsAfterEveryOperation() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.validateInvariant();            // kosong
+        list.addLast("B");
+        list.validateInvariant();
+        list.addFirst("A");
+        list.validateInvariant();
+        list.addLast("D");
+        list.validateInvariant();
+        list.insert(2, "C");
+        list.validateInvariant();
+        list.remove(0);                      // awal
+        list.validateInvariant();
+        list.remove(1);                      // tengah
+        list.validateInvariant();
+        list.remove(list.size() - 1);        // akhir
+        list.validateInvariant();
+        list.remove(0);                      // elemen terakhir
+        list.validateInvariant();
+        assertTrue(list.isEmpty());
+        list.addLast("X");
+        list.clear();
+        list.validateInvariant();
+    }
+
+    @Test
+    void worksThroughStrukturDataInterface() {
+        StrukturData<String> data = new SinglyLinkedList<>();
+        data.add("A");
+        data.add("B");
+        assertEquals(2, data.size());
+        assertEquals("A", data.get(0));
+        assertTrue(data.contains("B"));
+        assertEquals("A", data.remove(0));
+        data.clear();
+        assertTrue(data.isEmpty());
+    }
 }
