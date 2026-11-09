@@ -122,4 +122,18 @@ class PutusanTest {
         assertNull(p.getKeadaanMeringankan());
         assertNull(p.getSourcePages());
     }
+
+
+    @Test
+    void toStringHanyaMemuatRingkasan() {
+        String s = buatLengkap().toString();
+        assertEquals("Putusan{caseId=CASE-001, nomorPerkara=123/Pid.Sus/2024/PN Mlg, vonisBulan=60}", s);
+        assertFalse(s.contains("PN Malang"));
+        assertFalse(s.contains("TDW-001"));
+    }
+
+    @Test
+    void toStringAmanUntukNilaiNull() {
+        assertEquals("Putusan{caseId=null, nomorPerkara=null, vonisBulan=0}", buatKosong().toString());
+    }
 }
