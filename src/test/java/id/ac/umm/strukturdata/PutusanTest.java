@@ -103,4 +103,23 @@ class PutusanTest {
                 "D", "B", 0, 0, 5_000_000_000L, null, null, null, null);
         assertEquals(5_000_000_000L, p.getDendaRupiah());
     }
+
+
+    @Test
+    void barangBuktiKeadaanDanSumberTersimpan() {
+        Putusan p = buatLengkap();
+        assertEquals("1 paket plastik berisi kristal bening", p.getBarangBukti());
+        assertEquals("Tidak mendukung program pemerintah", p.getKeadaanMemberatkan());
+        assertEquals("Berlaku sopan di persidangan", p.getKeadaanMeringankan());
+        assertEquals("hlm. 1-3; hlm. 10-12", p.getSourcePages());
+    }
+
+    @Test
+    void barangBuktiKeadaanDanSumberTidakDitemukanNull() {
+        Putusan p = buatKosong();
+        assertNull(p.getBarangBukti());
+        assertNull(p.getKeadaanMemberatkan());
+        assertNull(p.getKeadaanMeringankan());
+        assertNull(p.getSourcePages());
+    }
 }
