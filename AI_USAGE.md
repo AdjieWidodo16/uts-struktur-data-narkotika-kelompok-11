@@ -36,7 +36,14 @@ Kami memakai AI generatif (Claude, Anthropic) sebagai alat bantu terbatas: memah
 - Pemilihan struktur data awalnya disarankan Claude, lalu diterima kelompok setelah dibahas. Pemilihan 50 nomor perkara dilakukan oleh kelompok.
 
 ## Log pemakaian: Adinda
-Adinda mengisi log pemakaian AI-nya sendiri di bagian ini, atau menuliskan: "tidak menggunakan AI generatif untuk mengerjakan tugas ini."
+
+| Tanggal | Anggota | Alat | Tujuan | Ringkasan prompt | Bagian keluaran yang dipakai | Perubahan yang dilakukan | Cara verifikasi |
+|---|---|---|---|---|---|---|---|
+| 2026-11-09 | Adinda | Claude | Class Putusan | Meminta gambaran class `Putusan` berdasarkan deskripsi issue dan tabel 2.2 (16 atribut, constructor lengkap, getter, `toString` ringkas) | Daftar 16 atribut `private final` beserta tipenya, satu constructor lengkap, getter semua atribut, `toString()` dengan `caseId`, `nomorPerkara`, `vonisBulan` | Draf awal berisi tebakan atribut, lalu diganti sesuai tabel 2.2 setelah mengirim gambar tabel | Dicocokkan dengan tabel 2.2 dan kriteria selesai di issue |
+| 2026-11-09 | Adinda | Claude | Test class Putusan | Meminta `PutusanTest` mengikuti contoh `SinglyLinkedListTest` | Test nilai tersimpan, nilai tidak ditemukan (angka = 0, teks/tanggal = null), `dendaRupiah` di atas batas `int`, `toString`, serta cek `private final`, 16 atribut, dan satu constructor lewat reflection | Data contoh (nomor perkara, pasal, dll.) hanya data uji fiktif | Menjalankan `mvn -q test -Dtest=PutusanTest` |
+| 2026-11-09 | Adinda | Claude | Pembagian commit | Meminta commit `Putusan` dipecah seperti PR `feat/singly-linked-list` (selang-seling `feat:` dan `test:`) | 12 commit: fields + constructor, getter per kelompok atribut (identitas, narkotika & pasal, pidana, barang bukti & keadaan & sumber), `toString`, masing-masing disusul test-nya | Pesan commit dipakai apa adanya; kode ditempel bertahap ke IDE | `git log --oneline` menampilkan 12 commit selang-seling feat/test |
+| 2026-11-09 | Adinda | Claude | Perintah git commit | Meminta sintaks git untuk commit file utama dan file test | `git add` per file lalu `git commit -m "feat: ..."` untuk `Putusan.java` dan `git commit -m "test: ..."` untuk `PutusanTest.java` | Sintaks bash diganti PowerShell (`$M = "..."`, `$T = "..."`); `git status` dicek sebelum tiap commit | Memastikan tidak ada status `modified` sebelum commit dan `git diff main --stat` hanya berisi 2 file |
+| 2026-11-09 | Adinda | Claude | Push dan PR | Meminta langkah push dan pembuatan PR | `git push -u origin feature/putusan-class`, lalu `gh pr create --base main --title "Feat/putusan"`; langkah pasang dan login GitHub CLI | GitHub CLI dipasang dan login diganti ke akun yang dipakai untuk PR | Mengecek pembuat PR dan author commit di halaman PR |
 
 ## Catatan
 File ini diperbarui lewat PR terpisah (`docs/ai-usage-update`). Setiap anggota menulis barisnya sendiri.
