@@ -54,4 +54,10 @@ public class Putusan {
     public String getPengadilan() { return pengadilan; }
     public LocalDate getTanggalPutusan() { return tanggalPutusan; }
     public String getTerdakwaKode() { return terdakwaKode; }
+
+
+    public String getJenisNarkotika() { return jenisNarkotika; }
+    public double getBeratBarangBuktiGram() { return beratBarangBuktiGram; }
+    public String getPasalDakwaan() { return pasalDakwaan; }
+    public String getPasalTerbukti() { return pasalTerbukti; }
 }
