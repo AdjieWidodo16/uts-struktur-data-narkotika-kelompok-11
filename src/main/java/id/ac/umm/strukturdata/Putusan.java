@@ -71,4 +71,12 @@ public class Putusan {
     public String getKeadaanMemberatkan() { return keadaanMemberatkan; }
     public String getKeadaanMeringankan() { return keadaanMeringankan; }
     public String getSourcePages() { return sourcePages; }
+
+
+    @Override
+    public String toString() {
+        return "Putusan{caseId=" + caseId
+                + ", nomorPerkara=" + nomorPerkara
+                + ", vonisBulan=" + vonisBulan + "}";
+    }
 }
