@@ -40,4 +40,24 @@ class PutusanTest {
         assertEquals(1, Putusan.class.getDeclaredConstructors().length);
         assertEquals(16, Putusan.class.getDeclaredConstructors()[0].getParameterCount());
     }
+
+    @Test
+    void identitasPerkaraTersimpan() {
+        Putusan p = buatLengkap();
+        assertEquals("CASE-001", p.getCaseId());
+        assertEquals("123/Pid.Sus/2024/PN Mlg", p.getNomorPerkara());
+        assertEquals("PN Malang", p.getPengadilan());
+        assertEquals(LocalDate.of(2024, 5, 20), p.getTanggalPutusan());
+        assertEquals("TDW-001", p.getTerdakwaKode());
+    }
+
+    @Test
+    void identitasTidakDitemukanNull() {
+        Putusan p = buatKosong();
+        assertNull(p.getCaseId());
+        assertNull(p.getNomorPerkara());
+        assertNull(p.getPengadilan());
+        assertNull(p.getTanggalPutusan());
+        assertNull(p.getTerdakwaKode());
+    }
 }
