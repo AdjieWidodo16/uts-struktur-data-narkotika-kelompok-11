@@ -79,4 +79,28 @@ class PutusanTest {
         assertNull(p.getPasalDakwaan());
         assertNull(p.getPasalTerbukti());
     }
+
+
+    @Test
+    void pidanaTersimpan() {
+        Putusan p = buatLengkap();
+        assertEquals(72, p.getTuntutanBulan());
+        assertEquals(60, p.getVonisBulan());
+        assertEquals(800_000_000L, p.getDendaRupiah());
+    }
+
+    @Test
+    void pidanaTidakDitemukanNol() {
+        Putusan p = buatKosong();
+        assertEquals(0, p.getTuntutanBulan());
+        assertEquals(0, p.getVonisBulan());
+        assertEquals(0L, p.getDendaRupiah());
+    }
+
+    @Test
+    void dendaMenampungNilaiDiAtasBatasInt() {
+        Putusan p = new Putusan("C", "N", "P", null, "T", "J", 0,
+                "D", "B", 0, 0, 5_000_000_000L, null, null, null, null);
+        assertEquals(5_000_000_000L, p.getDendaRupiah());
+    }
 }
