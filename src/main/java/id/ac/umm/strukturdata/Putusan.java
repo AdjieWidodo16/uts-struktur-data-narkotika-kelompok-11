@@ -60,4 +60,9 @@ public class Putusan {
     public double getBeratBarangBuktiGram() { return beratBarangBuktiGram; }
     public String getPasalDakwaan() { return pasalDakwaan; }
     public String getPasalTerbukti() { return pasalTerbukti; }
+
+
+    public int getTuntutanBulan() { return tuntutanBulan; }
+    public int getVonisBulan() { return vonisBulan; }
+    public long getDendaRupiah() { return dendaRupiah; }
 }
