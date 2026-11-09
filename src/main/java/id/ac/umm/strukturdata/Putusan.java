@@ -65,4 +65,10 @@ public class Putusan {
     public int getTuntutanBulan() { return tuntutanBulan; }
     public int getVonisBulan() { return vonisBulan; }
     public long getDendaRupiah() { return dendaRupiah; }
+
+
+    public String getBarangBukti() { return barangBukti; }
+    public String getKeadaanMemberatkan() { return keadaanMemberatkan; }
+    public String getKeadaanMeringankan() { return keadaanMeringankan; }
+    public String getSourcePages() { return sourcePages; }
 }
