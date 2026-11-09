@@ -60,4 +60,23 @@ class PutusanTest {
         assertNull(p.getTanggalPutusan());
         assertNull(p.getTerdakwaKode());
     }
+
+
+    @Test
+    void narkotikaDanPasalTersimpan() {
+        Putusan p = buatLengkap();
+        assertEquals("Sabu", p.getJenisNarkotika());
+        assertEquals(12.5, p.getBeratBarangBuktiGram(), 0.0001);
+        assertEquals("Pasal 114 ayat (1)", p.getPasalDakwaan());
+        assertEquals("Pasal 112 ayat (1)", p.getPasalTerbukti());
+    }
+
+    @Test
+    void narkotikaTidakDitemukanNullDanNol() {
+        Putusan p = buatKosong();
+        assertNull(p.getJenisNarkotika());
+        assertEquals(0.0, p.getBeratBarangBuktiGram(), 0.0001);
+        assertNull(p.getPasalDakwaan());
+        assertNull(p.getPasalTerbukti());
+    }
 }
