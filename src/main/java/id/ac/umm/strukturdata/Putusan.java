@@ -48,4 +48,10 @@ public class Putusan {
         this.keadaanMeringankan = keadaanMeringankan;
         this.sourcePages = sourcePages;
     }
+
+    public String getCaseId() { return caseId; }
+    public String getNomorPerkara() { return nomorPerkara; }
+    public String getPengadilan() { return pengadilan; }
+    public LocalDate getTanggalPutusan() { return tanggalPutusan; }
+    public String getTerdakwaKode() { return terdakwaKode; }
 }
