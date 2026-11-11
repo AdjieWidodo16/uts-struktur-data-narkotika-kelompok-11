@@ -108,4 +108,23 @@ class PutusanSearchTest {
         );
     }
 
+    @Test
+    void nomorPerkaraNullPadaDataTidakMenyebabkanError() {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        list.addLast(buat("C1", null));
+        list.addLast(buat("C2", "2/X"));
+        PutusanSearch.Hasil h = PutusanSearch.cariByNomorPerkara(list, "2/X");
+        assertEquals(1, h.getPosisi());
+        assertEquals(2, h.getLangkah());
+    }
+
+    @Test
+    void kunciNullTidakCocokDenganNilaiNull() {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        list.addLast(buat("C1", null));
+        PutusanSearch.Hasil h = PutusanSearch.cariByNomorPerkara(list, null);
+        assertFalse(h.isDitemukan());
+        assertEquals(1, h.getLangkah());
+    }
+
 }
