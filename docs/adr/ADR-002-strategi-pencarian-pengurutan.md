@@ -32,7 +32,13 @@ berdasarkan vonis tanpa merusak invariant.
   jadi biayanya tetap O(n) dan malah lebih rumit.
 - Merge sort cocok untuk linked list: hanya mengubah pointer, tanpa random access,
   O(n log n) dengan ruang bantu kecil.
+- Analisis O(n log n): rekurensi T(n) = 2T(n/2) + O(n). Pembagian list
+    membutuhkan satu traversal O(n) (addLast O(1) karena ada tail), dan penggabungan
+    memindahkan tiap elemen tepat satu kali, O(n). Ada log2(n) tingkat rekursi dan
+    tiap tingkat total kerja O(n), sehingga hasilnya O(n log n) pada best, average,
+    maupun worst case. Ruang: O(n) untuk list hasil dan O(log n) untuk stack rekursi.
 - Sort pada salinan menjaga urutan arsip asli dan menghindari risiko merusak pointer.
+
 
 ## Konsekuensi
 - Search/filter: O(n), ruang tambahan O(1) (O(k) untuk hasil filter).
