@@ -74,6 +74,44 @@ class PutusanAggregatorTest {
         assertEquals(250_000L, r.getTotalDendaRupiah());
     }
 
+    @Test
+    void distribusiJenisDihitungManual() {
+        // Sabu = 3 perkara, Ganja = 1 perkara
+        PutusanAggregator.Ringkasan r = PutusanAggregator.hitung(data4());
+        assertEquals(2, r.getBanyakJenis());
+        assertEquals(3, r.jumlahJenis("Sabu"));
+        assertEquals(1, r.jumlahJenis("Ganja"));
+    }
+
+    @Test
+    void jenisTidakAdaBernilaiNol() {
+        assertEquals(0, PutusanAggregator.hitung(data4()).jumlahJenis("Heroin"));
+    }
+
+    @Test
+    void jenisNullDikelompokkanTersendiri() {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        list.addLast(buat(null, 1, 0L));
+        list.addLast(buat("Sabu", 1, 0L));
+        list.addLast(buat(null, 1, 0L));
+        PutusanAggregator.Ringkasan r = PutusanAggregator.hitung(list);
+        assertEquals(2, r.getBanyakJenis());
+        assertEquals(2, r.jumlahJenis(null));
+        assertEquals(1, r.jumlahJenis("Sabu"));
+    }
+
+    @Test
+    void jumlahSemuaDistribusiSamaDenganJumlahPerkara() {
+        PutusanAggregator.Ringkasan r = PutusanAggregator.hitung(data4());
+        int total = 0;
+        Node<PutusanAggregator.JenisCount> cur = r.getDistribusi().getHead();
+        while (cur != null) {
+            total += cur.data.getJumlah();
+            cur = cur.next;
+        }
+        assertEquals(r.getJumlahPerkara(), total);
+    }
+
     /** Putusan minimal: hanya jenisNarkotika, vonisBulan, dendaRupiah bermakna; sisanya null/0. */
     private Putusan buat(String jenisNarkotika, int vonisBulan, long dendaRupiah) {
         return new Putusan(
