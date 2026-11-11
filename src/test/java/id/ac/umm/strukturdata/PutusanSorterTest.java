@@ -59,6 +59,40 @@ class PutusanSorterTest {
         assertArrayEquals(new int[]{4}, vonisDari(PutusanSorter.urutkanByVonis(listDari(4), false)));
     }
 
+    @Test
+    void listAsliTidakBerubahSetelahDiurutkan() {
+        SinglyLinkedList<Putusan> asli = listDari(3, 1, 2);
+        PutusanSorter.urutkanByVonis(asli, true);
+        PutusanSorter.urutkanByVonis(asli, false);
+        assertEquals(3, asli.size());
+        assertArrayEquals(new int[]{3, 1, 2}, vonisDari(asli));
+        assertArrayEquals(new String[]{"C1", "C2", "C3"}, caseIdDari(asli));
+    }
+
+    @Test
+    void hasilAdalahListBaruBukanObjekYangSama() {
+        SinglyLinkedList<Putusan> asli = listDari(3, 1, 2);
+        assertNotSame(asli, PutusanSorter.urutkanByVonis(asli, true));
+    }
+
+    @Test
+    void invariantListAsliDanHasilLolos() {
+        SinglyLinkedList<Putusan> asli = listDari(8, 2, 5, 2, 9, 1);
+        SinglyLinkedList<Putusan> naik = PutusanSorter.urutkanByVonis(asli, true);
+        SinglyLinkedList<Putusan> turun = PutusanSorter.urutkanByVonis(asli, false);
+        assertDoesNotThrow(asli::validateInvariant);
+        assertDoesNotThrow(naik::validateInvariant);
+        assertDoesNotThrow(turun::validateInvariant);
+        assertEquals(asli.size(), naik.size());
+        assertEquals(asli.size(), turun.size());
+    }
+
+    @Test
+    void invariantListKosongDanSatuElemenLolos() {
+        assertDoesNotThrow(() -> PutusanSorter.urutkanByVonis(new SinglyLinkedList<>(), true).validateInvariant());
+        assertDoesNotThrow(() -> PutusanSorter.urutkanByVonis(listDari(1), true).validateInvariant());
+    }
+
     /** List berisi putusan dengan vonis sesuai urutan argumen; caseId = "C1", "C2", ... */
     private SinglyLinkedList<Putusan> listDari(int... vonis) {
         SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
