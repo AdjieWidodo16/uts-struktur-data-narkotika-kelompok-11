@@ -31,5 +31,22 @@ public class PutusanSearch {
         }
     }
 
+    public static Hasil cariByCaseId(SinglyLinkedList<Putusan> list, String caseId) {
+        int langkah = 0;
+        Node<Putusan> cur = list.getHead();
+        while (cur != null) {
+            langkah++;                                  // satu node dibandingkan
+            if (sama(cur.data.getCaseId(), caseId)) {
+                return new Hasil(cur.data, langkah - 1, langkah);
+            }
+            cur = cur.next;
+        }
+        return new Hasil(null, -1, langkah);            // tidak ketemu: langkah = jumlah node
+    }
+
+    private static boolean sama(String nilai, String kunci) {
+        return nilai != null && nilai.equals(kunci);    // aman untuk nilai null
+    }
+
     private PutusanSearch() { }
 }
