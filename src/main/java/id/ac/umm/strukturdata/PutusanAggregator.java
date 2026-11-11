@@ -26,4 +26,64 @@ public final class PutusanAggregator {
             return "JenisCount{jenis=" + jenis + ", jumlah=" + jumlah + "}";
         }
     }
+
+    /** Hasil agregasi (immutable). */
+    public static final class Ringkasan {
+        private final int jumlahPerkara;
+        private final double rataRataVonisBulan;
+        private final long totalDendaRupiah;
+        private final SinglyLinkedList<JenisCount> distribusi;
+
+        Ringkasan(int jumlahPerkara, double rataRataVonisBulan, long totalDendaRupiah,
+                  SinglyLinkedList<JenisCount> distribusi) {
+            this.jumlahPerkara = jumlahPerkara;
+            this.rataRataVonisBulan = rataRataVonisBulan;
+            this.totalDendaRupiah = totalDendaRupiah;
+            this.distribusi = distribusi;
+        }
+
+        public int getJumlahPerkara() { return jumlahPerkara; }
+        public double getRataRataVonisBulan() { return rataRataVonisBulan; }
+        public long getTotalDendaRupiah() { return totalDendaRupiah; }
+        public SinglyLinkedList<JenisCount> getDistribusi() { return distribusi; }
+
+        /** Banyaknya jenis narkotika yang berbeda. */
+        public int getBanyakJenis() {
+            return distribusi.size();
+        }
+
+        /** Jumlah perkara untuk satu jenis; 0 jika jenis tidak ada. */
+        public int jumlahJenis(String jenis) {
+            Node<JenisCount> cur = distribusi.getHead();
+            while (cur != null) {
+                if (samaJenis(cur.data.getJenis(), jenis)) {
+                    return cur.data.getJumlah();
+                }
+                cur = cur.next;
+            }
+            return 0;
+        }
+    }
+
+    public static Ringkasan hitung(SinglyLinkedList<Putusan> list) {
+        int jumlah = list.size();
+        long totalVonis = 0;
+        long totalDenda = 0;
+
+        Node<Putusan> cur = list.getHead();
+        while (cur != null) {
+            totalVonis += cur.data.getVonisBulan();
+            totalDenda += cur.data.getDendaRupiah();
+            cur = cur.next;
+        }
+
+        double rata = (jumlah == 0) ? 0.0 : (double) totalVonis / jumlah;   // hindari bagi nol
+        return new Ringkasan(jumlah, rata, totalDenda, new SinglyLinkedList<>());
+    }
+
+    // perbandingan aman null tanpa java.util.Objects
+    private static boolean samaJenis(String a, String b) {
+        return (a == null) ? b == null : a.equals(b);
+    }
+
 }
