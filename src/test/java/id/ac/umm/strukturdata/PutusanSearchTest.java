@@ -56,6 +56,37 @@ class PutusanSearchTest {
         assertEquals(0, h.getLangkah());
     }
 
+    @Test
+    void nomorPerkaraDiAwal() {
+        PutusanSearch.Hasil h = PutusanSearch.cariByNomorPerkara(listIsi3(), "1/Pid.Sus/2024/PN A");
+        assertTrue(h.isDitemukan());
+        assertEquals(0, h.getPosisi());
+        assertEquals(1, h.getLangkah());
+    }
+
+    @Test
+    void nomorPerkaraDiAkhir() {
+        PutusanSearch.Hasil h = PutusanSearch.cariByNomorPerkara(listIsi3(), "3/Pid.Sus/2024/PN C");
+        assertTrue(h.isDitemukan());
+        assertEquals(2, h.getPosisi());
+        assertEquals(3, h.getLangkah());
+    }
+
+    @Test
+    void nomorPerkaraTidakAda() {
+        PutusanSearch.Hasil h = PutusanSearch.cariByNomorPerkara(listIsi3(), "99/X");
+        assertFalse(h.isDitemukan());
+        assertEquals(-1, h.getPosisi());
+        assertEquals(3, h.getLangkah());
+    }
+
+    @Test
+    void nomorPerkaraPadaListKosong() {
+        PutusanSearch.Hasil h = PutusanSearch.cariByNomorPerkara(new SinglyLinkedList<>(), "1/X");
+        assertFalse(h.isDitemukan());
+        assertEquals(0, h.getLangkah());
+    }
+
     /** Putusan minimal: hanya caseId & nomorPerkara bermakna; sisanya null (teks/tanggal) atau 0 (angka). */
     private Putusan buat(String caseId, String nomorPerkara) {
         return new Putusan(
