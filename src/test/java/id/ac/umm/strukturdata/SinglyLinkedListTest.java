@@ -238,4 +238,18 @@ class SinglyLinkedListTest {
         data.clear();
         assertTrue(data.isEmpty());
     }
+
+    @Test
+    void getHeadNullPadaListKosong() {
+        assertNull(new SinglyLinkedList<String>().getHead());
+    }
+
+    @Test
+    void getHeadMenunjukNodePertama() {
+        SinglyLinkedList<String> list = new SinglyLinkedList<>();
+        list.addLast("A");
+        list.addLast("B");
+        assertEquals("A", list.getHead().data);
+        assertEquals("B", list.getHead().next.data);
+    }
 }

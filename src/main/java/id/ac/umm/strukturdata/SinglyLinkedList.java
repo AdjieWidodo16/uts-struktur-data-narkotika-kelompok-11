@@ -14,6 +14,15 @@ public class SinglyLinkedList<T> implements StrukturData<T> {
         return size == 0;
     }
 
+    /**
+     * Akses head untuk traversal oleh class sepackage (mis. PutusanSearch).
+     * Sengaja package-private agar struktur internal tidak terbuka ke luar package.
+     */
+    Node<T> getHead() {
+        return head;
+    }
+
+
     public void addFirst(T value) {
         Node<T> node = new Node<>(value);
         node.next = head;
