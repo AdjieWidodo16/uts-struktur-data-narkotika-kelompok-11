@@ -112,6 +112,16 @@ class PutusanAggregatorTest {
         assertEquals(r.getJumlahPerkara(), total);
     }
 
+    @Test
+    void listAsliTidakBerubahDanInvariantTetapLolos() {
+        SinglyLinkedList<Putusan> asli = data4();
+        PutusanAggregator.hitung(asli);
+        assertEquals(4, asli.size());
+        assertEquals(12, asli.get(0).getVonisBulan());
+        assertEquals(18, asli.get(3).getVonisBulan());
+        assertDoesNotThrow(asli::validateInvariant);
+    }
+
     /** Putusan minimal: hanya jenisNarkotika, vonisBulan, dendaRupiah bermakna; sisanya null/0. */
     private Putusan buat(String jenisNarkotika, int vonisBulan, long dendaRupiah) {
         return new Putusan(
