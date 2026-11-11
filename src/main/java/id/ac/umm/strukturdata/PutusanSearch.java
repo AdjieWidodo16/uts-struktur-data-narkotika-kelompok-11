@@ -48,5 +48,18 @@ public class PutusanSearch {
         return nilai != null && nilai.equals(kunci);    // aman untuk nilai null
     }
 
+    public static Hasil cariByNomorPerkara(SinglyLinkedList<Putusan> list, String nomorPerkara) {
+        int langkah = 0;
+        Node<Putusan> cur = list.getHead();
+        while (cur != null) {
+            langkah++;
+            if (sama(cur.data.getNomorPerkara(), nomorPerkara)) {
+                return new Hasil(cur.data, langkah - 1, langkah);
+            }
+            cur = cur.next;
+        }
+        return new Hasil(null, -1, langkah);
+    }
+
     private PutusanSearch() { }
 }
