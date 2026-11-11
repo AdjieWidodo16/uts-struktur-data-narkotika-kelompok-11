@@ -69,16 +69,31 @@ public final class PutusanAggregator {
         int jumlah = list.size();
         long totalVonis = 0;
         long totalDenda = 0;
+        SinglyLinkedList<JenisCount> distribusi = new SinglyLinkedList<>();
 
         Node<Putusan> cur = list.getHead();
         while (cur != null) {
             totalVonis += cur.data.getVonisBulan();
             totalDenda += cur.data.getDendaRupiah();
+            catat(distribusi, cur.data.getJenisNarkotika());
             cur = cur.next;
         }
 
         double rata = (jumlah == 0) ? 0.0 : (double) totalVonis / jumlah;   // hindari bagi nol
-        return new Ringkasan(jumlah, rata, totalDenda, new SinglyLinkedList<>());
+        return new Ringkasan(jumlah, rata, totalDenda, distribusi);
+    }
+
+    // tambah 1 pada jenis yang sudah ada, atau buat baris baru di akhir (urutan = kemunculan pertama)
+    private static void catat(SinglyLinkedList<JenisCount> distribusi, String jenis) {
+        Node<JenisCount> cur = distribusi.getHead();
+        while (cur != null) {
+            if (samaJenis(cur.data.getJenis(), jenis)) {
+                cur.data.tambah();
+                return;
+            }
+            cur = cur.next;
+        }
+        distribusi.addLast(new JenisCount(jenis, 1));
     }
 
     // perbandingan aman null tanpa java.util.Objects
