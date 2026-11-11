@@ -39,7 +39,25 @@ class PutusanSorterTest {
         assertArrayEquals(new int[]{1, 2, 3, 4, 5}, vonisDari(hasil));
     }
 
-    // ---------- helper ----------
+    @Test
+    void urutanTurunDariAcak() {
+        SinglyLinkedList<Putusan> hasil = PutusanSorter.urutkanByVonis(listDari(3, 9, 1, 7, 5), false);
+        assertArrayEquals(new int[]{9, 7, 5, 3, 1}, vonisDari(hasil));
+    }
+
+    @Test
+    void nilaiKembarStabilPadaUrutanTurun() {
+        // C1=12, C2=6, C3=12, C4=6
+        SinglyLinkedList<Putusan> hasil = PutusanSorter.urutkanByVonis(listDari(12, 6, 12, 6), false);
+        assertArrayEquals(new int[]{12, 12, 6, 6}, vonisDari(hasil));
+        assertArrayEquals(new String[]{"C1", "C3", "C2", "C4"}, caseIdDari(hasil));
+    }
+
+    @Test
+    void urutanTurunPadaListKosongDanSatuElemen() {
+        assertTrue(PutusanSorter.urutkanByVonis(new SinglyLinkedList<>(), false).isEmpty());
+        assertArrayEquals(new int[]{4}, vonisDari(PutusanSorter.urutkanByVonis(listDari(4), false)));
+    }
 
     /** List berisi putusan dengan vonis sesuai urutan argumen; caseId = "C1", "C2", ... */
     private SinglyLinkedList<Putusan> listDari(int... vonis) {
