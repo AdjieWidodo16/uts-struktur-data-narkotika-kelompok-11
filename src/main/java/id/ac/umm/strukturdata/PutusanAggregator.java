@@ -65,6 +65,11 @@ public final class PutusanAggregator {
         }
     }
 
+        /**
+     * Rata-rata vonis dihitung dari SELURUH putusan, termasuk vonisBulan = 0.
+     * Panduan UTS tidak mengatur pengecualian nilai kosong; ini adalah keputusan kelompok.
+     */
+    
     public static Ringkasan hitung(SinglyLinkedList<Putusan> list) {
         int jumlah = list.size();
         long totalVonis = 0;
