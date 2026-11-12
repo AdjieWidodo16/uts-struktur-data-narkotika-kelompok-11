@@ -116,11 +116,14 @@ class PutusanFilterTest {
     }
 
     @Test
-    void beratNolHanyaCocokDenganRentangYangMemuatNol() {
-        assertIds(new PutusanFilter().beratBetween(0.0, 0.0).terapkan(daftar), "D6");
-        assertIds(new PutusanFilter().beratBetween(0.1, 1000.0).terapkan(daftar),
-                "D1", "D2", "D3", "D4", "D5");
-    }
+    void beratNolTidakLolosFilterRentang() {
+    // Data D6 memiliki berat 0 (tidak ditemukan), sehingga harus dikecualikan.
+    assertIds(new PutusanFilter().beratBetween(0.0, 0.0).terapkan(daftar));
+
+    // Rentang yang dimulai dari 0 tetap hanya mengambil data berat yang valid.
+    assertIds(new PutusanFilter().beratBetween(0.0, 1000.0).terapkan(daftar),
+            "D1", "D2", "D3", "D4", "D5");
+}
 
     @Test
     void rentangBeratTidakValidDitolak() {
@@ -169,9 +172,14 @@ class PutusanFilterTest {
     }
 
     @Test
-    void vonisNolHanyaCocokDenganRentangYangMemuatNol() {
-        assertIds(new PutusanFilter().vonisBetween(0, 0).terapkan(daftar), "D6");
-    }
+    void vonisNolTidakLolosFilterRentang() {
+    // Data D6 memiliki vonis 0 (tidak ditemukan), sehingga harus dikecualikan.
+    assertIds(new PutusanFilter().vonisBetween(0, 0).terapkan(daftar));
+
+    // Rentang yang dimulai dari 0 tetap hanya mengambil data vonis yang valid.
+    assertIds(new PutusanFilter().vonisBetween(0, 100).terapkan(daftar),
+            "D1", "D2", "D3", "D4", "D5");
+}
 
     @Test
     void rentangVonisDiLuarBatasMenghasilkanListKosong() {
