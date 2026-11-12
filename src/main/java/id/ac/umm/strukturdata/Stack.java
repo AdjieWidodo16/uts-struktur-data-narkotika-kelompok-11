@@ -57,4 +57,22 @@ public class Stack<T> {
         data = baru;
     }
 
+    public T peek() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack kosong: tidak ada elemen untuk dilihat (peek)");
+        }
+        return data[size - 1];
+    }
+
+    public T pop() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack kosong: tidak ada elemen untuk diambil (pop)");
+        }
+        T value = data[size - 1];
+        data[size - 1] = null; // lepas referensi agar slot di atas puncak selalu null
+        size--;
+        return value;
+    }
+
+
 }
