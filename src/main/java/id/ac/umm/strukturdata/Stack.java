@@ -11,6 +11,9 @@ public class Stack<T> {
 
     private T[] data;
     private int size;
+    private T[] holding;       // area penampung sementara saat pencarian
+    private int holdingSize;
+    private int lastSearchSteps;
 
     public Stack() {
         this(DEFAULT_CAPACITY);
@@ -79,6 +82,8 @@ public class Stack<T> {
             data[i] = null;
         }
         size = 0;
+        holding = null;
+        holdingSize = 0;
     }
 
     public boolean contains(T value) {
@@ -93,6 +98,49 @@ public class Stack<T> {
     private static boolean sama(Object a, Object b) {
         return a == null ? b == null : a.equals(b);
     }
+
+    /**
+     * Mencari target dari puncak ke dasar tanpa mengubah urutan akhir stack.
+     * @return kedalaman dari puncak (0 = puncak), atau -1 jika tidak ditemukan.
+     *         Jumlah langkah (elemen yang diperiksa) ada di getLastSearchSteps().
+     */
+    @SuppressWarnings("unchecked")
+    public int searchPreserve(T target) {
+        lastSearchSteps = 0;
+        holding = (T[]) new Object[size];
+        holdingSize = 0;
+
+        int hasil = -1;
+        int kedalaman = 0;
+        while (!isEmpty()) {
+            T item = pop();
+            holding[holdingSize] = item;
+            holdingSize++;
+            lastSearchSteps++;
+            if (sama(item, target)) {
+                hasil = kedalaman;
+                break;
+            }
+            kedalaman++;
+        }
+        restore();
+        return hasil;
+    }
+
+    /** Mengembalikan elemen yang tertahan ke stack sehingga urutan seperti semula. */
+    public void restore() {
+        while (holdingSize > 0) {
+            holdingSize--;
+            push(holding[holdingSize]);
+            holding[holdingSize] = null;
+        }
+        holding = null;
+    }
+
+    public int getLastSearchSteps() {
+        return lastSearchSteps;
+    }
+
 
 
 
