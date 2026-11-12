@@ -72,4 +72,58 @@ class StackTest {
         assertEquals(1, s.size());
     }
 
+    @Test
+    void peekMelihatPuncakTanpaMenghapus() {
+        Stack<String> s = isiStack("a", "b", "c");
+        assertEquals("c", s.peek());
+        assertEquals("c", s.peek());
+        assertEquals(3, s.size());
+    }
+
+    @Test
+    void popMengikutiUrutanLifo() {
+        Stack<String> s = isiStack("a", "b", "c");
+        assertEquals("c", s.pop());
+        assertEquals("b", s.pop());
+        assertEquals("a", s.pop());
+        assertTrue(s.isEmpty());
+    }
+
+    @Test
+    void urutanLifoTerjagaSetelahResize() {
+        Stack<Integer> s = new Stack<>(2);
+        for (int i = 1; i <= 25; i++) {
+            s.push(i);
+        }
+        for (int i = 25; i >= 1; i--) {
+            assertEquals(i, s.pop().intValue());
+        }
+    }
+
+    @Test
+    void popStackKosongMelemparExceptionDenganPesanJelas() {
+        Stack<String> s = new Stack<>();
+        IllegalStateException e = assertThrows(IllegalStateException.class, s::pop);
+        assertTrue(e.getMessage().contains("kosong"));
+    }
+
+    @Test
+    void peekStackKosongMelemparExceptionDenganPesanJelas() {
+        Stack<String> s = new Stack<>();
+        IllegalStateException e = assertThrows(IllegalStateException.class, s::peek);
+        assertTrue(e.getMessage().contains("kosong"));
+    }
+
+    @Test
+    void stackTetapKonsistenSetelahPopGagal() {
+        Stack<String> s = isiStack("a");
+        s.pop();
+        assertThrows(IllegalStateException.class, s::pop);
+        assertEquals(0, s.size());
+        assertTrue(s.isEmpty());
+        s.push("b");
+        assertEquals("b", s.peek());
+    }
+
+
 }
