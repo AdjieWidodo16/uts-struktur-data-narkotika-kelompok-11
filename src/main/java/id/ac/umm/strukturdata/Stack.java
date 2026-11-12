@@ -74,5 +74,26 @@ public class Stack<T> {
         return value;
     }
 
+    public void clear() {
+        for (int i = 0; i < size; i++) {
+            data[i] = null;
+        }
+        size = 0;
+    }
+
+    public boolean contains(T value) {
+        for (int i = size - 1; i >= 0; i--) {
+            if (sama(data[i], value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean sama(Object a, Object b) {
+        return a == null ? b == null : a.equals(b);
+    }
+
+
 
 }
