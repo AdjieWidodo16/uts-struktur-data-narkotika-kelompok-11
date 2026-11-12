@@ -125,5 +125,45 @@ class StackTest {
         assertEquals("b", s.peek());
     }
 
+    @Test
+    void clearMengosongkanStack() {
+        Stack<String> s = isiStack("a", "b", "c");
+        s.clear();
+        assertEquals(0, s.size());
+        assertTrue(s.isEmpty());
+        assertThrows(IllegalStateException.class, s::peek);
+    }
+
+    @Test
+    void stackBisaDipakaiLagiSetelahClear() {
+        Stack<String> s = isiStack("a", "b");
+        s.clear();
+        s.push("x");
+        assertEquals("x", s.peek());
+        assertEquals(1, s.size());
+    }
+
+    @Test
+    void containsMenemukanElemenAda() {
+        Stack<String> s = isiStack("a", "b", "c");
+        assertTrue(s.contains("a"));
+        assertTrue(s.contains("c"));
+    }
+
+    @Test
+    void containsFalseUntukElemenTidakAdaDanStackKosong() {
+        assertFalse(isiStack("a", "b").contains("z"));
+        assertFalse(new Stack<String>().contains("a"));
+    }
+
+    @Test
+    void containsTidakMengubahStack() {
+        Stack<String> s = isiStack("a", "b", "c");
+        s.contains("a");
+        assertEquals(3, s.size());
+        assertEquals("c", s.peek());
+    }
+
+
 
 }
