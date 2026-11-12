@@ -61,6 +61,10 @@ public class Exporter {
 
     /** @return true jika file berhasil ditulis. */
     public boolean eksporCsv(SinglyLinkedList<Putusan> list, String path) {
+        if (list == null) {
+            lastError = "List putusan tidak boleh null";
+            return false;
+        }
         return tulis(path, buatCsv(list));
     }
 
@@ -100,6 +104,10 @@ public class Exporter {
     }
 
     public boolean eksporLaporan(SinglyLinkedList<Putusan> list, AuditLog audit, String path) {
+        if (list == null) {
+            lastError = "List putusan tidak boleh null";
+            return false;
+        }
         return tulis(path, buatLaporan(list, audit));
     }
 
@@ -120,6 +128,10 @@ public class Exporter {
     }
 
     public boolean eksporHasilCari(PutusanSearch.Hasil hasil, String path) {
+        if (hasil == null) {
+            lastError = "Hasil pencarian tidak boleh null";
+            return false;
+        }
         return tulis(path, buatHasilCari(hasil));
     }
 
@@ -158,6 +170,10 @@ public class Exporter {
     }
 
     private boolean tulis(String path, String isi) {
+        if (path == null || path.trim().isEmpty()) {
+            lastError = "Path file tidak boleh kosong";
+            return false;
+        }
         try (BufferedWriter w = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream(path), StandardCharsets.UTF_8))) {
             w.write(isi);
