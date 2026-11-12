@@ -116,4 +116,99 @@ class ExporterTest {
     void listNullDiBuatCsvDitolak() {
         assertThrows(IllegalArgumentException.class, () -> new Exporter().buatCsv(null));
     }
+
+    @Test
+    void laporanMemuatRingkasanAgregasiDanDistribusi() {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        list.add(dummy("D1", "Sabu", 0.5, 48, 1_000_000L));
+        list.add(dummy("D2", "Ganja", 100, 72, 2_000_000L));
+        String s = new Exporter().buatLaporan(list, null);
+        assertTrue(s.startsWith("LAPORAN PUTUSAN NARKOTIKA\n"));
+        assertTrue(s.contains("Total: 2 putusan"));
+        assertTrue(s.contains("- Jumlah perkara: 2\n"));
+        assertTrue(s.contains("- Rata-rata vonis (bulan): 60.0\n"));
+        assertTrue(s.contains("- Total denda (Rp): 3000000\n"));
+        assertTrue(s.contains("  * Sabu: 1\n"));
+        assertTrue(s.contains("  * Ganja: 1\n"));
+        assertFalse(s.contains("Riwayat audit"));
+    }
+
+    @Test
+    void jenisGabunganDenganTitikKomaDihitungSebagaiJenisTersendiri() {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        list.add(dummy("D1", "Sabu;Ganja", 1, 1, 0));
+        list.add(dummy("D2", "Sabu", 1, 1, 0));
+        String s = new Exporter().buatLaporan(list, null);
+        assertTrue(s.contains("  * Sabu;Ganja: 1\n"));
+        assertTrue(s.contains("  * Sabu: 1\n"));
+    }
+
+    @Test
+    void laporanDenganAuditMemuatRiwayatDanUrutanStackTetap() {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        list.add(dummy("D1", "Sabu", 0.5, 48, 0));
+        AuditLog audit = new AuditLog();
+        audit.catatTambah("D1");
+        audit.catatCari("D1");
+        String terbaruSebelum = audit.terbaru();
+        String s = new Exporter().buatLaporan(list, audit);
+        assertTrue(s.contains("Riwayat audit: 2 entri"));
+        assertTrue(s.contains("] CARI: D1"));
+        assertEquals(2, audit.jumlah());
+        assertEquals(terbaruSebelum, audit.terbaru());
+        audit.validateInvariant();
+    }
+
+    @Test
+    void laporanListKosongAmanDanJenisNullDilabeli() {
+        String kosongS = new Exporter().buatLaporan(new SinglyLinkedList<>(), null);
+        assertTrue(kosongS.contains("- Jumlah perkara: 0\n"));
+        assertTrue(kosongS.contains("(tidak ada data)"));
+
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        list.add(kosong());
+        assertTrue(new Exporter().buatLaporan(list, null).contains("(tidak diketahui): 1"));
+    }
+
+    @Test
+    void eksporLaporanMenulisFile() throws IOException {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        list.add(dummy("D1", "Sabu", 0.5, 48, 0));
+        Path file = folder.resolve("laporan.txt");
+        Exporter ex = new Exporter();
+        assertTrue(ex.eksporLaporan(list, null, file.toString()));
+        assertEquals(ex.buatLaporan(list, null), Files.readString(file));
+    }
+
+    @Test
+    void hasilCariDitemukanDiEkspor() throws IOException {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        list.add(dummy("D1", "Sabu", 0.5, 48, 0));
+        list.add(dummy("D2", "Ganja", 100, 72, 0));
+        PutusanSearch.Hasil hasil = PutusanSearch.cariByCaseId(list, "D2");
+        Path file = folder.resolve("cari.txt");
+        Exporter ex = new Exporter();
+        assertTrue(ex.eksporHasilCari(hasil, file.toString()));
+        String isi = Files.readString(file);
+        assertTrue(isi.contains("Ditemukan: ya"));
+        assertTrue(isi.contains("Posisi: 1"));
+        assertTrue(isi.contains("Langkah: 2"));
+        assertTrue(isi.contains("caseId=D2"));
+    }
+
+    @Test
+    void hasilCariTidakDitemukanTanpaBarisPutusan() {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        list.add(dummy("D1", "Sabu", 0.5, 48, 0));
+        String s = new Exporter().buatHasilCari(PutusanSearch.cariByCaseId(list, "ZZZ"));
+        assertTrue(s.contains("Ditemukan: tidak"));
+        assertTrue(s.contains("Posisi: -1"));
+        assertFalse(s.contains("Putusan:"));
+    }
+
+    @Test
+    void hasilCariNullDitolak() {
+        assertThrows(IllegalArgumentException.class, () -> new Exporter().buatHasilCari(null));
+    }
+
 }
