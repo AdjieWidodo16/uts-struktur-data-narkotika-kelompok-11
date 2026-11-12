@@ -43,4 +43,49 @@ class AuditLogTest {
         assertEquals(1, log.jumlah());
         log.validateInvariant();
     }
+    @Test
+    void entriTambahBerformatWaktuJenisDetail() {
+        AuditLog log = new AuditLog(TETAP);
+        log.catatTambah("D1");
+        assertEquals(WAKTU + " TAMBAH: D1", log.terbaru());
+    }
+
+    @Test
+    void empatJenisOperasiTercatat() {
+        AuditLog log = new AuditLog(TETAP);
+        log.catatTambah("D1");
+        assertEquals(WAKTU + " TAMBAH: D1", log.terbaru());
+        log.catatHapus("D1");
+        assertEquals(WAKTU + " HAPUS: D1", log.terbaru());
+        log.catatCari("D2");
+        assertEquals(WAKTU + " CARI: D2", log.terbaru());
+        log.catatFilter("jenis=sabu");
+        assertEquals(WAKTU + " FILTER: jenis=sabu", log.terbaru());
+        assertEquals(4, log.jumlah());
+        log.validateInvariant();
+    }
+
+    @Test
+    void detailNullDitulisSebagaiStrip() {
+        AuditLog log = new AuditLog(TETAP);
+        log.catatCari(null);
+        assertEquals(WAKTU + " CARI: -", log.terbaru());
+    }
+
+    @Test
+    void terbaruPadaLogKosongMelemparExceptionTerkontrol() {
+        assertThrows(IllegalStateException.class, () -> new AuditLog(TETAP).terbaru());
+    }
+
+    @Test
+    void clockNullDitolak() {
+        assertThrows(IllegalArgumentException.class, () -> new AuditLog(null));
+    }
+
+    @Test
+    void logDenganJamSistemTetapMenghasilkanEntriBerjenis() {
+        AuditLog log = new AuditLog();
+        log.catatTambah("D1");
+        assertTrue(log.terbaru().contains("] TAMBAH: D1"));
+    }
 }
