@@ -128,6 +128,35 @@ class PutusanFilterTest {
         assertThrows(IllegalArgumentException.class, () -> new PutusanFilter().beratBetween(-1.0, 1.0));
     }
 
+    @Test
+    void filterPasalTerbuktiByNomorPasal() {
+        assertIds(new PutusanFilter().pasalTerbukti("112").terapkan(daftar), "D1", "D4");
+        assertIds(new PutusanFilter().pasalTerbukti("114").terapkan(daftar), "D2", "D5");
+    }
+
+    @Test
+    void filterPasalTerbuktiTanpaMembedakanHurufBesarKecil() {
+        assertIds(new PutusanFilter().pasalTerbukti("PASAL 112 AYAT (1)").terapkan(daftar), "D1");
+    }
+
+    @Test
+    void pasalNullTidakPernahLolos() {
+        assertIds(new PutusanFilter().pasalTerbukti("pasal").terapkan(daftar),
+                "D1", "D2", "D3", "D4", "D5");
+    }
+
+    @Test
+    void pasalTidakAdaMenghasilkanListKosong() {
+        assertIds(new PutusanFilter().pasalTerbukti("999").terapkan(daftar));
+    }
+
+    @Test
+    void kriteriaPasalKosongDitolak() {
+        assertThrows(IllegalArgumentException.class, () -> new PutusanFilter().pasalTerbukti(""));
+        assertThrows(IllegalArgumentException.class, () -> new PutusanFilter().pasalTerbukti(null));
+    }
+
+
 }
 
 
