@@ -211,4 +211,66 @@ class ExporterTest {
         assertThrows(IllegalArgumentException.class, () -> new Exporter().buatHasilCari(null));
     }
 
+    @Test
+    void folderTujuanTidakAdaMengembalikanFalseDenganPesan() {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        list.add(dummy("D1", "Sabu", 0.5, 48, 0));
+        Exporter ex = new Exporter();
+        Path salah = folder.resolve("tidak-ada").resolve("sub").resolve("out.csv");
+        assertFalse(ex.eksporCsv(list, salah.toString()));
+        assertNotNull(ex.getLastError());
+        assertTrue(ex.getLastError().contains("Gagal menulis file"));
+        assertFalse(Files.exists(salah));
+    }
+
+    @Test
+    void pathBerupaFolderMengembalikanFalse() {
+        Exporter ex = new Exporter();
+        assertFalse(ex.eksporLaporan(new SinglyLinkedList<>(), null, folder.toString()));
+        assertNotNull(ex.getLastError());
+    }
+
+    @Test
+    void pathNullAtauKosongMengembalikanFalse() {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        Exporter ex = new Exporter();
+        assertFalse(ex.eksporCsv(list, null));
+        assertEquals("Path file tidak boleh kosong", ex.getLastError());
+        assertFalse(ex.eksporCsv(list, "   "));
+        assertEquals("Path file tidak boleh kosong", ex.getLastError());
+    }
+
+    @Test
+    void listAtauHasilNullMengembalikanFalseTanpaCrash() {
+        Exporter ex = new Exporter();
+        String path = folder.resolve("x.txt").toString();
+        assertFalse(ex.eksporCsv(null, path));
+        assertFalse(ex.eksporLaporan(null, null, path));
+        assertFalse(ex.eksporHasilCari(null, path));
+        assertFalse(Files.exists(Path.of(path)));
+    }
+
+    @Test
+    void eksporBerhasilSetelahGagalMenghapusPesanError() {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        Exporter ex = new Exporter();
+        assertFalse(ex.eksporCsv(list, folder.resolve("a").resolve("b.csv").toString()));
+        assertNotNull(ex.getLastError());
+        assertTrue(ex.eksporCsv(list, folder.resolve("ok.csv").toString()));
+        assertNull(ex.getLastError());
+    }
+
+    @Test
+    void kegagalanEksporTidakMengubahListAtauAudit() {
+        SinglyLinkedList<Putusan> list = new SinglyLinkedList<>();
+        list.add(dummy("D1", "Sabu", 0.5, 48, 0));
+        AuditLog audit = new AuditLog();
+        audit.catatTambah("D1");
+        new Exporter().eksporLaporan(list, audit, folder.resolve("x").resolve("y.txt").toString());
+        assertEquals(1, list.size());
+        assertEquals(1, audit.jumlah());
+        list.validateInvariant();
+        audit.validateInvariant();
+    }
+
 }
