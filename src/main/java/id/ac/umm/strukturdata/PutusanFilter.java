@@ -7,11 +7,11 @@ package id.ac.umm.strukturdata;
  */
 public class PutusanFilter {
 
-    private String jenisNarkotika;   // null = kriteria tidak aktif
+    private String jenisNarkotika;
     private boolean beratAktif;
     private double beratMin;
     private double beratMax;
-    private String pasalTerbukti;   // null = kriteria tidak aktif
+    private String pasalTerbukti;
     private boolean vonisAktif;
     private int vonisMin;
     private int vonisMax;
@@ -26,9 +26,8 @@ public class PutusanFilter {
     }
 
     /**
-     * Berat barang bukti (gram) dalam rentang inklusif min <= berat <= max.
-     * Catatan: berat 0 berarti "tidak ditemukan" (aturan 2.1), jadi batas bawah > 0
-     * otomatis mengecualikan putusan yang beratnya tidak tercatat.
+     * Berat barang bukti (gram) dalam rentang inklusif.
+     * Nilai 0 berarti data tidak ditemukan, sehingga tidak akan lolos filter berat.
      */
     public PutusanFilter beratBetween(double min, double max) {
         if (min < 0 || min > max) {
@@ -49,7 +48,10 @@ public class PutusanFilter {
         return this;
     }
 
-    /** Vonis (bulan) dalam rentang inklusif min <= vonis <= max. */
+    /**
+     * Vonis (bulan) dalam rentang inklusif.
+     * Nilai 0 berarti data tidak ditemukan, sehingga tidak akan lolos filter vonis.
+     */
     public PutusanFilter vonisBetween(int min, int max) {
         if (min < 0 || min > max) {
             throw new IllegalArgumentException("Rentang vonis tidak valid: " + min + ".." + max);
@@ -60,21 +62,25 @@ public class PutusanFilter {
         return this;
     }
 
-
-
-    //“Tanpa kriteria aktif, hasilnya salinan seluruh list.”
+    /**
+     * Menerapkan seluruh kriteria aktif.
+     * Tanpa kriteria aktif, hasilnya salinan seluruh list.
+     */
     public SinglyLinkedList<Putusan> terapkan(SinglyLinkedList<Putusan> list) {
         if (list == null) {
             throw new IllegalArgumentException("List putusan tidak boleh null");
         }
+
         SinglyLinkedList<Putusan> hasil = new SinglyLinkedList<>();
         Node<Putusan> cur = list.getHead();
+
         while (cur != null) {
             if (cocok(cur.data)) {
                 hasil.addLast(cur.data);
             }
             cur = cur.next;
         }
+
         return hasil;
     }
 
@@ -96,29 +102,39 @@ public class PutusanFilter {
                 + ", vonis=" + (vonisAktif ? vonisMin + ".." + vonisMax : "-") + "}";
     }
 
-
     private boolean cocok(Putusan p) {
         if (p == null) {
             return false;
         }
-        if (jenisNarkotika != null && !mengandung(p.getJenisNarkotika(), jenisNarkotika)) {
+
+        if (jenisNarkotika != null
+                && !mengandung(p.getJenisNarkotika(), jenisNarkotika)) {
             return false;
         }
+
+        // Nilai 0 menandakan data berat tidak ditemukan.
         if (beratAktif) {
             double berat = p.getBeratBarangBuktiGram();
-            if (berat < beratMin || berat > beratMax) {
+
+            if (berat <= 0 || berat < beratMin || berat > beratMax) {
                 return false;
             }
         }
-        if (pasalTerbukti != null && !mengandung(p.getPasalTerbukti(), pasalTerbukti)) {
+
+        if (pasalTerbukti != null
+                && !mengandung(p.getPasalTerbukti(), pasalTerbukti)) {
             return false;
         }
+
+        // Nilai 0 menandakan data vonis tidak ditemukan.
         if (vonisAktif) {
             int vonis = p.getVonisBulan();
-            if (vonis < vonisMin || vonis > vonisMax) {
+
+            if (vonis <= 0 || vonis < vonisMin || vonis > vonisMax) {
                 return false;
             }
         }
+
         return true;
     }
 
@@ -127,12 +143,15 @@ public class PutusanFilter {
         if (teks == null) {
             return false;
         }
+
         int batas = teks.length() - kata.length();
+
         for (int i = 0; i <= batas; i++) {
             if (teks.regionMatches(true, i, kata, 0, kata.length())) {
                 return true;
             }
         }
+
         return false;
     }
 }
