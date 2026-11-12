@@ -36,4 +36,25 @@ public class Stack<T> {
     public int capacity() {
         return data.length;
     }
+
+    public void push(T value) {
+        if (value == null) {
+            throw new IllegalArgumentException("Elemen audit tidak boleh null");
+        }
+        if (size == data.length) {
+            resize();
+        }
+        data[size] = value;
+        size++;
+    }
+
+    @SuppressWarnings("unchecked")
+    private void resize() {
+        T[] baru = (T[]) new Object[data.length * 2];
+        for (int i = 0; i < size; i++) {
+            baru[i] = data[i];
+        }
+        data = baru;
+    }
+
 }
