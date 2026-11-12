@@ -64,6 +64,65 @@ public class Exporter {
         return tulis(path, buatCsv(list));
     }
 
+    /**
+     * Laporan teks: ringkasan putusan, agregasi, dan (jika audit tidak null) riwayat audit.
+     * Rata-rata vonis dibulatkan 2 desimal.
+     */
+    public String buatLaporan(SinglyLinkedList<Putusan> list, AuditLog audit) {
+        if (list == null) {
+            throw new IllegalArgumentException("List putusan tidak boleh null");
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("LAPORAN PUTUSAN NARKOTIKA\n\n");
+        sb.append(PutusanDisplay.ringkasan(list)).append('\n');
+
+        PutusanAggregator.Ringkasan r = PutusanAggregator.hitung(list);
+        sb.append("Agregasi\n");
+        sb.append("- Jumlah perkara: ").append(r.getJumlahPerkara()).append('\n');
+        sb.append("- Rata-rata vonis (bulan): ")
+                .append(Math.round(r.getRataRataVonisBulan() * 100.0) / 100.0).append('\n');
+        sb.append("- Total denda (Rp): ").append(r.getTotalDendaRupiah()).append('\n');
+        sb.append("- Distribusi jenis narkotika:\n");
+        if (r.getDistribusi().isEmpty()) {
+            sb.append("  (tidak ada data)\n");
+        } else {
+            Node<PutusanAggregator.JenisCount> cur = r.getDistribusi().getHead();
+            while (cur != null) {
+                String jenis = cur.data.getJenis() == null ? "(tidak diketahui)" : cur.data.getJenis();
+                sb.append("  * ").append(jenis).append(": ").append(cur.data.getJumlah()).append('\n');
+                cur = cur.next;
+            }
+        }
+        if (audit != null) {
+            sb.append('\n').append(audit.riwayat());
+        }
+        return sb.toString();
+    }
+
+    public boolean eksporLaporan(SinglyLinkedList<Putusan> list, AuditLog audit, String path) {
+        return tulis(path, buatLaporan(list, audit));
+    }
+
+    /** Teks hasil pencarian (ditemukan atau tidak, posisi, jumlah langkah). */
+    public String buatHasilCari(PutusanSearch.Hasil hasil) {
+        if (hasil == null) {
+            throw new IllegalArgumentException("Hasil pencarian tidak boleh null");
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("HASIL PENCARIAN\n");
+        sb.append("Ditemukan: ").append(hasil.isDitemukan() ? "ya" : "tidak").append('\n');
+        sb.append("Posisi: ").append(hasil.getPosisi()).append('\n');
+        sb.append("Langkah: ").append(hasil.getLangkah()).append('\n');
+        if (hasil.isDitemukan()) {
+            sb.append("Putusan: ").append(hasil.getPutusan()).append('\n');
+        }
+        return sb.toString();
+    }
+
+    public boolean eksporHasilCari(PutusanSearch.Hasil hasil, String path) {
+        return tulis(path, buatHasilCari(hasil));
+    }
+
     /** Null menjadi kosong; teks berkoma/berkutip/baris-baru dibungkus "...", " menjadi "". */
     static String escapeCsv(String nilai) {
         if (nilai == null) {
