@@ -12,6 +12,9 @@ public class PutusanFilter {
     private double beratMin;
     private double beratMax;
     private String pasalTerbukti;   // null = kriteria tidak aktif
+    private boolean vonisAktif;
+    private int vonisMin;
+    private int vonisMax;
 
     /** Jenis narkotika mengandung teks ini (tanpa membedakan huruf besar/kecil). */
     public PutusanFilter jenisNarkotika(String teks) {
@@ -46,6 +49,18 @@ public class PutusanFilter {
         return this;
     }
 
+    /** Vonis (bulan) dalam rentang inklusif min <= vonis <= max. */
+    public PutusanFilter vonisBetween(int min, int max) {
+        if (min < 0 || min > max) {
+            throw new IllegalArgumentException("Rentang vonis tidak valid: " + min + ".." + max);
+        }
+        this.vonisAktif = true;
+        this.vonisMin = min;
+        this.vonisMax = max;
+        return this;
+    }
+
+
 
 
     public SinglyLinkedList<Putusan> terapkan(SinglyLinkedList<Putusan> list) {
@@ -78,6 +93,12 @@ public class PutusanFilter {
         }
         if (pasalTerbukti != null && !mengandung(p.getPasalTerbukti(), pasalTerbukti)) {
             return false;
+        }
+        if (vonisAktif) {
+            int vonis = p.getVonisBulan();
+            if (vonis < vonisMin || vonis > vonisMax) {
+                return false;
+            }
         }
         return true;
     }
