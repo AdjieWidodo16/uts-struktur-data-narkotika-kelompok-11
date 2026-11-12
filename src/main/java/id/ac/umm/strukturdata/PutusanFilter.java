@@ -8,6 +8,9 @@ package id.ac.umm.strukturdata;
 public class PutusanFilter {
 
     private String jenisNarkotika;   // null = kriteria tidak aktif
+    private boolean beratAktif;
+    private double beratMin;
+    private double beratMax;
 
     /** Jenis narkotika mengandung teks ini (tanpa membedakan huruf besar/kecil). */
     public PutusanFilter jenisNarkotika(String teks) {
@@ -17,6 +20,22 @@ public class PutusanFilter {
         this.jenisNarkotika = teks.trim();
         return this;
     }
+
+    /**
+     * Berat barang bukti (gram) dalam rentang inklusif min <= berat <= max.
+     * Catatan: berat 0 berarti "tidak ditemukan" (aturan 2.1), jadi batas bawah > 0
+     * otomatis mengecualikan putusan yang beratnya tidak tercatat.
+     */
+    public PutusanFilter beratBetween(double min, double max) {
+        if (min < 0 || min > max) {
+            throw new IllegalArgumentException("Rentang berat tidak valid: " + min + ".." + max);
+        }
+        this.beratAktif = true;
+        this.beratMin = min;
+        this.beratMax = max;
+        return this;
+    }
+
 
     public SinglyLinkedList<Putusan> terapkan(SinglyLinkedList<Putusan> list) {
         if (list == null) {
@@ -39,6 +58,12 @@ public class PutusanFilter {
         }
         if (jenisNarkotika != null && !mengandung(p.getJenisNarkotika(), jenisNarkotika)) {
             return false;
+        }
+        if (beratAktif) {
+            double berat = p.getBeratBarangBuktiGram();
+            if (berat < beratMin || berat > beratMax) {
+                return false;
+            }
         }
         return true;
     }
