@@ -1,0 +1,265 @@
+package id.ac.umm.strukturdata;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class StackTest {
+
+    @Test
+    void stackBaruKosong() {
+        Stack<String> s = new Stack<>();
+        assertEquals(0, s.size());
+        assertTrue(s.isEmpty());
+    }
+
+    @Test
+    void kapasitasAwalDefaultSepuluh() {
+        assertEquals(10, new Stack<String>().capacity());
+    }
+
+    @Test
+    void kapasitasAwalKustom() {
+        assertEquals(3, new Stack<String>(3).capacity());
+    }
+
+    @Test
+    void kapasitasNolAtauNegatifDitolak() {
+        assertThrows(IllegalArgumentException.class, () -> new Stack<String>(0));
+        assertThrows(IllegalArgumentException.class, () -> new Stack<String>(-5));
+    }
+
+    private Stack<String> isiStack(String... items) {
+        Stack<String> s = new Stack<>();
+        for (String item : items) {
+            s.push(item);
+        }
+        return s;
+    }
+
+    @Test
+    void pushMenambahSize() {
+        Stack<String> s = isiStack("a", "b", "c");
+        assertEquals(3, s.size());
+        assertFalse(s.isEmpty());
+    }
+
+    @Test
+    void pushMelewatiKapasitasMenggandakanArray() {
+        Stack<Integer> s = new Stack<>(2);
+        s.push(1);
+        s.push(2);
+        assertEquals(2, s.capacity());
+        s.push(3);
+        assertEquals(4, s.capacity());
+        assertEquals(3, s.size());
+    }
+
+    @Test
+    void pushSeratusElemenTetapKonsisten() {
+        Stack<Integer> s = new Stack<>(1);
+        for (int i = 0; i < 100; i++) {
+            s.push(i);
+        }
+        assertEquals(100, s.size());
+        assertTrue(s.capacity() >= 100);
+    }
+
+    @Test
+    void pushNullDitolakDanSizeTidakBerubah() {
+        Stack<String> s = isiStack("a");
+        assertThrows(IllegalArgumentException.class, () -> s.push(null));
+        assertEquals(1, s.size());
+    }
+
+    @Test
+    void peekMelihatPuncakTanpaMenghapus() {
+        Stack<String> s = isiStack("a", "b", "c");
+        assertEquals("c", s.peek());
+        assertEquals("c", s.peek());
+        assertEquals(3, s.size());
+    }
+
+    @Test
+    void popMengikutiUrutanLifo() {
+        Stack<String> s = isiStack("a", "b", "c");
+        assertEquals("c", s.pop());
+        assertEquals("b", s.pop());
+        assertEquals("a", s.pop());
+        assertTrue(s.isEmpty());
+    }
+
+    @Test
+    void urutanLifoTerjagaSetelahResize() {
+        Stack<Integer> s = new Stack<>(2);
+        for (int i = 1; i <= 25; i++) {
+            s.push(i);
+        }
+        for (int i = 25; i >= 1; i--) {
+            assertEquals(i, s.pop().intValue());
+        }
+    }
+
+    @Test
+    void popStackKosongMelemparExceptionDenganPesanJelas() {
+        Stack<String> s = new Stack<>();
+        IllegalStateException e = assertThrows(IllegalStateException.class, s::pop);
+        assertTrue(e.getMessage().contains("kosong"));
+    }
+
+    @Test
+    void peekStackKosongMelemparExceptionDenganPesanJelas() {
+        Stack<String> s = new Stack<>();
+        IllegalStateException e = assertThrows(IllegalStateException.class, s::peek);
+        assertTrue(e.getMessage().contains("kosong"));
+    }
+
+    @Test
+    void stackTetapKonsistenSetelahPopGagal() {
+        Stack<String> s = isiStack("a");
+        s.pop();
+        assertThrows(IllegalStateException.class, s::pop);
+        assertEquals(0, s.size());
+        assertTrue(s.isEmpty());
+        s.push("b");
+        assertEquals("b", s.peek());
+    }
+
+    @Test
+    void clearMengosongkanStack() {
+        Stack<String> s = isiStack("a", "b", "c");
+        s.clear();
+        assertEquals(0, s.size());
+        assertTrue(s.isEmpty());
+        assertThrows(IllegalStateException.class, s::peek);
+    }
+
+    @Test
+    void stackBisaDipakaiLagiSetelahClear() {
+        Stack<String> s = isiStack("a", "b");
+        s.clear();
+        s.push("x");
+        assertEquals("x", s.peek());
+        assertEquals(1, s.size());
+    }
+
+    @Test
+    void containsMenemukanElemenAda() {
+        Stack<String> s = isiStack("a", "b", "c");
+        assertTrue(s.contains("a"));
+        assertTrue(s.contains("c"));
+    }
+
+    @Test
+    void containsFalseUntukElemenTidakAdaDanStackKosong() {
+        assertFalse(isiStack("a", "b").contains("z"));
+        assertFalse(new Stack<String>().contains("a"));
+    }
+
+    @Test
+    void containsTidakMengubahStack() {
+        Stack<String> s = isiStack("a", "b", "c");
+        s.contains("a");
+        assertEquals(3, s.size());
+        assertEquals("c", s.peek());
+    }
+
+    @Test
+    void searchPreserveMenemukanElemenDanMelaporkanKedalamanDanLangkah() {
+        Stack<String> s = isiStack("a", "b", "c");
+        assertEquals(0, s.searchPreserve("c"));
+        assertEquals(1, s.getLastSearchSteps());
+        assertEquals(1, s.searchPreserve("b"));
+        assertEquals(2, s.getLastSearchSteps());
+        assertEquals(2, s.searchPreserve("a"));
+        assertEquals(3, s.getLastSearchSteps());
+    }
+
+    @Test
+    void searchPreserveTidakMengubahUrutanAkhirStack() {
+        Stack<String> s = isiStack("a", "b", "c", "d", "e");
+        s.searchPreserve("b");
+        assertEquals(5, s.size());
+        assertEquals("e", s.pop());
+        assertEquals("d", s.pop());
+        assertEquals("c", s.pop());
+        assertEquals("b", s.pop());
+        assertEquals("a", s.pop());
+    }
+
+    @Test
+    void searchPreserveElemenTidakAdaMemeriksaSemuaDanUrutanTetap() {
+        Stack<String> s = isiStack("a", "b", "c");
+        assertEquals(-1, s.searchPreserve("z"));
+        assertEquals(3, s.getLastSearchSteps());
+        assertEquals(3, s.size());
+        assertEquals("c", s.pop());
+        assertEquals("b", s.pop());
+        assertEquals("a", s.pop());
+    }
+
+    @Test
+    void searchPreserveStackKosongAman() {
+        Stack<String> s = new Stack<>();
+        assertEquals(-1, s.searchPreserve("a"));
+        assertEquals(0, s.getLastSearchSteps());
+        assertTrue(s.isEmpty());
+    }
+
+    @Test
+    void searchPreserveBerulangKaliTetapKonsisten() {
+        Stack<String> s = isiStack("a", "b", "c");
+        for (int i = 0; i < 5; i++) {
+            s.searchPreserve("a");
+        }
+        assertEquals(3, s.size());
+        assertEquals("c", s.peek());
+    }
+
+    @Test
+    void restoreTanpaPencarianTidakMengubahStack() {
+        Stack<String> s = isiStack("a", "b");
+        s.restore();
+        assertEquals(2, s.size());
+        assertEquals("b", s.peek());
+    }
+
+    @Test
+    void invariantTerjagaPadaStackBaruDanSetelahOperasi() {
+        Stack<String> s = new Stack<>(2);
+        assertDoesNotThrow(s::validateInvariant);
+        s.push("a");
+        s.push("b");
+        s.push("c");               // memicu resize
+        assertDoesNotThrow(s::validateInvariant);
+        s.pop();
+        s.searchPreserve("a");
+        assertDoesNotThrow(s::validateInvariant);
+        s.clear();
+        assertDoesNotThrow(s::validateInvariant);
+    }
+
+    @Test
+    void invariantTerdeteksiJikaSizeTidakKonsisten() throws Exception {
+        Stack<String> s = isiStack("a", "b");
+        java.lang.reflect.Field f = Stack.class.getDeclaredField("size");
+        f.setAccessible(true);
+        f.setInt(s, 99);
+        assertThrows(IllegalStateException.class, s::validateInvariant);
+    }
+
+    @Test
+    void invariantTerdeteksiJikaSlotDiAtasPuncakTidakNull() throws Exception {
+        Stack<String> s = isiStack("a");
+        java.lang.reflect.Field f = Stack.class.getDeclaredField("data");
+        f.setAccessible(true);
+        Object[] arr = (Object[]) f.get(s);
+        arr[5] = "sisa";
+        assertThrows(IllegalStateException.class, s::validateInvariant);
+    }
+
+
+
+
+
+}
