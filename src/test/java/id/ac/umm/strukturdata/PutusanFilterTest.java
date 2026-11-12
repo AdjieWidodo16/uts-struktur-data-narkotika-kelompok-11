@@ -96,4 +96,38 @@ class PutusanFilterTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new PutusanFilter().jenisNarkotika("sabu").terapkan(null));
     }
+
+    @Test
+    void filterRentangBerat() {
+        assertIds(new PutusanFilter().beratBetween(1.0, 10.0).terapkan(daftar),
+                "D2", "D4", "D5");
+    }
+
+    @Test
+    void rentangBeratBatasBawahDanAtasInklusif() {
+        assertIds(new PutusanFilter().beratBetween(5.0, 5.0).terapkan(daftar), "D2");
+        assertIds(new PutusanFilter().beratBetween(0.5, 0.5).terapkan(daftar), "D1");
+        assertIds(new PutusanFilter().beratBetween(10.0, 10.0).terapkan(daftar), "D5");
+    }
+
+    @Test
+    void rentangBeratDiLuarBatasTidakMenghasilkanApaPun() {
+        assertIds(new PutusanFilter().beratBetween(100.1, 500.0).terapkan(daftar));
+    }
+
+    @Test
+    void beratNolHanyaCocokDenganRentangYangMemuatNol() {
+        assertIds(new PutusanFilter().beratBetween(0.0, 0.0).terapkan(daftar), "D6");
+        assertIds(new PutusanFilter().beratBetween(0.1, 1000.0).terapkan(daftar),
+                "D1", "D2", "D3", "D4", "D5");
+    }
+
+    @Test
+    void rentangBeratTidakValidDitolak() {
+        assertThrows(IllegalArgumentException.class, () -> new PutusanFilter().beratBetween(5.0, 1.0));
+        assertThrows(IllegalArgumentException.class, () -> new PutusanFilter().beratBetween(-1.0, 1.0));
+    }
+
 }
+
+
