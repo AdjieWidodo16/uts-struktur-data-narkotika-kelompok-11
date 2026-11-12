@@ -184,7 +184,74 @@ class PutusanFilterTest {
         assertThrows(IllegalArgumentException.class, () -> new PutusanFilter().vonisBetween(-1, 10));
     }
 
+    @Test
+    void filterGabunganDuaKriteria() {
+        // sabu: D1,D2,D5 ; vonis 48..96: D1(48),D2(72),D5(96)
+        assertIds(new PutusanFilter().jenisNarkotika("sabu").vonisBetween(48, 96).terapkan(daftar),
+                "D1", "D2", "D5");
+    }
 
+    @Test
+    void filterGabunganEmpatKriteriaCocokDenganPemeriksaanManual() {
+        // sabu -> D1,D2,D5 ; berat 1..10 -> D2,D5 (D1=0.5 gugur)
+        // pasal "114" -> D2,D5 ; vonis 70..100 -> D2(72),D5(96)
+        assertIds(new PutusanFilter()
+                .jenisNarkotika("sabu")
+                .beratBetween(1.0, 10.0)
+                .pasalTerbukti("114")
+                .vonisBetween(70, 100)
+                .terapkan(daftar), "D2", "D5");
+    }
+
+    @Test
+    void filterGabunganDenganPasalSpesifikHanyaSatuHasil() {
+        // "ayat (1)" cocok D1,D2,D3 ; D1 gugur oleh berat, D3 gugur oleh jenis -> D2
+        assertIds(new PutusanFilter()
+                .jenisNarkotika("sabu")
+                .beratBetween(1.0, 10.0)
+                .pasalTerbukti("ayat (1)")
+                .terapkan(daftar), "D2");
+    }
+
+    @Test
+    void filterGabunganBertentanganMenghasilkanListKosongYangValid() {
+        SinglyLinkedList<Putusan> hasil =
+                new PutusanFilter().jenisNarkotika("sabu").vonisBetween(0, 10).terapkan(daftar);
+        assertEquals(0, hasil.size());
+        assertTrue(hasil.isEmpty());
+        hasil.validateInvariant();
+    }
+
+    @Test
+    void tanpaKriteriaMengembalikanSalinanSeluruhList() {
+        SinglyLinkedList<Putusan> hasil = new PutusanFilter().terapkan(daftar);
+        assertNotSame(daftar, hasil);
+        assertIds(hasil, "D1", "D2", "D3", "D4", "D5", "D6");
+    }
+
+    @Test
+    void filterBerulangDanGabunganTidakMengubahListAsli() {
+        PutusanFilter f = new PutusanFilter().jenisNarkotika("sabu").vonisBetween(48, 96);
+        assertIds(f.terapkan(daftar), "D1", "D2", "D5");
+        assertIds(f.terapkan(daftar), "D1", "D2", "D5");
+        assertEquals(6, daftar.size());
+        assertEquals("D1", daftar.get(0).getCaseId());
+        assertEquals("D6", daftar.get(5).getCaseId());
+        daftar.validateInvariant();
+    }
+
+    @Test
+    void jumlahKriteriAktifDanToString() {
+        PutusanFilter f = new PutusanFilter();
+        assertEquals(0, f.jumlahKriteriAktif());
+        assertEquals("PutusanFilter{jenisNarkotika=-, berat=-, pasalTerbukti=-, vonis=-}",
+                f.toString());
+
+        f.jenisNarkotika("sabu").beratBetween(1.0, 10.0).pasalTerbukti("114").vonisBetween(70, 100);
+        assertEquals(4, f.jumlahKriteriAktif());
+        assertEquals("PutusanFilter{jenisNarkotika=sabu, berat=1.0..10.0, pasalTerbukti=114, vonis=70..100}",
+                f.toString());
+    }
 
 }
 
