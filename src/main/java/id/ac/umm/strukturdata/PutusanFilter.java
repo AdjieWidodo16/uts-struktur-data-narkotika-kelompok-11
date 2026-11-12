@@ -11,6 +11,7 @@ public class PutusanFilter {
     private boolean beratAktif;
     private double beratMin;
     private double beratMax;
+    private String pasalTerbukti;   // null = kriteria tidak aktif
 
     /** Jenis narkotika mengandung teks ini (tanpa membedakan huruf besar/kecil). */
     public PutusanFilter jenisNarkotika(String teks) {
@@ -35,6 +36,16 @@ public class PutusanFilter {
         this.beratMax = max;
         return this;
     }
+
+    /** Pasal terbukti mengandung teks ini (tanpa membedakan huruf besar/kecil). */
+    public PutusanFilter pasalTerbukti(String teks) {
+        if (teks == null || teks.trim().isEmpty()) {
+            throw new IllegalArgumentException("Kriteria pasal terbukti tidak boleh kosong");
+        }
+        this.pasalTerbukti = teks.trim();
+        return this;
+    }
+
 
 
     public SinglyLinkedList<Putusan> terapkan(SinglyLinkedList<Putusan> list) {
@@ -64,6 +75,9 @@ public class PutusanFilter {
             if (berat < beratMin || berat > beratMax) {
                 return false;
             }
+        }
+        if (pasalTerbukti != null && !mengandung(p.getPasalTerbukti(), pasalTerbukti)) {
+            return false;
         }
         return true;
     }
