@@ -179,9 +179,9 @@ public class Exporter {
             w.write(isi);
             lastError = null;
             return true;
-        } catch (IOException e) {
-            lastError = "Gagal menulis file '" + path + "': " + e.getMessage();
-            return false;
+       } catch (IOException | SecurityException e) {
+        lastError = "Gagal menulis file '" + path + "': " + e.getMessage();
+        return false;
         }
     }
 }
