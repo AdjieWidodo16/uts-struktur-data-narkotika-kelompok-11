@@ -141,6 +141,35 @@ public class Stack<T> {
         return lastSearchSteps;
     }
 
+    /**
+     * Memeriksa invariant: ukuran konsisten, elemen aktif tidak null,
+     * slot di atas puncak null (LIFO murni), dan tidak ada elemen tertahan.
+     * @throws IllegalStateException jika ada invariant yang dilanggar
+     */
+    public void validateInvariant() {
+        if (data == null) {
+            throw new IllegalStateException("Array data tidak boleh null");
+        }
+        if (size < 0 || size > data.length) {
+            throw new IllegalStateException(
+                    "Ukuran tidak konsisten: size=" + size + ", kapasitas=" + data.length);
+        }
+        for (int i = 0; i < size; i++) {
+            if (data[i] == null) {
+                throw new IllegalStateException("Elemen aktif null pada indeks " + i);
+            }
+        }
+        for (int i = size; i < data.length; i++) {
+            if (data[i] != null) {
+                throw new IllegalStateException("Slot di atas puncak harus null, indeks " + i);
+            }
+        }
+        if (holdingSize != 0) {
+            throw new IllegalStateException("Ada elemen tertahan; restore() belum dipanggil");
+        }
+    }
+
+
 
 
 
