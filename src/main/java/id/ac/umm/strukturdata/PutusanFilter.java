@@ -62,7 +62,7 @@ public class PutusanFilter {
 
 
 
-
+    //“Tanpa kriteria aktif, hasilnya salinan seluruh list.”
     public SinglyLinkedList<Putusan> terapkan(SinglyLinkedList<Putusan> list) {
         if (list == null) {
             throw new IllegalArgumentException("List putusan tidak boleh null");
@@ -77,6 +77,25 @@ public class PutusanFilter {
         }
         return hasil;
     }
+
+    /** Jumlah kriteria yang sedang aktif. */
+    public int jumlahKriteriAktif() {
+        int n = 0;
+        if (jenisNarkotika != null) n++;
+        if (beratAktif) n++;
+        if (pasalTerbukti != null) n++;
+        if (vonisAktif) n++;
+        return n;
+    }
+
+    @Override
+    public String toString() {
+        return "PutusanFilter{jenisNarkotika=" + (jenisNarkotika == null ? "-" : jenisNarkotika)
+                + ", berat=" + (beratAktif ? beratMin + ".." + beratMax : "-")
+                + ", pasalTerbukti=" + (pasalTerbukti == null ? "-" : pasalTerbukti)
+                + ", vonis=" + (vonisAktif ? vonisMin + ".." + vonisMax : "-") + "}";
+    }
+
 
     private boolean cocok(Putusan p) {
         if (p == null) {
