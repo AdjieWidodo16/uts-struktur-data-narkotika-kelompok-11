@@ -62,6 +62,47 @@ public class AuditLog {
         return riwayat.peek();
     }
 
+    /**
+     * Menyusun riwayat, terbaru dulu. Entri dipindah ke stack sementara lalu
+     * dikembalikan, sehingga urutan akhir stack sama seperti semula.
+     */
+    public String riwayat() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Riwayat audit: ").append(riwayat.size()).append(" entri (terbaru dulu)\n");
+        if (riwayat.isEmpty()) {
+            sb.append("(Belum ada riwayat)\n");
+            return sb.toString();
+        }
+        Stack<String> sementara = new Stack<>();
+        int no = 1;
+        while (!riwayat.isEmpty()) {
+            String entri = riwayat.pop();
+            sb.append(no).append(". ").append(entri).append('\n');
+            sementara.push(entri);
+            no++;
+        }
+        while (!sementara.isEmpty()) {
+            riwayat.push(sementara.pop());   // entri tertua dipush lebih dulu
+        }
+        return sb.toString();
+    }
+
+    public void tampilkanRiwayat() {
+        System.out.print(riwayat());
+    }
+
+    /**
+     * Kedalaman entri dari puncak (0 = terbaru), atau -1 jika tidak ada.
+     * Memakai searchPreserve, jadi urutan stack tidak berubah.
+     */
+    public int posisiDariTerbaru(String entriLengkap) {
+        return riwayat.searchPreserve(entriLengkap);
+    }
+
+    public int getLastSearchSteps() {
+        return riwayat.getLastSearchSteps();
+    }
+
     // Format entri: [yyyy-MM-dd HH:mm:ss] JENIS: detail
     private void catatOperasi(String jenis, String detail) {
         String waktu = LocalDateTime.now(clock).format(FORMAT_WAKTU);
