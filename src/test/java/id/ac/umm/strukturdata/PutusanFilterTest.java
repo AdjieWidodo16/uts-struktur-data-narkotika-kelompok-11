@@ -156,6 +156,35 @@ class PutusanFilterTest {
         assertThrows(IllegalArgumentException.class, () -> new PutusanFilter().pasalTerbukti(null));
     }
 
+    @Test
+    void filterRentangVonis() {
+        assertIds(new PutusanFilter().vonisBetween(48, 72).terapkan(daftar),
+                "D1", "D2", "D4");
+    }
+
+    @Test
+    void rentangVonisBatasInklusif() {
+        assertIds(new PutusanFilter().vonisBetween(36, 36).terapkan(daftar), "D3");
+        assertIds(new PutusanFilter().vonisBetween(96, 96).terapkan(daftar), "D5");
+    }
+
+    @Test
+    void vonisNolHanyaCocokDenganRentangYangMemuatNol() {
+        assertIds(new PutusanFilter().vonisBetween(0, 0).terapkan(daftar), "D6");
+    }
+
+    @Test
+    void rentangVonisDiLuarBatasMenghasilkanListKosong() {
+        assertIds(new PutusanFilter().vonisBetween(97, 200).terapkan(daftar));
+    }
+
+    @Test
+    void rentangVonisTidakValidDitolak() {
+        assertThrows(IllegalArgumentException.class, () -> new PutusanFilter().vonisBetween(10, 1));
+        assertThrows(IllegalArgumentException.class, () -> new PutusanFilter().vonisBetween(-1, 10));
+    }
+
+
 
 }
 
