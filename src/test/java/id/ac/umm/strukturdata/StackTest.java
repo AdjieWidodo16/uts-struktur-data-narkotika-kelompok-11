@@ -224,6 +224,41 @@ class StackTest {
         assertEquals("b", s.peek());
     }
 
+    @Test
+    void invariantTerjagaPadaStackBaruDanSetelahOperasi() {
+        Stack<String> s = new Stack<>(2);
+        assertDoesNotThrow(s::validateInvariant);
+        s.push("a");
+        s.push("b");
+        s.push("c");               // memicu resize
+        assertDoesNotThrow(s::validateInvariant);
+        s.pop();
+        s.searchPreserve("a");
+        assertDoesNotThrow(s::validateInvariant);
+        s.clear();
+        assertDoesNotThrow(s::validateInvariant);
+    }
+
+    @Test
+    void invariantTerdeteksiJikaSizeTidakKonsisten() throws Exception {
+        Stack<String> s = isiStack("a", "b");
+        java.lang.reflect.Field f = Stack.class.getDeclaredField("size");
+        f.setAccessible(true);
+        f.setInt(s, 99);
+        assertThrows(IllegalStateException.class, s::validateInvariant);
+    }
+
+    @Test
+    void invariantTerdeteksiJikaSlotDiAtasPuncakTidakNull() throws Exception {
+        Stack<String> s = isiStack("a");
+        java.lang.reflect.Field f = Stack.class.getDeclaredField("data");
+        f.setAccessible(true);
+        Object[] arr = (Object[]) f.get(s);
+        arr[5] = "sisa";
+        assertThrows(IllegalStateException.class, s::validateInvariant);
+    }
+
+
 
 
 
