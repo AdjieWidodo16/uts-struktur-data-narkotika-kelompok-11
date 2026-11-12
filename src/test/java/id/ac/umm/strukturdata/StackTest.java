@@ -164,6 +164,67 @@ class StackTest {
         assertEquals("c", s.peek());
     }
 
+    @Test
+    void searchPreserveMenemukanElemenDanMelaporkanKedalamanDanLangkah() {
+        Stack<String> s = isiStack("a", "b", "c");
+        assertEquals(0, s.searchPreserve("c"));
+        assertEquals(1, s.getLastSearchSteps());
+        assertEquals(1, s.searchPreserve("b"));
+        assertEquals(2, s.getLastSearchSteps());
+        assertEquals(2, s.searchPreserve("a"));
+        assertEquals(3, s.getLastSearchSteps());
+    }
+
+    @Test
+    void searchPreserveTidakMengubahUrutanAkhirStack() {
+        Stack<String> s = isiStack("a", "b", "c", "d", "e");
+        s.searchPreserve("b");
+        assertEquals(5, s.size());
+        assertEquals("e", s.pop());
+        assertEquals("d", s.pop());
+        assertEquals("c", s.pop());
+        assertEquals("b", s.pop());
+        assertEquals("a", s.pop());
+    }
+
+    @Test
+    void searchPreserveElemenTidakAdaMemeriksaSemuaDanUrutanTetap() {
+        Stack<String> s = isiStack("a", "b", "c");
+        assertEquals(-1, s.searchPreserve("z"));
+        assertEquals(3, s.getLastSearchSteps());
+        assertEquals(3, s.size());
+        assertEquals("c", s.pop());
+        assertEquals("b", s.pop());
+        assertEquals("a", s.pop());
+    }
+
+    @Test
+    void searchPreserveStackKosongAman() {
+        Stack<String> s = new Stack<>();
+        assertEquals(-1, s.searchPreserve("a"));
+        assertEquals(0, s.getLastSearchSteps());
+        assertTrue(s.isEmpty());
+    }
+
+    @Test
+    void searchPreserveBerulangKaliTetapKonsisten() {
+        Stack<String> s = isiStack("a", "b", "c");
+        for (int i = 0; i < 5; i++) {
+            s.searchPreserve("a");
+        }
+        assertEquals(3, s.size());
+        assertEquals("c", s.peek());
+    }
+
+    @Test
+    void restoreTanpaPencarianTidakMengubahStack() {
+        Stack<String> s = isiStack("a", "b");
+        s.restore();
+        assertEquals(2, s.size());
+        assertEquals("b", s.peek());
+    }
+
+
 
 
 }
