@@ -1,1 +1,301 @@
-case_id,field_name,value,source_file,source_page,extractor,reviewer,status
+﻿case_id,field_name,value,source_file,source_page,extractor,reviewer,status
+P001,nomorPerkara,854/Pid.Sus/2025/PN Btm,putusan_854_pid_sus_2025_pn_btm.pdf,1,Adjie,,extracted
+P001,tanggalPutusan,12/1/2025,putusan_854_pid_sus_2025_pn_btm.pdf,17,Adjie,,extracted
+P001,jenisNarkotika,sabu,putusan_854_pid_sus_2025_pn_btm.pdf,"2,4",Adjie,,extracted
+P001,beratBarangBuktiGram,1.17,putusan_854_pid_sus_2025_pn_btm.pdf,2,Adjie,,extracted
+P001,pasalDakwaan,Primair Pasal 114 ayat (1); Subsidair Pasal 112 ayat (1) UU 35/2009,putusan_854_pid_sus_2025_pn_btm.pdf,"4,6",Adjie,,extracted
+P001,pasalTerbukti,Pasal 114 ayat (1) UU 35/2009 (dakwaan primair),putusan_854_pid_sus_2025_pn_btm.pdf,16,Adjie,,extracted
+P001,tuntutanBulan,60,putusan_854_pid_sus_2025_pn_btm.pdf,2,Adjie,,extracted
+P001,vonisBulan,72,putusan_854_pid_sus_2025_pn_btm.pdf,16,Adjie,,extracted
+P001,dendaRupiah,2125000000,putusan_854_pid_sus_2025_pn_btm.pdf,16-17,Adjie,,extracted
+P001,barangBukti,"6 paket sabu netto 1,17 g; timbangan digital; bundel plastik bening; bong dari botol; HP ITEL; uang tunai Rp150.000",putusan_854_pid_sus_2025_pn_btm.pdf,17,Adjie,,extracted
+P001,keadaanMemberatkan,Perbuatan meresahkan masyarakat; pernah dihukum dalam perkara yang sama,putusan_854_pid_sus_2025_pn_btm.pdf,16,Adjie,,extracted
+P001,keadaanMeringankan,Belum pernah dihukum,putusan_854_pid_sus_2025_pn_btm.pdf,16,Adjie,,extracted
+P002,nomorPerkara,1123/Pid.Sus/2025/PN Btm,putusan_1123_pid_sus_2025_pn_btm.pdf,1,Adjie,,extracted
+P002,tanggalPutusan,3/5/2026,putusan_1123_pid_sus_2025_pn_btm.pdf,20,Adjie,,extracted
+P002,jenisNarkotika,sabu,putusan_1123_pid_sus_2025_pn_btm.pdf,"2,4",Adjie,,extracted
+P002,beratBarangBuktiGram,3.63,putusan_1123_pid_sus_2025_pn_btm.pdf,2,Adjie,,extracted
+P002,pasalDakwaan,Primair Pasal 114 ayat (1); Subsidair Pasal 112 ayat (1) UU 35/2009,putusan_1123_pid_sus_2025_pn_btm.pdf,5-Apr,Adjie,,extracted
+P002,pasalTerbukti,Pasal 114 ayat (1) UU 35/2009 (dakwaan primair),putusan_1123_pid_sus_2025_pn_btm.pdf,20,Adjie,,extracted
+P002,tuntutanBulan,78,putusan_1123_pid_sus_2025_pn_btm.pdf,2,Adjie,,extracted
+P002,vonisBulan,72,putusan_1123_pid_sus_2025_pn_btm.pdf,20,Adjie,,extracted
+P002,dendaRupiah,1000000000,putusan_1123_pid_sus_2025_pn_btm.pdf,20,Adjie,,extracted
+P002,barangBukti,"12 paket sabu netto 3,63 g; dompet kecil; gunting; bundel plastik bening; HP OPPO A16",putusan_1123_pid_sus_2025_pn_btm.pdf,20,Adjie,,extracted
+P002,keadaanMemberatkan,Perbuatan dilakukan saat pemerintah dan masyarakat gencar memberantas peredaran dan penyalahgunaan narkotika,putusan_1123_pid_sus_2025_pn_btm.pdf,17,Adjie,,extracted
+P002,keadaanMeringankan,Mengakui perbuatan dan kooperatif di persidangan; belum pernah dipidana,putusan_1123_pid_sus_2025_pn_btm.pdf,17,Adjie,,extracted
+P003,nomorPerkara,576/Pid.Sus/2026/PN Btm,putusan_576_pid_sus_2026_pn_btm.pdf,1,Adjie,,extracted
+P003,tanggalPutusan,9/30/2026,putusan_576_pid_sus_2026_pn_btm.pdf,27,Adjie,,extracted
+P003,jenisNarkotika,sabu,putusan_576_pid_sus_2026_pn_btm.pdf,2,Adjie,,extracted
+P003,beratBarangBuktiGram,2.35,putusan_576_pid_sus_2026_pn_btm.pdf,2,Adjie,,extracted
+P003,pasalDakwaan,Pertama Pasal 114 ayat (1) UU 35/2009 jo UU 1/2026; Kedua Pasal 609 ayat (1) huruf a UU 1/2023 jo UU 1/2026,putusan_576_pid_sus_2026_pn_btm.pdf,"5,7",Adjie,,extracted
+P003,pasalTerbukti,Pasal 114 ayat (1) UU 35/2009 jo UU 1/2026 (dakwaan pertama),putusan_576_pid_sus_2026_pn_btm.pdf,26,Adjie,,extracted
+P003,tuntutanBulan,84,putusan_576_pid_sus_2026_pn_btm.pdf,2,Adjie,,extracted
+P003,vonisBulan,48,putusan_576_pid_sus_2026_pn_btm.pdf,26,Adjie,,extracted
+P003,dendaRupiah,0,putusan_576_pid_sus_2026_pn_btm.pdf,26,Adjie,,not_found
+P003,barangBukti,"3 bungkus sabu netto 2,35 g; bungkus rokok; bundel plastik bening; HP Oppo A78 5G; uang tunai Rp1.350.000",putusan_576_pid_sus_2026_pn_btm.pdf,26,Adjie,,extracted
+P003,keadaanMemberatkan,Bertentangan dengan program pemerintah memberantas narkotika; merusak generasi bangsa,putusan_576_pid_sus_2026_pn_btm.pdf,25,Adjie,,extracted
+P003,keadaanMeringankan,Mengakui dan menyesali perbuatan; tidak berbelit-belit; belum pernah dipidana,putusan_576_pid_sus_2026_pn_btm.pdf,25,Adjie,,extracted
+P004,nomorPerkara,698/Pid.Sus/2024/PN Btm,putusan_698_pid_sus_2024_pn_btm.pdf,1,Adjie,,extracted
+P004,tanggalPutusan,12/12/2024,putusan_698_pid_sus_2024_pn_btm.pdf,22,Adjie,,extracted
+P004,jenisNarkotika,sabu,putusan_698_pid_sus_2024_pn_btm.pdf,"2,21",Adjie,,extracted
+P004,beratBarangBuktiGram,223.19,putusan_698_pid_sus_2024_pn_btm.pdf,21,Adjie,,extracted
+P004,pasalDakwaan,Pertama Pasal 114 ayat (2); Kedua Pasal 112 ayat (2) UU 35/2009,putusan_698_pid_sus_2024_pn_btm.pdf,7-Jun,Adjie,,extracted
+P004,pasalTerbukti,Pasal 114 ayat (2) UU 35/2009 (dakwaan kesatu),putusan_698_pid_sus_2024_pn_btm.pdf,20,Adjie,,extracted
+P004,tuntutanBulan,156,putusan_698_pid_sus_2024_pn_btm.pdf,2,Adjie,,extracted
+P004,vonisBulan,144,putusan_698_pid_sus_2024_pn_btm.pdf,21,Adjie,,extracted
+P004,dendaRupiah,2125000000,putusan_698_pid_sus_2024_pn_btm.pdf,21,Adjie,,extracted
+P004,barangBukti,"3 kelompok sabu (netto 12,13 g + 89,82 g + 121,24 g); pack plastik pembungkus; timbangan digital; 2 HP (ITEL S23, OPPO F11 Pro); motor Honda Beat; uang tunai Rp2.000.000",putusan_698_pid_sus_2024_pn_btm.pdf,21-22,Adjie,,extracted
+P004,keadaanMemberatkan,Perbuatan merupakan perantara jual beli narkotika; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan_698_pid_sus_2024_pn_btm.pdf,20,Adjie,,extracted
+P004,keadaanMeringankan,Belum pernah dihukum; menyesali dan berjanji tidak mengulangi,putusan_698_pid_sus_2024_pn_btm.pdf,20,Adjie,,extracted
+P005,nomorPerkara,262/Pid.Sus/2024/PN Btm,putusan_262_pid_sus_2024_pn_btm.pdf,1,Adjie,,extracted
+P005,tanggalPutusan,7/4/2024,putusan_262_pid_sus_2024_pn_btm.pdf,18,Adjie,,extracted
+P005,jenisNarkotika,ganja,putusan_262_pid_sus_2024_pn_btm.pdf,5,Adjie,,extracted
+P005,beratBarangBuktiGram,14.11,putusan_262_pid_sus_2024_pn_btm.pdf,2,Adjie,,extracted
+P005,pasalDakwaan,Pertama Pasal 114 ayat (1); Kedua Pasal 111 ayat (1) UU 35/2009,putusan_262_pid_sus_2024_pn_btm.pdf,7-Jun,Adjie,,extracted
+P005,pasalTerbukti,Pasal 114 ayat (1) UU 35/2009 (dakwaan alternatif pertama),putusan_262_pid_sus_2024_pn_btm.pdf,"12,17",Adjie,,extracted
+P005,tuntutanBulan,72,putusan_262_pid_sus_2024_pn_btm.pdf,2,Adjie,,extracted
+P005,vonisBulan,84,putusan_262_pid_sus_2024_pn_btm.pdf,17,Adjie,,extracted
+P005,dendaRupiah,1000000000,putusan_262_pid_sus_2024_pn_btm.pdf,17,Adjie,,extracted
+P005,barangBukti,"2 paket ganja netto 14,11 g; 1 pack kertas papir pembungkus; HP Oppo A12",putusan_262_pid_sus_2024_pn_btm.pdf,17,Adjie,,extracted
+P005,keadaanMemberatkan,Perbuatan meresahkan masyarakat; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan_262_pid_sus_2024_pn_btm.pdf,16,Adjie,,extracted
+P005,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi,putusan_262_pid_sus_2024_pn_btm.pdf,16-17,Adjie,,extracted
+P006,nomorPerkara,482/Pid.Sus/2024/PN Btm,putusan_482_pid_sus_2024_pn_btm.pdf,1,Adjie,,extracted
+P006,tanggalPutusan,10/15/2024,putusan_482_pid_sus_2024_pn_btm.pdf,29,Adjie,,extracted
+P006,jenisNarkotika,sabu,putusan_482_pid_sus_2024_pn_btm.pdf,3,Adjie,,extracted
+P006,beratBarangBuktiGram,99.5,putusan_482_pid_sus_2024_pn_btm.pdf,21,Adjie,,extracted
+P006,pasalDakwaan,Kesatu Pasal 114 ayat (2) jo Pasal 132 ayat (1); Kedua Pasal 112 ayat (2) jo Pasal 132 ayat (1) UU 35/2009,putusan_482_pid_sus_2024_pn_btm.pdf,"8,13",Adjie,,extracted
+P006,pasalTerbukti,"Pasal 114 ayat (2) jo Pasal 132 ayat (1) UU 35/2009 (dakwaan kesatu, permufakatan jahat)",putusan_482_pid_sus_2024_pn_btm.pdf,29,Adjie,,extracted
+P006,tuntutanBulan,180,putusan_482_pid_sus_2024_pn_btm.pdf,2,Adjie,,extracted
+P006,vonisBulan,156,putusan_482_pid_sus_2024_pn_btm.pdf,29,Adjie,,extracted
+P006,dendaRupiah,1000000000,putusan_482_pid_sus_2024_pn_btm.pdf,29,Adjie,,extracted
+P006,barangBukti,"1 bungkus kristal sabu dalam kotak rokok dan kantong plastik (netto 99,50 g); HP Redmi 9C",putusan_482_pid_sus_2024_pn_btm.pdf,29,Adjie,,extracted
+P006,keadaanMemberatkan,Merusak dan mempengaruhi pola kehidupan masyarakat yang positif menjadi negatif; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan_482_pid_sus_2024_pn_btm.pdf,28,Adjie,,extracted
+P006,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi,putusan_482_pid_sus_2024_pn_btm.pdf,28-29,Adjie,,extracted
+P007,nomorPerkara,438/Pid.Sus/2024/PN Btm,putusan_438_pid_sus_2024_pn_btm.pdf,1,Adjie,,extracted
+P007,tanggalPutusan,10/15/2024,putusan_438_pid_sus_2024_pn_btm.pdf,22,Adjie,,extracted
+P007,jenisNarkotika,sabu,putusan_438_pid_sus_2024_pn_btm.pdf,2,Adjie,,extracted
+P007,beratBarangBuktiGram,0.13,putusan_438_pid_sus_2024_pn_btm.pdf,2,Adjie,,extracted
+P007,pasalDakwaan,Pertama Pasal 114 ayat (1); Kedua Pasal 112 ayat (1) UU 35/2009,putusan_438_pid_sus_2024_pn_btm.pdf,"6,10",Adjie,,extracted
+P007,pasalTerbukti,Pasal 114 ayat (1) UU 35/2009 (dakwaan pertama),putusan_438_pid_sus_2024_pn_btm.pdf,21-22,Adjie,,extracted
+P007,tuntutanBulan,84,putusan_438_pid_sus_2024_pn_btm.pdf,2,Adjie,,extracted
+P007,vonisBulan,72,putusan_438_pid_sus_2024_pn_btm.pdf,22,Adjie,,extracted
+P007,dendaRupiah,1000000000,putusan_438_pid_sus_2024_pn_btm.pdf,22,Adjie,,extracted
+P007,barangBukti,"1 bungkus sabu netto 0,13 g; 11 lembar plastik bening; HP Vivo Y17; uang tunai Rp1.350.000",putusan_438_pid_sus_2024_pn_btm.pdf,22,Adjie,,extracted
+P007,keadaanMemberatkan,Merusak dan mempengaruhi pola kehidupan masyarakat yang positif menjadi negatif; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan_438_pid_sus_2024_pn_btm.pdf,21,Adjie,,extracted
+P007,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi,putusan_438_pid_sus_2024_pn_btm.pdf,21,Adjie,,extracted
+P008,nomorPerkara,492/Pid.Sus/2024/PN Btm,putusan_492_pid_sus_2024_pn_btm.pdf,1,Adjie,,extracted
+P008,tanggalPutusan,10/15/2024,putusan_492_pid_sus_2024_pn_btm.pdf,35,Adjie,,extracted
+P008,jenisNarkotika,sabu,putusan_492_pid_sus_2024_pn_btm.pdf,2,Adjie,,extracted
+P008,beratBarangBuktiGram,27.03,putusan_492_pid_sus_2024_pn_btm.pdf,34-35,Adjie,,extracted
+P008,pasalDakwaan,Pertama Pasal 114 ayat (2); Kedua Pasal 112 ayat (2) UU 35/2009,putusan_492_pid_sus_2024_pn_btm.pdf,"9,15",Adjie,,extracted
+P008,pasalTerbukti,Pasal 114 ayat (2) UU 35/2009 (dakwaan pertama),putusan_492_pid_sus_2024_pn_btm.pdf,34,Adjie,,extracted
+P008,tuntutanBulan,168,putusan_492_pid_sus_2024_pn_btm.pdf,2,Adjie,,extracted
+P008,vonisBulan,144,putusan_492_pid_sus_2024_pn_btm.pdf,34,Adjie,,extracted
+P008,dendaRupiah,2000000000,putusan_492_pid_sus_2024_pn_btm.pdf,34,Adjie,,extracted
+P008,barangBukti,"1 bungkus sabu netto 0,33 g; 11 bungkus sabu netto 26,70 g (dikembalikan ke Penuntut Umum untuk perkara lain); HP Oppo F5; tabung paralon; timbangan; kotak cotton buds; gunting; 27 plastik bening; ATM BCA; uang tunai Rp6.600.000",putusan_492_pid_sus_2024_pn_btm.pdf,34-35,Adjie,,extracted
+P008,keadaanMemberatkan,Merusak dan mempengaruhi pola kehidupan masyarakat yang positif menjadi negatif; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan_492_pid_sus_2024_pn_btm.pdf,33,Adjie,,extracted
+P008,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; belum pernah dihukum; menyesali dan berjanji tidak mengulangi,putusan_492_pid_sus_2024_pn_btm.pdf,33,Adjie,,extracted
+P009,nomorPerkara,410/Pid.Sus/2024/PN Btm,putusan_410_pid_sus_2024_pn_btm.pdf,1,Adjie,,extracted
+P009,tanggalPutusan,9/30/2024,putusan_410_pid_sus_2024_pn_btm.pdf,20,Adjie,,extracted
+P009,jenisNarkotika,ganja,putusan_410_pid_sus_2024_pn_btm.pdf,5,Adjie,,extracted
+P009,beratBarangBuktiGram,8.67,putusan_410_pid_sus_2024_pn_btm.pdf,5,Adjie,,extracted
+P009,pasalDakwaan,Pertama Pasal 114 ayat (1) jo Pasal 132 ayat (1); Kedua Pasal 111 ayat (1) jo Pasal 132 ayat (1) UU 35/2009,putusan_410_pid_sus_2024_pn_btm.pdf,"5,8",Adjie,,extracted
+P009,pasalTerbukti,"Pasal 114 ayat (1) jo Pasal 132 ayat (1) UU 35/2009 (dakwaan pertama, permufakatan jahat)",putusan_410_pid_sus_2024_pn_btm.pdf,"17,19",Adjie,,extracted
+P009,tuntutanBulan,72,putusan_410_pid_sus_2024_pn_btm.pdf,2,Adjie,,extracted
+P009,vonisBulan,60,putusan_410_pid_sus_2024_pn_btm.pdf,19,Adjie,,extracted
+P009,dendaRupiah,2125000000,putusan_410_pid_sus_2024_pn_btm.pdf,19,Adjie,,extracted
+P009,barangBukti,"1 bungkus kertas coklat berisi ganja 8,67 g; motor Honda CS1; HP Redmi 7",putusan_410_pid_sus_2024_pn_btm.pdf,19-20,Adjie,,extracted
+P009,keadaanMemberatkan,Perbuatan meresahkan masyarakat; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan_410_pid_sus_2024_pn_btm.pdf,18,Adjie,,extracted
+P009,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi,putusan_410_pid_sus_2024_pn_btm.pdf,18-19,Adjie,,extracted
+P010,nomorPerkara,677/Pid.Sus/2024/PN Btm,putusan_677_pid_sus_2024_pn_btm.pdf,1,Adjie,,extracted
+P010,tanggalPutusan,12/18/2024,putusan_677_pid_sus_2024_pn_btm.pdf,21,Adjie,,extracted
+P010,jenisNarkotika,ganja,putusan_677_pid_sus_2024_pn_btm.pdf,5,Adjie,,extracted
+P010,beratBarangBuktiGram,13,putusan_677_pid_sus_2024_pn_btm.pdf,5,Adjie,,extracted
+P010,pasalDakwaan,Pertama Pasal 114 ayat (1); Kedua Pasal 111 ayat (1) UU 35/2009,putusan_677_pid_sus_2024_pn_btm.pdf,"5,7",Adjie,,extracted
+P010,pasalTerbukti,Pasal 114 ayat (1) UU 35/2009 (dakwaan pertama),putusan_677_pid_sus_2024_pn_btm.pdf,20,Adjie,,extracted
+P010,tuntutanBulan,84,putusan_677_pid_sus_2024_pn_btm.pdf,2,Adjie,,extracted
+P010,vonisBulan,84,putusan_677_pid_sus_2024_pn_btm.pdf,20,Adjie,,extracted
+P010,dendaRupiah,2000000000,putusan_677_pid_sus_2024_pn_btm.pdf,20,Adjie,,extracted
+P010,barangBukti,1 bungkus kertas nasi coklat berisi ganja 13 g; HP Infinix Hot 10 Play; motor Vega R (dikembalikan kepada pemilik),putusan_677_pid_sus_2024_pn_btm.pdf,20,Adjie,,extracted
+P010,keadaanMemberatkan,Perbuatan meresahkan masyarakat; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan_677_pid_sus_2024_pn_btm.pdf,19,Adjie,,extracted
+P010,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi,putusan_677_pid_sus_2024_pn_btm.pdf,19-20,Adjie,,extracted
+P011,nomorPerkara,641/Pid.Sus/2024/PN Btm,putusan-641_pid.sus_2024_pn_btm_20261104135152-1.pdf,1,Adjie,,extracted
+P011,tanggalPutusan,12/19/2024,putusan-641_pid.sus_2024_pn_btm_20261104135152-1.pdf,53,Adjie,,extracted
+P011,jenisNarkotika,ganja,putusan-641_pid.sus_2024_pn_btm_20261104135152-1.pdf,"2,49",Adjie,,extracted
+P011,beratBarangBuktiGram,1859.39,putusan-641_pid.sus_2024_pn_btm_20261104135152-1.pdf,49,Adjie,,extracted
+P011,pasalDakwaan,Pertama Pasal 114 ayat (2); Kedua Pasal 111 ayat (2) UU 35/2009,putusan-641_pid.sus_2024_pn_btm_20261104135152-1.pdf,"12,18",Adjie,,extracted
+P011,pasalTerbukti,Pasal 114 ayat (2) UU 35/2009 (dakwaan alternatif pertama),putusan-641_pid.sus_2024_pn_btm_20261104135152-1.pdf,52,Adjie,,extracted
+P011,tuntutanBulan,168,putusan-641_pid.sus_2024_pn_btm_20261104135152-1.pdf,2,Adjie,,extracted
+P011,vonisBulan,144,putusan-641_pid.sus_2024_pn_btm_20261104135152-1.pdf,52,Adjie,,extracted
+P011,dendaRupiah,3000000000,putusan-641_pid.sus_2024_pn_btm_20261104135152-1.pdf,52,Adjie,,extracted
+P011,barangBukti,"ganja netto 1.859,39 g (5 bungkus/wadah: 1.834,37 g + 18,81 g + 3,23 g + 1,95 g + 1,03 g); kotak kardus dengan resi pengiriman; timbangan digital; gunting; 13 pack paper cigarette; 2 HP (Redmi 9T, Vivo 1904); uang tunai Rp10.900.000",putusan-641_pid.sus_2024_pn_btm_20261104135152-1.pdf,"2-3,52-53",Adjie,,extracted
+P011,keadaanMemberatkan,Bertentangan dengan program pemerintah dalam pemberantasan tindak pidana narkotika,putusan-641_pid.sus_2024_pn_btm_20261104135152-1.pdf,51,Adjie,,extracted
+P011,keadaanMeringankan,Mengakui dan menyesali perbuatannya; belum pernah dihukum,putusan-641_pid.sus_2024_pn_btm_20261104135152-1.pdf,51,Adjie,,extracted
+P012,nomorPerkara,622/Pid.Sus/2024/PN Btm,putusan-622_pid.sus_2024_pn_btm_20261104135227-2.pdf,1,Adjie,,extracted
+P012,tanggalPutusan,12/3/2024,putusan-622_pid.sus_2024_pn_btm_20261104135227-2.pdf,40,Adjie,,extracted
+P012,jenisNarkotika,sabu;ganja,putusan-622_pid.sus_2024_pn_btm_20261104135227-2.pdf,"2,38",Adjie,,mixed_types
+P012,beratBarangBuktiGram,22.37,putusan-622_pid.sus_2024_pn_btm_20261104135227-2.pdf,"2,38",Adjie,,mixed_types
+P012,pasalDakwaan,"Kesatu Pasal 114 ayat (2); Atau Kedua: Pertama Pasal 112 ayat (2), Kedua Pasal 111 ayat (1) UU 35/2009",putusan-622_pid.sus_2024_pn_btm_20261104135227-2.pdf,"8,13,18",Adjie,,extracted
+P012,pasalTerbukti,Pasal 112 ayat (2) UU 35/2009; Pasal 111 ayat (1) UU 35/2009 (dakwaan kedua: pertama dan kedua),putusan-622_pid.sus_2024_pn_btm_20261104135227-2.pdf,39,Adjie,,extracted
+P012,tuntutanBulan,144,putusan-622_pid.sus_2024_pn_btm_20261104135227-2.pdf,2,Adjie,,extracted
+P012,vonisBulan,120,putusan-622_pid.sus_2024_pn_btm_20261104135227-2.pdf,39,Adjie,,extracted
+P012,dendaRupiah,1000000000,putusan-622_pid.sus_2024_pn_btm_20261104135227-2.pdf,39,Adjie,,extracted
+P012,barangBukti,"1 paket sabu netto 11,47 g; 5 paket sabu netto 3,30 g; 1 paket ganja netto 7,60 g; dompet kain hitam; timbangan digital; HP Samsung Galaxy M12",putusan-622_pid.sus_2024_pn_btm_20261104135227-2.pdf,"2,39",Adjie,,extracted
+P012,keadaanMemberatkan,Dapat merusak dan mempengaruhi pola kehidupan masyarakat yang positif menjadi negatif; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan-622_pid.sus_2024_pn_btm_20261104135227-2.pdf,39,Adjie,,extracted
+P012,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi,putusan-622_pid.sus_2024_pn_btm_20261104135227-2.pdf,39,Adjie,,extracted
+P013,nomorPerkara,556/Pid.Sus/2024/PN Btm,putusan-556_pid.sus_2024_pn_btm_20261104135256-3.pdf,1,Adjie,,extracted
+P013,tanggalPutusan,11/28/2024,putusan-556_pid.sus_2024_pn_btm_20261104135256-3.pdf,21,Adjie,,extracted
+P013,jenisNarkotika,sabu,putusan-556_pid.sus_2024_pn_btm_20261104135256-3.pdf,"2,20",Adjie,,extracted
+P013,beratBarangBuktiGram,1000,putusan-556_pid.sus_2024_pn_btm_20261104135256-3.pdf,"2,17",Adjie,,extracted
+P013,pasalDakwaan,Primair Pasal 114 ayat (2); Subsidair Pasal 112 ayat (2) UU 35/2009,putusan-556_pid.sus_2024_pn_btm_20261104135256-3.pdf,"5,7",Adjie,,extracted
+P013,pasalTerbukti,Pasal 114 ayat (2) UU 35/2009 (dakwaan primair),putusan-556_pid.sus_2024_pn_btm_20261104135256-3.pdf,20,Adjie,,extracted
+P013,tuntutanBulan,240,putusan-556_pid.sus_2024_pn_btm_20261104135256-3.pdf,2,Adjie,,extracted
+P013,vonisBulan,204,putusan-556_pid.sus_2024_pn_btm_20261104135256-3.pdf,20,Adjie,,extracted
+P013,dendaRupiah,10000000000,putusan-556_pid.sus_2024_pn_btm_20261104135256-3.pdf,20,Adjie,,extracted
+P013,barangBukti,1 bungkus kristal sabu netto 1.000 g (kemasan merah Dragon Head Raising Day); kantong asoi biru; sepeda motor Honda Astrea; HP Redmi,putusan-556_pid.sus_2024_pn_btm_20261104135256-3.pdf,"2,20",Adjie,,extracted
+P013,keadaanMemberatkan,Perbuatan meresahkan masyarakat; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan-556_pid.sus_2024_pn_btm_20261104135256-3.pdf,19,Adjie,,extracted
+P013,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi,putusan-556_pid.sus_2024_pn_btm_20261104135256-3.pdf,19-20,Adjie,,extracted
+P014,nomorPerkara,601/Pid.Sus/2024/PN Btm,putusan-601_pid.sus_2024_pn_btm_20261104135322-4.pdf,1,Adjie,,extracted
+P014,tanggalPutusan,11/28/2024,putusan-601_pid.sus_2024_pn_btm_20261104135322-4.pdf,32,Adjie,,extracted
+P014,jenisNarkotika,sabu,putusan-601_pid.sus_2024_pn_btm_20261104135322-4.pdf,"2,31",Adjie,,extracted
+P014,beratBarangBuktiGram,100,putusan-601_pid.sus_2024_pn_btm_20261104135322-4.pdf,"12,31",Adjie,,extracted
+P014,pasalDakwaan,Primair Pasal 114 ayat (2); Subsidair Pasal 113 ayat (2); Lebih Subsidair Pasal 112 ayat (2) UU 35/2009,putusan-601_pid.sus_2024_pn_btm_20261104135322-4.pdf,"7,9,11",Adjie,,extracted
+P014,pasalTerbukti,Pasal 114 ayat (2) UU 35/2009 (dakwaan primair),putusan-601_pid.sus_2024_pn_btm_20261104135322-4.pdf,31,Adjie,,extracted
+P014,tuntutanBulan,180,putusan-601_pid.sus_2024_pn_btm_20261104135322-4.pdf,2,Adjie,,extracted
+P014,vonisBulan,132,putusan-601_pid.sus_2024_pn_btm_20261104135322-4.pdf,31,Adjie,,extracted
+P014,dendaRupiah,4000000000,putusan-601_pid.sus_2024_pn_btm_20261104135322-4.pdf,31,Adjie,,extracted
+P014,barangBukti,"4 bungkus sabu dilakban hitam (2 item @ netto 50 g, total 100 g); tas hitam; dompet Bovi's; 2 HP (Oppo, Vivo); uang Malaysia; paspor dan ID card Malaysia",putusan-601_pid.sus_2024_pn_btm_20261104135322-4.pdf,"2,31",Adjie,,extracted
+P014,keadaanMemberatkan,Bertentangan dengan program pemerintah dalam pemberantasan tindak pidana narkotika,putusan-601_pid.sus_2024_pn_btm_20261104135322-4.pdf,30,Adjie,,extracted
+P014,keadaanMeringankan,Mengakui dan menyesali perbuatannya; belum pernah dihukum,putusan-601_pid.sus_2024_pn_btm_20261104135322-4.pdf,31,Adjie,,extracted
+P015,nomorPerkara,603/Pid.Sus/2024/PN Btm,putusan-603_pid.sus_2024_pn_btm_20261104140538-5.pdf,1,Adjie,,extracted
+P015,tanggalPutusan,11/28/2024,putusan-603_pid.sus_2024_pn_btm_20261104140538-5.pdf,24,Adjie,,extracted
+P015,jenisNarkotika,sabu,putusan-603_pid.sus_2024_pn_btm_20261104140538-5.pdf,"2,23",Adjie,,extracted
+P015,beratBarangBuktiGram,17.14,putusan-603_pid.sus_2024_pn_btm_20261104140538-5.pdf,23,Adjie,,extracted
+P015,pasalDakwaan,Kesatu Pasal 114 ayat (2) jo Pasal 132 ayat (1); Atau Kedua Pasal 112 ayat (2) jo Pasal 132 ayat (1) UU 35/2009,putusan-603_pid.sus_2024_pn_btm_20261104140538-5.pdf,"5,7",Adjie,,extracted
+P015,pasalTerbukti,"Pasal 114 ayat (2) jo Pasal 132 ayat (1) UU 35/2009 (dakwaan kesatu, permufakatan jahat)",putusan-603_pid.sus_2024_pn_btm_20261104140538-5.pdf,23,Adjie,,extracted
+P015,tuntutanBulan,108,putusan-603_pid.sus_2024_pn_btm_20261104140538-5.pdf,2,Adjie,,extracted
+P015,vonisBulan,102,putusan-603_pid.sus_2024_pn_btm_20261104140538-5.pdf,23,Adjie,,extracted
+P015,dendaRupiah,4375000000,putusan-603_pid.sus_2024_pn_btm_20261104140538-5.pdf,23,Adjie,,extracted
+P015,barangBukti,"5 paket sabu netto 17,14 g (3,76 g + 13,38 g); timbangan digital; 6 lembar plastik klip; 3 HP (Poco M3, Infinix Smart 8, Samsung Galaxy S7)",putusan-603_pid.sus_2024_pn_btm_20261104140538-5.pdf,"2,22-23",Adjie,,extracted
+P015,keadaanMemberatkan,Perbuatan meresahkan masyarakat; tidak mendukung program Pemerintah dalam memberantas narkotika,putusan-603_pid.sus_2024_pn_btm_20261104140538-5.pdf,23,Adjie,,extracted
+P015,keadaanMeringankan,Menyesali perbuatannya; belum pernah dihukum,putusan-603_pid.sus_2024_pn_btm_20261104140538-5.pdf,23,Adjie,,extracted
+P016,nomorPerkara,690/Pid.Sus/2024/PN Btm,putusan-690_pid.sus_2024_pn_btm_20261104134438-6.pdf,1,Adjie,,extracted
+P016,tanggalPutusan,12/18/2024,putusan-690_pid.sus_2024_pn_btm_20261104134438-6.pdf,30,Adjie,,extracted
+P016,jenisNarkotika,sabu,putusan-690_pid.sus_2024_pn_btm_20261104134438-6.pdf,"2,29",Adjie,,extracted
+P016,beratBarangBuktiGram,5.74,putusan-690_pid.sus_2024_pn_btm_20261104134438-6.pdf,29,Adjie,,extracted
+P016,pasalDakwaan,Primair Pasal 114 ayat (2) jo Pasal 132 ayat (1); Subsidair Pasal 112 ayat (2) jo Pasal 132 ayat (1) UU 35/2009,putusan-690_pid.sus_2024_pn_btm_20261104134438-6.pdf,"5,7",Adjie,,extracted
+P016,pasalTerbukti,"Pasal 114 ayat (2) jo Pasal 132 ayat (1) UU 35/2009 (dakwaan primair, permufakatan jahat)",putusan-690_pid.sus_2024_pn_btm_20261104134438-6.pdf,29,Adjie,,extracted
+P016,tuntutanBulan,96,putusan-690_pid.sus_2024_pn_btm_20261104134438-6.pdf,2,Adjie,,extracted
+P016,vonisBulan,84,putusan-690_pid.sus_2024_pn_btm_20261104134438-6.pdf,29-30,Adjie,,extracted
+P016,dendaRupiah,4750000000,putusan-690_pid.sus_2024_pn_btm_20261104134438-6.pdf,29-30,Adjie,,extracted
+P016,barangBukti,"3 paket sabu netto 5,74 g; 1 pack plastik pembungkus sabu; timbangan digital; HP Samsung Galaxy A03",putusan-690_pid.sus_2024_pn_btm_20261104134438-6.pdf,"2,29-30",Adjie,,extracted
+P016,keadaanMemberatkan,Perbuatan meresahkan masyarakat; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan-690_pid.sus_2024_pn_btm_20261104134438-6.pdf,29,Adjie,,extracted
+P016,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi,putusan-690_pid.sus_2024_pn_btm_20261104134438-6.pdf,29,Adjie,,extracted
+P017,nomorPerkara,689/Pid.Sus/2024/PN Btm,putusan-689_pid.sus_2024_pn_btm_20261104134510-7.pdf,1,Adjie,,extracted
+P017,tanggalPutusan,12/18/2024,putusan-689_pid.sus_2024_pn_btm_20261104134510-7.pdf,29,Adjie,,extracted
+P017,jenisNarkotika,sabu,putusan-689_pid.sus_2024_pn_btm_20261104134510-7.pdf,"2,28",Adjie,,extracted
+P017,beratBarangBuktiGram,0.74,putusan-689_pid.sus_2024_pn_btm_20261104134510-7.pdf,28,Adjie,,extracted
+P017,pasalDakwaan,Kesatu Pasal 114 ayat (1) jo Pasal 132 ayat (1); Atau Kedua Pasal 112 ayat (1) jo Pasal 132 ayat (1) UU 35/2009,putusan-689_pid.sus_2024_pn_btm_20261104134510-7.pdf,"6,8",Adjie,,extracted
+P017,pasalTerbukti,"Pasal 114 ayat (1) jo Pasal 132 ayat (1) UU 35/2009 (dakwaan alternatif kesatu, permufakatan jahat)",putusan-689_pid.sus_2024_pn_btm_20261104134510-7.pdf,28,Adjie,,extracted
+P017,tuntutanBulan,66,putusan-689_pid.sus_2024_pn_btm_20261104134510-7.pdf,2,Adjie,,extracted
+P017,vonisBulan,60,putusan-689_pid.sus_2024_pn_btm_20261104134510-7.pdf,28,Adjie,,extracted
+P017,dendaRupiah,3250000000,putusan-689_pid.sus_2024_pn_btm_20261104134510-7.pdf,28,Adjie,,extracted
+P017,barangBukti,"2 paket sabu dalam kotak rokok HD netto 0,12 g + 0,62 g; 1 pack plastik pembungkus sabu; timbangan digital; motor Honda Scoopy; HP Samsung Galaxy A50",putusan-689_pid.sus_2024_pn_btm_20261104134510-7.pdf,"2,28-29",Adjie,,extracted
+P017,keadaanMemberatkan,Perbuatan meresahkan masyarakat; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan-689_pid.sus_2024_pn_btm_20261104134510-7.pdf,27,Adjie,,extracted
+P017,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi,putusan-689_pid.sus_2024_pn_btm_20261104134510-7.pdf,28,Adjie,,extracted
+P018,nomorPerkara,483/Pid.Sus/2024/PN Btm,putusan-483_pid.sus_2024_pn_btm_20261104134646-8.pdf,1,Adjie,,extracted
+P018,tanggalPutusan,12/12/2024,putusan-483_pid.sus_2024_pn_btm_20261104134646-8.pdf,30,Adjie,,extracted
+P018,jenisNarkotika,sabu,putusan-483_pid.sus_2024_pn_btm_20261104134646-8.pdf,"2,29",Adjie,,extracted
+P018,beratBarangBuktiGram,19630,putusan-483_pid.sus_2024_pn_btm_20261104134646-8.pdf,29,Adjie,,extracted
+P018,pasalDakwaan,Pertama Pasal 114 ayat (2); Kedua Pasal 112 ayat (2) UU 35/2009,putusan-483_pid.sus_2024_pn_btm_20261104134646-8.pdf,"6,9",Adjie,,extracted
+P018,pasalTerbukti,Pasal 114 ayat (2) UU 35/2009 (dakwaan alternatif pertama),putusan-483_pid.sus_2024_pn_btm_20261104134646-8.pdf,29,Adjie,,extracted
+P018,tuntutanBulan,0 (pidana MATI; tidak bisa dikonversi ke bulan),putusan-483_pid.sus_2024_pn_btm_20261104134646-8.pdf,2,Adjie,,extracted
+P018,vonisBulan,0 (pidana SEUMUR HIDUP; tidak bisa dikonversi ke bulan),putusan-483_pid.sus_2024_pn_btm_20261104134646-8.pdf,29,Adjie,,extracted
+P018,dendaRupiah,0,putusan-483_pid.sus_2024_pn_btm_20261104134646-8.pdf,29,Adjie,,not_found
+P018,barangBukti,20 bungkus kemasan teh China Guanyinwang berisi sabu seberat 19.630 g; tas plastik; tas ransel Polo England; 5 lembar plastik bening; 4 pipet plastik; pipet kaca; gunting; HP Pocco; uang tunai Rp200.000,putusan-483_pid.sus_2024_pn_btm_20261104134646-8.pdf,"2,29-30",Adjie,,extracted
+P018,keadaanMemberatkan,Bertentangan dengan program pemerintah dalam pemberantasan tindak pidana narkotika; terlibat sindikat peredaran gelap narkotika jaringan internasional; pernah dihukum,putusan-483_pid.sus_2024_pn_btm_20261104134646-8.pdf,29,Adjie,,extracted
+P018,keadaanMeringankan,null,putusan-483_pid.sus_2024_pn_btm_20261104134646-8.pdf,29,Adjie,,not_found
+P019,nomorPerkara,712/Pid.Sus/2024/PN Btm,putusan-712_pid.sus_2024_pn_btm_20261104134717-9.pdf,1,Adjie,,extracted
+P019,tanggalPutusan,12/23/2024,putusan-712_pid.sus_2024_pn_btm_20261104134717-9.pdf,55,Adjie,,extracted
+P019,jenisNarkotika,sabu;ganja,putusan-712_pid.sus_2024_pn_btm_20261104134717-9.pdf,"2,54",Adjie,,mixed_types
+P019,beratBarangBuktiGram,107,putusan-712_pid.sus_2024_pn_btm_20261104134717-9.pdf,"2,54",Adjie,,mixed_types
+P019,pasalDakwaan,"Primair Pasal 114 ayat (1); Subsidair Pertama Pasal 112 ayat (1), Kedua Pasal 111 ayat (1) UU 35/2009",putusan-712_pid.sus_2024_pn_btm_20261104134717-9.pdf,"10,14,19",Adjie,,extracted
+P019,pasalTerbukti,Pasal 114 ayat (1) UU 35/2009 (dakwaan primair),putusan-712_pid.sus_2024_pn_btm_20261104134717-9.pdf,54,Adjie,,extracted
+P019,tuntutanBulan,120,putusan-712_pid.sus_2024_pn_btm_20261104134717-9.pdf,2,Adjie,,extracted
+P019,vonisBulan,108,putusan-712_pid.sus_2024_pn_btm_20261104134717-9.pdf,54,Adjie,,extracted
+P019,dendaRupiah,3000000000,putusan-712_pid.sus_2024_pn_btm_20261104134717-9.pdf,54,Adjie,,extracted
+P019,barangBukti,10 bungkus sabu netto 2 g; 45 bungkus ganja netto 105 g; kantong kresek; kotak biru; gelas plastik; 54 lembar plastik bening; kertas paper Radja Mas; uang tunai Rp200.000 (4 lembar @ Rp50.000); HP Oppo A58,putusan-712_pid.sus_2024_pn_btm_20261104134717-9.pdf,"2,54-55",Adjie,,extracted
+P019,keadaanMemberatkan,Perbuatan meresahkan masyarakat; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan-712_pid.sus_2024_pn_btm_20261104134717-9.pdf,53,Adjie,,extracted
+P019,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi,putusan-712_pid.sus_2024_pn_btm_20261104134717-9.pdf,53-54,Adjie,,extracted
+P020,nomorPerkara,489/Pid.Sus/2024/PN Btm,putusan-489_pid.sus_2024_pn_btm_20261104134758-10.pdf,1,Adjie,,extracted
+P020,tanggalPutusan,12/23/2024,putusan-489_pid.sus_2024_pn_btm_20261104134758-10.pdf,59,Adjie,,extracted
+P020,jenisNarkotika,sabu;ekstasi,putusan-489_pid.sus_2024_pn_btm_20261104134758-10.pdf,"2,56",Adjie,,mixed_types
+P020,beratBarangBuktiGram,14969.9,putusan-489_pid.sus_2024_pn_btm_20261104134758-10.pdf,"20,23,55",Adjie,,mixed_types
+P020,pasalDakwaan,Primair Pasal 114 ayat (2) jo Pasal 132 ayat (1); Subsidair Pasal 112 ayat (2) jo Pasal 132 ayat (1) UU 35/2009,putusan-489_pid.sus_2024_pn_btm_20261104134758-10.pdf,"15,24",Adjie,,extracted
+P020,pasalTerbukti,"Pasal 114 ayat (2) jo Pasal 132 ayat (1) UU 35/2009 (dakwaan primair, permufakatan jahat)",putusan-489_pid.sus_2024_pn_btm_20261104134758-10.pdf,56,Adjie,,extracted
+P020,tuntutanBulan,0 (pidana penjara SEUMUR HIDUP; tidak bisa dikonversi ke bulan),putusan-489_pid.sus_2024_pn_btm_20261104134758-10.pdf,2,Adjie,,extracted
+P020,vonisBulan,0 (pidana penjara SEUMUR HIDUP; tidak bisa dikonversi ke bulan),putusan-489_pid.sus_2024_pn_btm_20261104134758-10.pdf,56,Adjie,,extracted
+P020,dendaRupiah,0,putusan-489_pid.sus_2024_pn_btm_20261104134758-10.pdf,56,Adjie,,not_found
+P020,barangBukti,"5 bungkus sabu netto 4.941,71 g; 10 bungkus ekstasi (40.054 butir) netto 10.028,19 g; koper Polo Trans pink; barang pendukung lain",putusan-489_pid.sus_2024_pn_btm_20261104134758-10.pdf,"2-3,56-58",Adjie,,extracted
+P020,keadaanMemberatkan,"Tidak mendukung program pemerintah dalam memberantas peredaran narkotika dan prekursor narkotika; jumlah narkotika yang disita sangat besar, merusak generasi muda dan berdampak luas",putusan-489_pid.sus_2024_pn_btm_20261104134758-10.pdf,55,Adjie,,extracted
+P020,keadaanMeringankan,null,putusan-489_pid.sus_2024_pn_btm_20261104134758-10.pdf,56,Adjie,,not_found
+P021,nomorPerkara,487/Pid.Sus/2024/PN Btm,putusan-487_pid.sus_2024_pn_btm_20261104134840-11.pdf,1,Adjie,,extracted
+P021,tanggalPutusan,12/20/2024,putusan-487_pid.sus_2024_pn_btm_20261104134840-11.pdf,93,Adjie,,extracted
+P021,jenisNarkotika,sabu,putusan-487_pid.sus_2024_pn_btm_20261104134840-11.pdf,"2,89",Adjie,,extracted
+P021,beratBarangBuktiGram,20593.53,putusan-487_pid.sus_2024_pn_btm_20261104134840-11.pdf,"9,12,21",Adjie,,extracted
+P021,pasalDakwaan,Primair Pasal 114 ayat (2) jo Pasal 132 ayat (1); Subsidair Pasal 112 ayat (2) jo Pasal 132 ayat (1) UU 35/2009,putusan-487_pid.sus_2024_pn_btm_20261104134840-11.pdf,"9,12",Adjie,,extracted
+P021,pasalTerbukti,"Pasal 114 ayat (2) jo Pasal 132 ayat (1) UU 35/2009 (dakwaan primair, permufakatan jahat)",putusan-487_pid.sus_2024_pn_btm_20261104134840-11.pdf,89,Adjie,,extracted
+P021,tuntutanBulan,0 (pidana MATI; tidak bisa dikonversi ke bulan),putusan-487_pid.sus_2024_pn_btm_20261104134840-11.pdf,2,Adjie,,extracted
+P021,vonisBulan,204,putusan-487_pid.sus_2024_pn_btm_20261104134840-11.pdf,89,Adjie,,extracted
+P021,dendaRupiah,4375000000,putusan-487_pid.sus_2024_pn_btm_20261104134840-11.pdf,89,Adjie,,extracted
+P021,barangBukti,"21 bungkus sabu (kemasan teh China Guanyinwang/Chinese Pin Wei dalam koper hitam Lycarllo) netto total 20.593,53 g; HP Vivo Y12s; sepeda motor Honda Scoopy",putusan-487_pid.sus_2024_pn_btm_20261104134840-11.pdf,"2-3,89-92",Adjie,,extracted
+P021,keadaanMemberatkan,Perbuatan meresahkan masyarakat; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan-487_pid.sus_2024_pn_btm_20261104134840-11.pdf,88,Adjie,,extracted
+P021,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi; hanya sebagai kurir yang belum menerima upah,putusan-487_pid.sus_2024_pn_btm_20261104134840-11.pdf,88,Adjie,,extracted
+P022,nomorPerkara,485/Pid.Sus/2024/PN Btm,putusan-485_pid.sus_2024_pn_btm_20261104134916-12.pdf,1,Adjie,,extracted
+P022,tanggalPutusan,12/20/2024,putusan-485_pid.sus_2024_pn_btm_20261104134916-12.pdf,71,Adjie,,extracted
+P022,jenisNarkotika,sabu,putusan-485_pid.sus_2024_pn_btm_20261104134916-12.pdf,"2,66",Adjie,,extracted
+P022,beratBarangBuktiGram,20593.53,putusan-485_pid.sus_2024_pn_btm_20261104134916-12.pdf,"6,8,12",Adjie,,extracted
+P022,pasalDakwaan,Primair Pasal 114 ayat (2) jo Pasal 132 ayat (1); Subsidair Pasal 112 ayat (2) jo Pasal 132 ayat (1) UU 35/2009,putusan-485_pid.sus_2024_pn_btm_20261104134916-12.pdf,"10,12",Adjie,,extracted
+P022,pasalTerbukti,"Pasal 114 ayat (2) jo Pasal 132 ayat (1) UU 35/2009 (dakwaan primair, permufakatan jahat)",putusan-485_pid.sus_2024_pn_btm_20261104134916-12.pdf,66,Adjie,,extracted
+P022,tuntutanBulan,0 (pidana MATI; tidak bisa dikonversi ke bulan),putusan-485_pid.sus_2024_pn_btm_20261104134916-12.pdf,2,Adjie,,extracted
+P022,vonisBulan,204,putusan-485_pid.sus_2024_pn_btm_20261104134916-12.pdf,66,Adjie,,extracted
+P022,dendaRupiah,4375000000,putusan-485_pid.sus_2024_pn_btm_20261104134916-12.pdf,66,Adjie,,extracted
+P022,barangBukti,"21 bungkus sabu (kemasan teh China Guanyinwang/Chinese Pin Wei dalam koper) netto total 20.593,53 g; barang pendukung lain sesuai amar",putusan-485_pid.sus_2024_pn_btm_20261104134916-12.pdf,"2-3,66-69",Adjie,,extracted
+P022,keadaanMemberatkan,Perbuatan meresahkan masyarakat; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan-485_pid.sus_2024_pn_btm_20261104134916-12.pdf,66,Adjie,,extracted
+P022,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi; hanya sebagai kurir yang belum menerima upah,putusan-485_pid.sus_2024_pn_btm_20261104134916-12.pdf,66,Adjie,,extracted
+P023,nomorPerkara,488/Pid.Sus/2024/PN Btm,putusan-488_pid.sus_2024_pn_btm_20261104134950-13.pdf,1,Adjie,,extracted
+P023,tanggalPutusan,12/20/2024,putusan-488_pid.sus_2024_pn_btm_20261104134950-13.pdf,64,Adjie,,extracted
+P023,jenisNarkotika,sabu,putusan-488_pid.sus_2024_pn_btm_20261104134950-13.pdf,"2,60",Adjie,,extracted
+P023,beratBarangBuktiGram,20593.53,putusan-488_pid.sus_2024_pn_btm_20261104134950-13.pdf,"5,8,9",Adjie,,extracted
+P023,pasalDakwaan,Primair Pasal 114 ayat (2) jo Pasal 132 ayat (1); Subsidair Pasal 112 ayat (2) jo Pasal 132 ayat (1) UU 35/2009,putusan-488_pid.sus_2024_pn_btm_20261104134950-13.pdf,"10,12",Adjie,,extracted
+P023,pasalTerbukti,"Pasal 114 ayat (2) jo Pasal 132 ayat (1) UU 35/2009 (dakwaan primair, permufakatan jahat)",putusan-488_pid.sus_2024_pn_btm_20261104134950-13.pdf,60,Adjie,,extracted
+P023,tuntutanBulan,0 (pidana MATI; tidak bisa dikonversi ke bulan),putusan-488_pid.sus_2024_pn_btm_20261104134950-13.pdf,2,Adjie,,extracted
+P023,vonisBulan,204,putusan-488_pid.sus_2024_pn_btm_20261104134950-13.pdf,60,Adjie,,extracted
+P023,dendaRupiah,"4375000000 (angka di amar tertulis Rp4.375.000.000.000,00 namun terbilang ""empat milyar tiga ratus tujuh puluh lima juta rupiah""; dipakai terbilang)",putusan-488_pid.sus_2024_pn_btm_20261104134950-13.pdf,60,Adjie,,extracted
+P023,barangBukti,"21 bungkus sabu (kemasan teh China Guanyinwang/Chinese Pin Wei dalam koper hitam Lycarillo) netto total 20.593,53 g; HP Vivo Y17s; sepeda motor Honda Scoopy",putusan-488_pid.sus_2024_pn_btm_20261104134950-13.pdf,"2-3,60-63",Adjie,,extracted
+P023,keadaanMemberatkan,Bertentangan dengan program pemerintah dalam pemberantasan peredaran narkotika; merupakan perantara/kurir narkotika,putusan-488_pid.sus_2024_pn_btm_20261104134950-13.pdf,59,Adjie,,extracted
+P023,keadaanMeringankan,Belum pernah dihukum; menyesali perbuatannya; belum sempat menikmati upah sebagai perantara narkotika,putusan-488_pid.sus_2024_pn_btm_20261104134950-13.pdf,59,Adjie,,extracted
+P024,nomorPerkara,486/Pid.Sus/2024/PN Btm,putusan-486_pid.sus_2024_pn_btm_20261104135027-14.pdf,1,Adjie,,extracted
+P024,tanggalPutusan,12/18/2024,putusan-486_pid.sus_2024_pn_btm_20261104135027-14.pdf,63,Adjie,,extracted
+P024,jenisNarkotika,sabu,putusan-486_pid.sus_2024_pn_btm_20261104135027-14.pdf,"2,61",Adjie,,extracted
+P024,beratBarangBuktiGram,20593.53,putusan-486_pid.sus_2024_pn_btm_20261104135027-14.pdf,"7,8,57",Adjie,,extracted
+P024,pasalDakwaan,Primair Pasal 114 ayat (2) jo Pasal 132 ayat (1); Subsidair Pasal 112 ayat (2) jo Pasal 132 ayat (1) UU 35/2009,putusan-486_pid.sus_2024_pn_btm_20261104135027-14.pdf,"9,14",Adjie,,extracted
+P024,pasalTerbukti,"Pasal 114 ayat (2) jo Pasal 132 ayat (1) UU 35/2009 (dakwaan primair, permufakatan jahat)",putusan-486_pid.sus_2024_pn_btm_20261104135027-14.pdf,61,Adjie,,extracted
+P024,tuntutanBulan,0 (pidana penjara SEUMUR HIDUP; tidak bisa dikonversi ke bulan),putusan-486_pid.sus_2024_pn_btm_20261104135027-14.pdf,2,Adjie,,extracted
+P024,vonisBulan,204,putusan-486_pid.sus_2024_pn_btm_20261104135027-14.pdf,61,Adjie,,extracted
+P024,dendaRupiah,4375000000,putusan-486_pid.sus_2024_pn_btm_20261104135027-14.pdf,61,Adjie,,extracted
+P024,barangBukti,"21 bungkus sabu (kemasan teh China Guanyinwang/Chinese Pin Wei) netto total 20.593,53 g; 2 HP (Vivo Y02t, Oppo A1k); mobil Honda HR-V (dikembalikan)",putusan-486_pid.sus_2024_pn_btm_20261104135027-14.pdf,"2-3,61-62",Adjie,,extracted
+P024,keadaanMemberatkan,Perbuatan meresahkan masyarakat; tidak mendukung program Pemerintah dalam memberantas narkotika,putusan-486_pid.sus_2024_pn_btm_20261104135027-14.pdf,61,Adjie,,extracted
+P024,keadaanMeringankan,Menyesali perbuatannya; belum pernah dihukum,putusan-486_pid.sus_2024_pn_btm_20261104135027-14.pdf,61,Adjie,,extracted
+P025,nomorPerkara,491/Pid.Sus/2024/PN Btm,putusan-491_pid.sus_2024_pn_btm_20261104135057-15.pdf,1,Adjie,,extracted
+P025,tanggalPutusan,12/18/2024,putusan-491_pid.sus_2024_pn_btm_20261104135057-15.pdf,73,Adjie,,extracted
+P025,jenisNarkotika,sabu,putusan-491_pid.sus_2024_pn_btm_20261104135057-15.pdf,"2,71",Adjie,,extracted
+P025,beratBarangBuktiGram,20593.53,putusan-491_pid.sus_2024_pn_btm_20261104135057-15.pdf,6,Adjie,,extracted
+P025,pasalDakwaan,Primair Pasal 114 ayat (2) jo Pasal 132 ayat (1); Subsidair Pasal 112 ayat (2) jo Pasal 132 ayat (1) UU 35/2009,putusan-491_pid.sus_2024_pn_btm_20261104135057-15.pdf,"9,13",Adjie,,extracted
+P025,pasalTerbukti,"Pasal 114 ayat (2) jo Pasal 132 ayat (1) UU 35/2009 (dakwaan primair, permufakatan jahat)",putusan-491_pid.sus_2024_pn_btm_20261104135057-15.pdf,71,Adjie,,extracted
+P025,tuntutanBulan,0 (pidana penjara SEUMUR HIDUP; tidak bisa dikonversi ke bulan),putusan-491_pid.sus_2024_pn_btm_20261104135057-15.pdf,2,Adjie,,extracted
+P025,vonisBulan,204,putusan-491_pid.sus_2024_pn_btm_20261104135057-15.pdf,71,Adjie,,extracted
+P025,dendaRupiah,"4750000000 (angka di amar tertulis Rp4.750.000.000.000,- namun terbilang ""empat milyar tujuh ratus lima puluh juta rupiah""; dipakai terbilang)",putusan-491_pid.sus_2024_pn_btm_20261104135057-15.pdf,71,Adjie,,extracted
+P025,barangBukti,"21 bungkus sabu (kemasan teh China Guanyinwang/Chinese Pin Wei dalam koper) netto total 20.593,53 g; 2 HP (Vivo Y02t, Oppo A57)",putusan-491_pid.sus_2024_pn_btm_20261104135057-15.pdf,"2-3,72-73",Adjie,,extracted
+P025,keadaanMemberatkan,Perbuatan meresahkan masyarakat; kontra produktif dengan upaya Pemerintah memberantas tindak pidana narkotika,putusan-491_pid.sus_2024_pn_btm_20261104135057-15.pdf,71,Adjie,,extracted
+P025,keadaanMeringankan,Mengakui terus terang; bersikap sopan dan tidak berbelit-belit; menyesali dan berjanji tidak mengulangi; hanya sebagai kurir yang belum menerima upah,putusan-491_pid.sus_2024_pn_btm_20261104135057-15.pdf,71,Adjie,,extracted
