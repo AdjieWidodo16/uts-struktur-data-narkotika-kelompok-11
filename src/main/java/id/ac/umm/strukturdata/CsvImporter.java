@@ -36,9 +36,18 @@ public class CsvImporter {
             while ((line = br.readLine()) != null) {
                 nomorBaris++;
                 jumlahDibaca++;
-                hasil.addLast(parseRecord(line));
+
+                try {
+                    hasil.addLast(parseRecord(line));
+                } catch (IllegalArgumentException e) {
+                    String pesan = "Baris " + nomorBaris + ": " + e.getMessage();
+                    errors.addLast(pesan);
+                    System.err.println("Impor ditolak - " + pesan);
+                }
             }
         }
+
+
         return hasil;
     }
 
