@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -379,10 +378,54 @@ class ScenarioTest {
                 + ", riwayat identik sebelum dan sesudah");
     }
 
+    /** Satu baris CSV 16 kolom yang valid, kecuali nilai yang dititipkan. */
+    private static String baris(String caseId, String tanggal, String vonis) {
+        return caseId + ",123/Pid.Sus/2025/PN Mlg,PN Malang," + tanggal
+                + ",T001,Sabu,1.5,Pasal 112,Pasal 112,24," + vonis
+                + ",800000000,sabu,-,-,hal 1";
+    }
+
     @Test
-    @Disabled("TODO Adinda")
     void skenario7_recordTidakValid_pesanKesalahanDanStrukturKonsisten(@TempDir Path tmp)
             throws IOException {
+        String isi = Exporter.CSV_HEADER + "\n"
+                + baris("P901", "2025-03-10", "18") + "\n"      // baris 2: valid
+                + baris("P902", "10-03-2025", "18") + "\n"      // baris 3: tanggal salah
+                + "P903,hanya,tiga\n"                           // baris 4: jumlah kolom salah
+                + baris("", "2025-03-10", "12") + "\n"          // baris 5: caseId kosong
+                + baris("P905", "2025-03-10", "-5") + "\n"      // baris 6: vonis negatif
+                + baris("P906", "2025-03-11", "24") + "\n";     // baris 7: valid
+        Path file = tmp.resolve("uji-tidak-valid.csv");
+        Files.writeString(file, isi);
+
+        CsvImporter importer = new CsvImporter();
+        SinglyLinkedList<Putusan> hasil = importer.importCsv(file);   // tidak boleh melempar
+
+        assertEquals(6, importer.getJumlahDibaca());
+        assertEquals(2, hasil.size());
+        assertEquals(4, importer.getJumlahDitolak());
+        assertEquals("P901", hasil.get(0).getCaseId());
+        assertEquals("P906", hasil.get(1).getCaseId());
+
+        SinglyLinkedList<String> err = importer.getErrors();
+        assertTrue(err.get(0).contains("Baris 3") && err.get(0).contains("tanggalPutusan"));
+        assertTrue(err.get(1).contains("Baris 4") && err.get(1).contains("jumlah kolom 3"));
+        assertTrue(err.get(2).contains("Baris 5") && err.get(2).contains("caseId wajib"));
+        assertTrue(err.get(3).contains("Baris 6") && err.get(3).contains("vonisBulan"));
+
+        // Struktur tetap konsisten dan masih bisa dipakai
+        hasil.validateInvariant();
+        hasil.addLast(hasil.get(0));
+        assertEquals(3, hasil.size());
+        hasil.validateInvariant();
+
+        cetak("7. dibaca=" + importer.getJumlahDibaca() + ", valid=2, ditolak="
+                + importer.getJumlahDitolak());
+        Node<String> e = err.getHead();
+        while (e != null) {
+            cetak("7.   ditolak -> " + e.data);
+            e = e.next;
+        }
     }
     // =========================================================================================
 }
