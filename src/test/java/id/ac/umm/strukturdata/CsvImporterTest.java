@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class CsvImporterTest {
 
@@ -111,6 +112,22 @@ class CsvImporterTest {
         assertTrue(pesan.contains("Baris 2"));
         assertTrue(pesan.contains("tanggalPutusan"));
         hasil.validateInvariant();
+    }
+
+    @Test
+    void nilaiKosongDanNullLiteral_menjadiNolAtauNull() throws IOException {
+        String baris = VALID_1
+                .replace(",Belum pernah dihukum,", ",null,")  // teks "null" -> null
+                .replace(",60,72,", ",,null,");               // angka kosong dan "null" -> 0
+
+        CsvImporter importer = new CsvImporter();
+        SinglyLinkedList<Putusan> hasil = importer.importCsv(tulis(HEADER, baris));
+
+        assertEquals(1, hasil.size());
+        Putusan p = hasil.get(0);
+        assertNull(p.getKeadaanMeringankan());
+        assertEquals(0, p.getTuntutanBulan());
+        assertEquals(0, p.getVonisBulan());
     }
 
 }
