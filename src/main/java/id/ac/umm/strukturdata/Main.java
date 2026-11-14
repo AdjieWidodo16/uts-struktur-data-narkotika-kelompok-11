@@ -85,6 +85,8 @@ public class Main {
                 case 3 -> tambah();
                 case 4 -> hapus();
                 case 5 -> cari();
+                case 6 -> filter();
+                case 7 -> agregasi();
                 default -> System.out.println("Menu belum tersedia.");
             }
         } catch (InputHelper.InputBerakhirException e) {
@@ -225,6 +227,55 @@ public class Main {
         catat(AuditLog.CARI, (mode == 1 ? "caseId=" : "nomorPerkara=") + kunci
                 + ", ditemukan=" + hasil.isDitemukan() + ", posisi=" + hasil.getPosisi()
                 + ", langkah=" + hasil.getLangkah());
+    }
+
+    private void filter() {
+        PutusanFilter f = new PutusanFilter();
+        String jenis = in.bacaTeksOpsional("Jenis narkotika (Enter = lewati): ");
+        if (jenis != null) {
+            f.jenisNarkotika(jenis);
+        }
+        if (in.bacaYa("Filter rentang berat barang bukti? (y/n): ")) {
+            double min = in.bacaDoubleOpsional("  Berat minimum (gram): ");
+            double max = in.bacaDoubleOpsional("  Berat maksimum (gram): ");
+            f.beratBetween(min, max);
+        }
+        String pasal = in.bacaTeksOpsional("Pasal terbukti (Enter = lewati): ");
+        if (pasal != null) {
+            f.pasalTerbukti(pasal);
+        }
+        if (in.bacaYa("Filter rentang vonis? (y/n): ")) {
+            int min = in.bacaIntOpsional("  Vonis minimum (bulan): ");
+            int max = in.bacaIntOpsional("  Vonis maksimum (bulan): ");
+            f.vonisBetween(min, max);
+        }
+        if (f.jumlahKriteriAktif() == 0) {
+            System.out.println("Tidak ada kriteria aktif, hasilnya seluruh data.");
+        }
+        SinglyLinkedList<Putusan> hasil = f.terapkan(data);
+        filterTerakhir = hasil;
+        System.out.println(hasil.size() + " putusan cocok dari " + data.size() + ".");
+        System.out.print(PutusanDisplay.ringkasan(hasil));
+        catat(AuditLog.FILTER, f + ", hasil=" + hasil.size());
+    }
+
+    private void agregasi() {
+        PutusanAggregator.Ringkasan r = PutusanAggregator.hitung(data);
+        System.out.println("Jumlah perkara        : " + r.getJumlahPerkara());
+        System.out.println("Rata-rata vonis (bln) : "
+                + Math.round(r.getRataRataVonisBulan() * 100.0) / 100.0);
+        System.out.println("Total denda (Rp)      : " + r.getTotalDendaRupiah());
+        System.out.println("Distribusi jenis narkotika:");
+        if (r.getDistribusi().isEmpty()) {
+            System.out.println("  (tidak ada data)");
+        }
+        Node<PutusanAggregator.JenisCount> cur = r.getDistribusi().getHead();
+        while (cur != null) {
+            String jenis = cur.data.getJenis() == null ? "(tidak diketahui)" : cur.data.getJenis();
+            System.out.println("  - " + jenis + ": " + cur.data.getJumlah());
+            cur = cur.next;
+        }
+        catat(AGREGASI, "perkara=" + r.getJumlahPerkara() + ", jenis=" + r.getBanyakJenis());
     }
 
 }
