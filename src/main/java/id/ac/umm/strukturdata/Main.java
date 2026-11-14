@@ -82,6 +82,7 @@ public class Main {
             switch (pilihan) {
                 case 1 -> impor();
                 case 2 -> tampil();
+                case 3 -> tambah();
                 default -> System.out.println("Menu belum tersedia.");
             }
         } catch (InputHelper.InputBerakhirException e) {
@@ -139,4 +140,50 @@ public class Main {
         System.out.print(PutusanDisplay.ringkasan(data));
         catat(TAMPIL, "size=" + data.size());
     }
+
+    private void tambah() {
+        System.out.println("Tambah putusan (kosongkan kolom opsional jika data tidak ditemukan)");
+        String caseId = in.bacaTeksWajib("caseId: ");
+        if (adaCaseId(caseId)) {
+            System.out.println("caseId sudah ada, penambahan dibatalkan.");
+            catat(AuditLog.TAMBAH, "DITOLAK, caseId duplikat: " + caseId);
+            return;
+        }
+        Putusan p = new Putusan(
+                caseId,
+                in.bacaTeksOpsional("nomorPerkara: "),
+                in.bacaTeksOpsional("pengadilan: "),
+                in.bacaTanggalOpsional("tanggalPutusan (yyyy-MM-dd): "),
+                in.bacaTeksOpsional("terdakwaKode: "),
+                in.bacaTeksOpsional("jenisNarkotika: "),
+                in.bacaDoubleOpsional("beratBarangBuktiGram: "),
+                in.bacaTeksOpsional("pasalDakwaan: "),
+                in.bacaTeksOpsional("pasalTerbukti: "),
+                in.bacaIntOpsional("tuntutanBulan: "),
+                in.bacaIntOpsional("vonisBulan: "),
+                in.bacaLongOpsional("dendaRupiah: "),
+                in.bacaTeksOpsional("barangBukti: "),
+                in.bacaTeksOpsional("keadaanMemberatkan: "),
+                in.bacaTeksOpsional("keadaanMeringankan: "),
+                in.bacaTeksOpsional("sourcePages: "));
+
+        int posisi = in.bacaIntDalam(
+                "Posisi sisip (0 = awal, " + data.size() + " = akhir): ", 0, data.size());
+        data.insert(posisi, p);
+        data.validateInvariant();
+        System.out.println("Ditambahkan di posisi " + posisi + ". Size sekarang " + data.size() + ".");
+        catat(AuditLog.TAMBAH, "caseId=" + caseId + ", posisi=" + posisi + ", size=" + data.size());
+    }
+
+    private boolean adaCaseId(String id) {
+        Node<Putusan> cur = data.getHead();
+        while (cur != null) {
+            if (id.equals(cur.data.getCaseId())) {
+                return true;
+            }
+            cur = cur.next;
+        }
+        return false;
+    }
+
 }
