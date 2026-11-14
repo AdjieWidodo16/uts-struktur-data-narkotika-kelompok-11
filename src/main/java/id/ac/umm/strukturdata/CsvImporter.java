@@ -46,8 +46,7 @@ public class CsvImporter {
                 }
             }
         }
-
-
+        hasil.validateInvariant();
         return hasil;
     }
 
