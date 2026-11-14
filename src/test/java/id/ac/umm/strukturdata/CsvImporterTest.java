@@ -84,4 +84,33 @@ class CsvImporterTest {
         hasil.validateInvariant();
     }
 
+    @Test
+    void angkaBukanAngka_ditolak() throws IOException {
+        CsvImporter importer = new CsvImporter();
+        String rusak = VALID_1.replace(",72,", ",abc,");
+        SinglyLinkedList<Putusan> hasil = importer.importCsv(tulis(HEADER, rusak, VALID_2));
+
+        assertEquals(1, hasil.size());
+        assertEquals(1, importer.getJumlahDitolak());
+        String pesan = importer.getErrors().get(0);
+        assertTrue(pesan.contains("Baris 2"));
+        assertTrue(pesan.contains("vonisBulan"));
+        hasil.validateInvariant();
+        assertEquals("P002", hasil.get(0).getCaseId());
+    }
+
+    @Test
+    void tanggalSalah_ditolak() throws IOException {
+        CsvImporter importer = new CsvImporter();
+        String rusak = VALID_1.replace("2025-12-01", "12/1/2025"); // format lama dari Excel
+        SinglyLinkedList<Putusan> hasil = importer.importCsv(tulis(HEADER, rusak, VALID_2));
+
+        assertEquals(1, hasil.size());
+        assertEquals(1, importer.getJumlahDitolak());
+        String pesan = importer.getErrors().get(0);
+        assertTrue(pesan.contains("Baris 2"));
+        assertTrue(pesan.contains("tanggalPutusan"));
+        hasil.validateInvariant();
+    }
+
 }
