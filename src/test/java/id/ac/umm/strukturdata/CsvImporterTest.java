@@ -130,4 +130,29 @@ class CsvImporterTest {
         assertEquals(0, p.getVonisBulan());
     }
 
+    // Ubah ke 50 setelah data P026-P050 masuk ke data/putusan-50.csv.
+    private static final int JUMLAH_RECORD_CSV = 25;
+
+    private static String ringkasError(CsvImporter importer) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < importer.getErrors().size(); i++) {
+            sb.append(importer.getErrors().get(i)).append("; ");
+        }
+        return sb.toString();
+    }
+
+    @Test
+    void fileAsli_semuaRecordTerimpor() throws IOException {
+        CsvImporter importer = new CsvImporter();
+        SinglyLinkedList<Putusan> hasil = importer.importCsv(Path.of("data/putusan-50.csv"));
+
+        assertEquals(0, importer.getJumlahDitolak(), ringkasError(importer));
+        assertEquals(JUMLAH_RECORD_CSV, hasil.size());
+        hasil.validateInvariant();
+
+        assertEquals(LocalDate.of(2026, 9, 30), hasil.get(2).getTanggalPutusan()); // P003
+        assertEquals("P018", hasil.get(17).getCaseId());
+        assertNull(hasil.get(17).getKeadaanMeringankan());                         // null literal
+    }
+
 }
