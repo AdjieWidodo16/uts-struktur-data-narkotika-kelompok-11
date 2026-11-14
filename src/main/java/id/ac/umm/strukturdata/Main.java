@@ -89,6 +89,7 @@ public class Main {
                 case 7 -> agregasi();
                 case 8 -> urutan();
                 case 9 -> menuAudit();
+                case 10 -> ekspor();
                 default -> System.out.println("Menu belum tersedia.");
             }
         } catch (InputHelper.InputBerakhirException e) {
@@ -322,6 +323,50 @@ public class Main {
         audit.validateInvariant();
         System.out.println("Urutan stack tidak berubah: " + (utuh ? "ya" : "TIDAK"));
         catat(AUDIT, "cari entri, posisi=" + posisi + ", langkah=" + langkah);
+    }
+
+    private void ekspor() {
+        System.out.println("1) CSV data saat ini");
+        System.out.println("2) CSV hasil filter terakhir");
+        System.out.println("3) Laporan (agregasi + riwayat audit)");
+        System.out.println("4) Hasil pencarian terakhir");
+        int mode = in.bacaIntDalam("Pilih: ", 1, 4);
+
+        if (mode == 2 && filterTerakhir == null) {
+            System.out.println("Belum ada hasil filter. Jalankan menu Filter dulu.");
+            catat(EKSPOR, "GAGAL: belum ada hasil filter");
+            return;
+        }
+        if (mode == 4 && cariTerakhir == null) {
+            System.out.println("Belum ada hasil pencarian. Jalankan menu Cari dulu.");
+            catat(EKSPOR, "GAGAL: belum ada hasil pencarian");
+            return;
+        }
+
+        String bawaan = switch (mode) {
+            case 1 -> "docs/demo/data.csv";
+            case 2 -> "docs/demo/hasil-filter.csv";
+            case 3 -> "docs/demo/laporan.txt";
+            default -> "docs/demo/hasil-cari.txt";
+        };
+        String path = in.bacaTeksOpsional("Path file (Enter = " + bawaan + "): ");
+        if (path == null) {
+            path = bawaan;
+        }
+
+        boolean ok = switch (mode) {
+            case 1 -> exporter.eksporCsv(data, path);
+            case 2 -> exporter.eksporCsv(filterTerakhir, path);
+            case 3 -> exporter.eksporLaporan(data, audit, path);
+            default -> exporter.eksporHasilCari(cariTerakhir, path);
+        };
+        if (ok) {
+            System.out.println("Berhasil disimpan ke " + path);
+            catat(EKSPOR, "mode=" + mode + ", path=" + path);
+        } else {
+            System.out.println("Gagal: " + exporter.getLastError());
+            catat(EKSPOR, "GAGAL: " + exporter.getLastError());
+        }
     }
 
 }
