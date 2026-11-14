@@ -54,4 +54,34 @@ class CsvImporterTest {
         assertEquals(2125000000L, p.getDendaRupiah());
         assertEquals("6 paket sabu netto 1,17 g; timbangan digital", p.getBarangBukti());
     }
+
+    @Test
+    void kolomKurang_ditolakDanImporBerlanjut() throws IOException {
+        CsvImporter importer = new CsvImporter();
+        SinglyLinkedList<Putusan> hasil =
+                importer.importCsv(tulis(HEADER, VALID_1, "P099,hanya,tiga", VALID_2));
+
+        assertEquals(2, hasil.size());
+        assertEquals(1, importer.getJumlahDitolak());
+        String pesan = importer.getErrors().get(0);
+        assertTrue(pesan.contains("Baris 3"));
+        assertTrue(pesan.contains("jumlah kolom"));
+        hasil.validateInvariant();
+        assertEquals("P002", hasil.get(1).getCaseId());
+    }
+
+    @Test
+    void barisKosong_ditolakDanImporBerlanjut() throws IOException {
+        CsvImporter importer = new CsvImporter();
+        SinglyLinkedList<Putusan> hasil =
+                importer.importCsv(tulis(HEADER, VALID_1, "", VALID_2));
+
+        assertEquals(2, hasil.size());
+        assertEquals(1, importer.getJumlahDitolak());
+        String pesan = importer.getErrors().get(0);
+        assertTrue(pesan.contains("Baris 3"));
+        assertTrue(pesan.contains("kosong"));
+        hasil.validateInvariant();
+    }
+
 }
