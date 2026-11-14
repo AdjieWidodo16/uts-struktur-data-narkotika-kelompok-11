@@ -37,4 +37,53 @@ public class CsvImporter {
         }
         return hasil;
     }
+
+    /** Memecah satu baris CSV; koma di dalam tanda kutip tidak memisahkan kolom. */
+    static String[] splitCsv(String line) {
+        String[] out = new String[hitungKolom(line)];
+        StringBuilder sb = new StringBuilder();
+        int idx = 0;
+        boolean inQ = false;
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            if (c == '"') {
+                if (inQ && i + 1 < line.length() && line.charAt(i + 1) == '"') {
+                    sb.append('"');   // "" di dalam kutip = satu tanda kutip
+                    i++;
+                } else {
+                    inQ = !inQ;
+                }
+            } else if (c == ',' && !inQ) {
+                out[idx++] = sb.toString();
+                sb.setLength(0);
+            } else {
+                sb.append(c);
+            }
+        }
+        out[idx] = sb.toString();
+        return out;
+    }
+
+    // Hitung kolom dulu supaya array bisa dialokasikan tanpa ArrayList.
+    private static int hitungKolom(String line) {
+        int n = 1;
+        boolean inQ = false;
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            if (c == '"') {
+                if (inQ && i + 1 < line.length() && line.charAt(i + 1) == '"') {
+                    i++;
+                } else {
+                    inQ = !inQ;
+                }
+            } else if (c == ',' && !inQ) {
+                n++;
+            }
+        }
+        if (inQ) {
+            throw new IllegalArgumentException("tanda kutip tidak tertutup");
+        }
+        return n;
+    }
+
 }
