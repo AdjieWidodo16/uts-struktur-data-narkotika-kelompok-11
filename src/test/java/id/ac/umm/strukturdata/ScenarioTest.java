@@ -64,7 +64,59 @@ class ScenarioTest {
 
     // =========================================================================================
     // AREA ADJIE (skenario 2, 3, 4)
-    // [ADJIE-2]
+    @Test
+    void skenario2_cari_ada_tidakAda_dan_posisiBatas() {
+        int n = data.size();
+        assertEquals(JUMLAH_DATA, n);
+
+        // (a) satu yang ada, di tengah
+        Putusan tengah = data.get(n / 2);
+        PutusanSearch.Hasil h = PutusanSearch.cariByCaseId(data, tengah.getCaseId());
+        assertTrue(h.isDitemukan());
+        assertEquals(n / 2, h.getPosisi());
+        assertEquals(n / 2 + 1, h.getLangkah());
+        assertSame(tengah, h.getPutusan());
+
+        // (b) satu yang tidak ada: seluruh node dibandingkan
+        PutusanSearch.Hasil kosong = PutusanSearch.cariByCaseId(data, "TIDAK-ADA-999");
+        assertFalse(kosong.isDitemukan());
+        assertEquals(-1, kosong.getPosisi());
+        assertEquals(n, kosong.getLangkah());
+        assertNull(kosong.getPutusan());
+
+        // (c) dua posisi batas: pertama (kasus terbaik) dan terakhir (kasus terburuk jika ada)
+        Putusan pertama = data.get(0);
+        Putusan terakhir = data.get(n - 1);
+        PutusanSearch.Hasil hp = PutusanSearch.cariByCaseId(data, pertama.getCaseId());
+        PutusanSearch.Hasil ht = PutusanSearch.cariByCaseId(data, terakhir.getCaseId());
+        assertEquals(0, hp.getPosisi());
+        assertEquals(1, hp.getLangkah());
+        assertEquals(n - 1, ht.getPosisi());
+        assertEquals(n, ht.getLangkah());
+
+        // (d) pencarian nomorPerkara
+        if (tengah.getNomorPerkara() != null) {
+            PutusanSearch.Hasil hn =
+                    PutusanSearch.cariByNomorPerkara(data, tengah.getNomorPerkara());
+            assertTrue(hn.isDitemukan());
+            assertEquals(tengah.getNomorPerkara(), hn.getPutusan().getNomorPerkara());
+            assertTrue(hn.getPosisi() <= n / 2);
+            assertEquals(hn.getPosisi() + 1, hn.getLangkah());
+        }
+
+        // (e) tabel pencacah langkah untuk analisis kompleksitas
+        int[] posisiUji = {0, n / 4, n / 2, (3 * n) / 4, n - 1};
+        cetak("2. TABEL LANGKAH (n=" + n + ")");
+        for (int pos : posisiUji) {
+            PutusanSearch.Hasil r = PutusanSearch.cariByCaseId(data, data.get(pos).getCaseId());
+            assertEquals(pos + 1, r.getLangkah());
+            cetak("2.   posisi " + pos + " -> langkah " + r.getLangkah());
+        }
+        cetak("2.   tidak ada -> langkah " + kosong.getLangkah() + " (= n)");
+
+        data.validateInvariant();
+        assertEquals(n, data.size());
+    }
     // [ADJIE-3]
     // [ADJIE-4]
     // =========================================================================================
