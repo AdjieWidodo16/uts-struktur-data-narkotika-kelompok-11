@@ -28,6 +28,12 @@ public class CsvImporter {
 
         try (BufferedReader br = Files.newBufferedReader(file, StandardCharsets.UTF_8)) {
             br.readLine(); // lewati header
+            int nomorBaris = 1;
+            String line;
+            while ((line = br.readLine()) != null) {
+                nomorBaris++;
+                jumlahDibaca++;
+            }
         }
         return hasil;
     }
