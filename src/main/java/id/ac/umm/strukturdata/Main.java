@@ -84,6 +84,7 @@ public class Main {
                 case 2 -> tampil();
                 case 3 -> tambah();
                 case 4 -> hapus();
+                case 5 -> cari();
                 default -> System.out.println("Menu belum tersedia.");
             }
         } catch (InputHelper.InputBerakhirException e) {
@@ -208,5 +209,22 @@ public class Main {
                 + ", size=" + data.size());
     }
 
+    private void cari() {
+        if (data.isEmpty()) {
+            System.out.println("Data kosong.");
+            catat(AuditLog.CARI, "data kosong");
+            return;
+        }
+        int mode = in.bacaIntDalam("Cari berdasarkan 1) caseId  2) nomorPerkara: ", 1, 2);
+        String kunci = in.bacaTeksWajib("Kata kunci: ");
+        PutusanSearch.Hasil hasil = (mode == 1)
+                ? PutusanSearch.cariByCaseId(data, kunci)
+                : PutusanSearch.cariByNomorPerkara(data, kunci);
+        cariTerakhir = hasil;
+        System.out.print(exporter.buatHasilCari(hasil));
+        catat(AuditLog.CARI, (mode == 1 ? "caseId=" : "nomorPerkara=") + kunci
+                + ", ditemukan=" + hasil.isDitemukan() + ", posisi=" + hasil.getPosisi()
+                + ", langkah=" + hasil.getLangkah());
+    }
 
 }
