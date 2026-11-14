@@ -246,7 +246,7 @@ class ScenarioTest {
 
     // Isi setelah pemeriksaan manual ke putusan asli: caseId hasil filter, urut sesuai list.
     // Biarkan kosong sebelum pemeriksaan manual selesai (bagian itu akan dilewati).
-    static final String[] CASE_ID_HASIL_MANUAL = {};
+    static final String[] CASE_ID_HASIL_MANUAL = {"P001"};
 
     /** Pemeriksaan independen tanpa PutusanFilter (hanya String.toLowerCase().contains()). */
     static boolean cocokManual(Putusan p, String jenis, double bMin, double bMax,
