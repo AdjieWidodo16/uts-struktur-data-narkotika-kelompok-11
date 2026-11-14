@@ -87,6 +87,7 @@ public class Main {
                 case 5 -> cari();
                 case 6 -> filter();
                 case 7 -> agregasi();
+                case 8 -> urutan();
                 default -> System.out.println("Menu belum tersedia.");
             }
         } catch (InputHelper.InputBerakhirException e) {
@@ -276,6 +277,16 @@ public class Main {
             cur = cur.next;
         }
         catat(AGREGASI, "perkara=" + r.getJumlahPerkara() + ", jenis=" + r.getBanyakJenis());
+    }
+
+    private void urutan() {
+        boolean naik = in.bacaIntDalam("Urutkan vonis 1) naik  2) turun: ", 1, 2) == 1;
+        SinglyLinkedList<Putusan> terurut = PutusanSorter.urutkanByVonis(data, naik);
+        terurut.validateInvariant();
+        data.validateInvariant();   // list asli tetap utuh
+        System.out.print(PutusanDisplay.ringkasan(terurut));
+        System.out.println("(List asli tidak diubah; size asli = " + data.size() + ")");
+        catat(URUTAN, "vonis " + (naik ? "naik" : "turun") + ", n=" + terurut.size());
     }
 
 }
