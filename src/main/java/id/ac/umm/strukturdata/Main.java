@@ -80,7 +80,8 @@ public class Main {
         }
         try {
             switch (pilihan) {
-                // [CASE] tambah baris case di sini, di atas default
+                case 1 -> impor();
+                case 2 -> tampil();
                 default -> System.out.println("Menu belum tersedia.");
             }
         } catch (InputHelper.InputBerakhirException e) {
@@ -104,5 +105,38 @@ public class Main {
         }
     }
 
-    // [METHOD] tempel method menu baru di sini, di bawah catat()
+    private void impor() {
+        String path = in.bacaTeksOpsional("Path CSV (Enter = " + PATH_CSV_DEFAULT + "): ");
+        if (path == null) {
+            path = PATH_CSV_DEFAULT;
+        }
+        CsvImporter importer = new CsvImporter();
+        try {
+            SinglyLinkedList<Putusan> hasil = importer.importCsv(Path.of(path));
+            hasil.validateInvariant();
+            data = hasil;
+        } catch (IOException e) {
+            System.out.println("Gagal membaca file: " + e.getMessage());
+            catat(IMPOR, "GAGAL: path=" + path + ", " + e.getMessage());
+            return;
+        }
+        filterTerakhir = null;
+        cariTerakhir = null;
+
+        System.out.println("Dibaca : " + importer.getJumlahDibaca() + " baris");
+        System.out.println("Valid  : " + data.size() + " putusan (size = " + data.size() + ")");
+        System.out.println("Ditolak: " + importer.getJumlahDitolak());
+        Node<String> cur = importer.getErrors().getHead();
+        while (cur != null) {
+            System.out.println("  - " + cur.data);
+            cur = cur.next;
+        }
+        catat(IMPOR, "path=" + path + ", dibaca=" + importer.getJumlahDibaca()
+                + ", valid=" + data.size() + ", ditolak=" + importer.getJumlahDitolak());
+    }
+
+    private void tampil() {
+        System.out.print(PutusanDisplay.ringkasan(data));
+        catat(TAMPIL, "size=" + data.size());
+    }
 }
