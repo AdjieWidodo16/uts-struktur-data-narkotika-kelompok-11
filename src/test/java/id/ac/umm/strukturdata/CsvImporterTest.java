@@ -131,7 +131,7 @@ class CsvImporterTest {
     }
 
     // Ubah ke 50 setelah data P026-P050 masuk ke data/putusan-50.csv.
-    private static final int JUMLAH_RECORD_CSV = 25;
+    private static final int JUMLAH_RECORD_CSV = 50;
 
     private static String ringkasError(CsvImporter importer) {
         StringBuilder sb = new StringBuilder();
@@ -152,7 +152,8 @@ class CsvImporterTest {
 
         assertEquals(LocalDate.of(2026, 9, 30), hasil.get(2).getTanggalPutusan()); // P003
         assertEquals("P018", hasil.get(17).getCaseId());
-        assertNull(hasil.get(17).getKeadaanMeringankan());                         // null literal
+        assertNull(hasil.get(17).getKeadaanMeringankan());
+        assertEquals("P050", hasil.get(49).getCaseId());// null literal
     }
 
 }
