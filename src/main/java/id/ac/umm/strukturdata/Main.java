@@ -178,6 +178,8 @@ public class Main {
                 "Posisi sisip (0 = awal, " + data.size() + " = akhir): ", 0, data.size());
         data.insert(posisi, p);
         data.validateInvariant();
+        filterTerakhir = null;   // hasil lama tidak lagi sesuai data
+        cariTerakhir = null;
         System.out.println("Ditambahkan di posisi " + posisi + ". Size sekarang " + data.size() + ".");
         catat(AuditLog.TAMBAH, "caseId=" + caseId + ", posisi=" + posisi + ", size=" + data.size());
     }
