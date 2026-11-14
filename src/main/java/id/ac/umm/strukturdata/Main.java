@@ -95,8 +95,9 @@ public class Main {
         } catch (InputHelper.InputBerakhirException e) {
             throw e;   // ditangani di jalankan()
         } catch (RuntimeException e) {
-            System.out.println("Operasi gagal: " + e.getMessage());
-            catat(NAMA_MENU[pilihan], "GAGAL: " + e.getMessage());
+            String alasan = e.getMessage() == null ? e.getClass().getSimpleName() : e.getMessage();
+            System.out.println("Operasi gagal: " + alasan);
+            catat(NAMA_MENU[pilihan], "GAGAL: " + alasan);
         }
         return true;
     }
