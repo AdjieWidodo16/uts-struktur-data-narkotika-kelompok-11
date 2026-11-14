@@ -1,4 +1,6 @@
 package id.ac.umm.strukturdata;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import java.util.Scanner;
 
@@ -73,5 +75,59 @@ public class InputHelper {
             System.out.println("Jawab y atau n.");
         }
     }
-    // [COMMIT 3] tempel method baru di sini
+    /** Kosong menghasilkan null. Format yyyy-MM-dd. */
+    public LocalDate bacaTanggalOpsional(String prompt) {
+        while (true) {
+            String s = bacaBaris(prompt);
+            if (s.isEmpty()) return null;
+            try {
+                return LocalDate.parse(s);
+            } catch (DateTimeParseException e) {
+                System.out.println("Format tanggal harus yyyy-MM-dd. Coba lagi.");
+            }
+        }
+    }
+
+    /** Kosong menghasilkan 0; negatif ditolak. */
+    public int bacaIntOpsional(String prompt) {
+        while (true) {
+            String s = bacaBaris(prompt);
+            if (s.isEmpty()) return 0;
+            try {
+                int v = Integer.parseInt(s);
+                if (v >= 0) return v;
+                System.out.println("Tidak boleh negatif.");
+            } catch (NumberFormatException e) {
+                System.out.println("Input harus berupa angka bulat. Coba lagi.");
+            }
+        }
+    }
+
+    public long bacaLongOpsional(String prompt) {
+        while (true) {
+            String s = bacaBaris(prompt);
+            if (s.isEmpty()) return 0L;
+            try {
+                long v = Long.parseLong(s);
+                if (v >= 0) return v;
+                System.out.println("Tidak boleh negatif.");
+            } catch (NumberFormatException e) {
+                System.out.println("Input harus berupa angka bulat. Coba lagi.");
+            }
+        }
+    }
+
+    public double bacaDoubleOpsional(String prompt) {
+        while (true) {
+            String s = bacaBaris(prompt);
+            if (s.isEmpty()) return 0.0;
+            try {
+                double v = Double.parseDouble(s);
+                if (!Double.isNaN(v) && !Double.isInfinite(v) && v >= 0) return v;
+                System.out.println("Harus angka tidak negatif.");
+            } catch (NumberFormatException e) {
+                System.out.println("Input harus berupa angka. Coba lagi.");
+            }
+        }
+    }
 }
