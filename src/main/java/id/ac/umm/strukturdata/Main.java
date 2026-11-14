@@ -302,8 +302,9 @@ public class Main {
     }
 
     private void cariDiAudit() {
-        if (audit.isEmpty()) {
+                if (audit.isEmpty()) {
             System.out.println("Riwayat masih kosong.");
+            catat(AUDIT, "cari entri: riwayat kosong");
             return;
         }
         String entri = in.bacaTeksWajib(
