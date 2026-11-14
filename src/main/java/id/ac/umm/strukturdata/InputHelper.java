@@ -28,6 +28,50 @@ public class InputHelper {
         return scanner.nextLine().trim();
     }
 
-    // [COMMIT 2] tempel method baru di sini
+    public int bacaInt(String prompt) {
+        while (true) {
+            String s = bacaBaris(prompt);
+            try {
+                return Integer.parseInt(s);
+            } catch (NumberFormatException e) {
+                System.out.println("Input harus berupa angka bulat. Coba lagi.");
+            }
+        }
+    }
+
+    public int bacaIntDalam(String prompt, int min, int max) {
+        while (true) {
+            int v = bacaInt(prompt);
+            if (v >= min && v <= max) {
+                return v;
+            }
+            System.out.println("Pilihan harus antara " + min + " dan " + max + ".");
+        }
+    }
+
+    public String bacaTeksWajib(String prompt) {
+        while (true) {
+            String s = bacaBaris(prompt);
+            if (!s.isEmpty()) {
+                return s;
+            }
+            System.out.println("Input tidak boleh kosong.");
+        }
+    }
+
+    /** Kosong menghasilkan null (data tidak ditemukan, ADR-003). */
+    public String bacaTeksOpsional(String prompt) {
+        String s = bacaBaris(prompt);
+        return s.isEmpty() ? null : s;
+    }
+
+    public boolean bacaYa(String prompt) {
+        while (true) {
+            String s = bacaBaris(prompt).toLowerCase();
+            if (s.equals("y") || s.equals("ya")) return true;
+            if (s.equals("n") || s.equals("t") || s.equals("tidak")) return false;
+            System.out.println("Jawab y atau n.");
+        }
+    }
     // [COMMIT 3] tempel method baru di sini
 }
