@@ -214,8 +214,34 @@ class ScenarioTest {
     // AREA ADINDA (skenario 1, 5, 6, 7)
 
     @Test
-    @Disabled("TODO Adinda")
-    void skenario1_muat50Record_sizeSama50() {
+    void skenario1_muat50Record_sizeSama50() throws IOException {
+        CsvImporter importer = new CsvImporter();
+        SinglyLinkedList<Putusan> hasil = importer.importCsv(Path.of(PATH_CSV));
+
+        StringBuilder alasan = new StringBuilder();
+        Node<String> e = importer.getErrors().getHead();
+        while (e != null) {
+            alasan.append("\n  - ").append(e.data);
+            e = e.next;
+        }
+
+        assertEquals(JUMLAH_DATA, hasil.size(), "size harus 50");
+        assertEquals(JUMLAH_DATA, importer.getJumlahDibaca());
+        assertEquals(0, importer.getJumlahDitolak(), "Ada record ditolak:" + alasan);
+        hasil.validateInvariant();
+
+        // caseId harus unik
+        Putusan[] semua = snapshot(hasil);
+        for (int i = 0; i < semua.length; i++) {
+            for (int j = i + 1; j < semua.length; j++) {
+                assertNotEquals(semua[i].getCaseId(), semua[j].getCaseId(),
+                        "caseId ganda pada posisi " + i + " dan " + j);
+            }
+        }
+
+        cetak("1. dibaca=" + importer.getJumlahDibaca() + ", valid=" + hasil.size()
+                + ", ditolak=" + importer.getJumlahDitolak()
+                + ", pertama=" + id(semua[0]) + ", terakhir=" + id(semua[semua.length - 1]));
     }
 
     @Test
