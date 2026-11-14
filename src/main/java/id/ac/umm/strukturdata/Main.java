@@ -83,6 +83,7 @@ public class Main {
                 case 1 -> impor();
                 case 2 -> tampil();
                 case 3 -> tambah();
+                case 4 -> hapus();
                 default -> System.out.println("Menu belum tersedia.");
             }
         } catch (InputHelper.InputBerakhirException e) {
@@ -185,5 +186,27 @@ public class Main {
         }
         return false;
     }
+
+    private void hapus() {
+        if (data.isEmpty()) {
+            System.out.println("Data kosong, tidak ada yang bisa dihapus.");
+            catat(AuditLog.HAPUS, "data kosong");
+            return;
+        }
+        int posisi = in.bacaIntDalam(
+                "Posisi yang dihapus (0.." + (data.size() - 1) + "): ", 0, data.size() - 1);
+        System.out.println("Akan dihapus: " + data.get(posisi));
+        if (!in.bacaYa("Lanjutkan? (y/n): ")) {
+            System.out.println("Penghapusan dibatalkan.");
+            catat(AuditLog.HAPUS, "dibatalkan, posisi=" + posisi);
+            return;
+        }
+        Putusan dihapus = data.remove(posisi);
+        data.validateInvariant();
+        System.out.println("Dihapus: " + dihapus + ". Size sekarang " + data.size() + ".");
+        catat(AuditLog.HAPUS, "posisi=" + posisi + ", caseId=" + dihapus.getCaseId()
+                + ", size=" + data.size());
+    }
+
 
 }
