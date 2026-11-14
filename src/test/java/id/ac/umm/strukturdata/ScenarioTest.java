@@ -117,7 +117,51 @@ class ScenarioTest {
         data.validateInvariant();
         assertEquals(n, data.size());
     }
-    // [ADJIE-3]
+    @Test
+    void skenario3_hapus_pertama_tengah_terakhir_dan_perubahanPointer() {
+        int n = data.size();
+
+        // ---- hapus pertama: head maju ke node kedua ----
+        Node<Putusan> head0 = data.getHead();
+        Node<Putusan> head1 = head0.next;
+        Putusan dihapus1 = data.remove(0);
+        assertSame(head0.data, dihapus1);
+        assertSame(head1, data.getHead(), "head harus maju ke node kedua");
+        assertEquals(n - 1, data.size());
+        data.validateInvariant();
+        cetak("3a. hapus pertama " + id(dihapus1) + " | head: " + id(head0.data)
+                + " -> " + id(data.getHead().data) + " | size " + data.size());
+
+        // ---- hapus tengah: node sebelumnya melompati target ----
+        int k = data.size() / 2;
+        Node<Putusan> prev = nodeDi(data, k - 1);
+        Node<Putusan> target = prev.next;
+        Node<Putusan> sesudah = target.next;
+        Putusan dihapus2 = data.remove(k);
+        assertSame(target.data, dihapus2);
+        assertSame(sesudah, prev.next, "prev.next harus melompati node yang dihapus");
+        assertEquals(n - 2, data.size());
+        data.validateInvariant();
+        cetak("3b. hapus tengah posisi " + k + " " + id(dihapus2) + " | " + id(prev.data)
+                + ".next: " + id(target.data) + " -> " + id(sesudah.data)
+                + " | size " + data.size());
+
+        // ---- hapus terakhir: tail mundur ke node sebelumnya ----
+        int akhir = data.size() - 1;
+        Node<Putusan> prevAkhir = nodeDi(data, akhir - 1);
+        Putusan dihapus3 = data.remove(akhir);
+        assertNull(prevAkhir.next, "node terakhir baru harus menunjuk null");
+        assertSame(prevAkhir, nodeDi(data, data.size() - 1));
+        assertEquals(n - 3, data.size());
+        data.validateInvariant();            // juga memeriksa tail == node terakhir
+
+        // bukti tail ikut mundur: addLast harus tersambung ke prevAkhir
+        data.addLast(dihapus3);
+        assertSame(dihapus3, prevAkhir.next.data);
+        data.validateInvariant();
+        cetak("3c. hapus terakhir " + id(dihapus3) + " | tail mundur ke " + id(prevAkhir.data)
+                + " | addLast tersambung ke " + id(prevAkhir.data));
+    }
     // [ADJIE-4]
     // =========================================================================================
 
