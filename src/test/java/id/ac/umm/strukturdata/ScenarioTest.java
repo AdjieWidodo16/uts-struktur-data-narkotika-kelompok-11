@@ -162,7 +162,48 @@ class ScenarioTest {
         cetak("3c. hapus terakhir " + id(dihapus3) + " | tail mundur ke " + id(prevAkhir.data)
                 + " | addLast tersambung ke " + id(prevAkhir.data));
     }
-    // [ADJIE-4]
+    @Test
+    void skenario4_tambahKembaliTigaRecord_invariantDanUrutan() {
+        int n = data.size();
+        Putusan a = data.remove(0);
+        Putusan b = data.remove(data.size() / 2);
+        Putusan c = data.remove(data.size() - 1);
+        int m = data.size();
+        assertEquals(n - 3, m);
+        Putusan[] urutanLama = snapshot(data);
+
+        data.addLast(c);                         // c ke akhir
+        data.validateInvariant();
+        assertSame(c, data.get(m));
+
+        data.addFirst(a);                        // a ke awal, sisanya bergeser +1
+        data.validateInvariant();
+        assertSame(a, data.get(0));
+        assertSame(urutanLama[0], data.get(1));
+
+        int k = data.size() / 2;                 // b disisipkan di tengah
+        data.insert(k, b);
+        data.validateInvariant();
+
+        assertEquals(n, data.size());
+        assertSame(a, data.get(0));
+        assertSame(b, data.get(k));
+        assertSame(c, data.get(n - 1));
+
+        // record lama tetap berurutan, hanya bergeser
+        int idxLama = 0;
+        for (int i = 1; i < n - 1; i++) {
+            if (i == k) {
+                continue;
+            }
+            assertSame(urutanLama[idxLama++], data.get(i), "Urutan lama rusak di posisi " + i);
+        }
+        assertEquals(m, idxLama);
+
+        cetak("4. tambah kembali: addFirst " + id(a) + " (pos 0), insert " + id(b)
+                + " (pos " + k + "), addLast " + id(c) + " (pos " + (n - 1) + ") | size " + data.size()
+                + " | invariant OK");
+    }
     // =========================================================================================
 
 
