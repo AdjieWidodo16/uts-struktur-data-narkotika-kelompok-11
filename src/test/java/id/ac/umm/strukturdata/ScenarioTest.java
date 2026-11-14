@@ -244,9 +244,91 @@ class ScenarioTest {
                 + ", pertama=" + id(semua[0]) + ", terakhir=" + id(semua[semua.length - 1]));
     }
 
+    // Isi setelah pemeriksaan manual ke putusan asli: caseId hasil filter, urut sesuai list.
+    // Biarkan kosong sebelum pemeriksaan manual selesai (bagian itu akan dilewati).
+    static final String[] CASE_ID_HASIL_MANUAL = {};
+
+    /** Pemeriksaan independen tanpa PutusanFilter (hanya String.toLowerCase().contains()). */
+    static boolean cocokManual(Putusan p, String jenis, double bMin, double bMax,
+                               String pasal, int vMin, int vMax) {
+        if (p.getJenisNarkotika() == null
+                || !p.getJenisNarkotika().toLowerCase().contains(jenis.toLowerCase())) return false;
+        double b = p.getBeratBarangBuktiGram();
+        if (b <= 0 || b < bMin || b > bMax) return false;
+        if (p.getPasalTerbukti() == null
+                || !p.getPasalTerbukti().toLowerCase().contains(pasal.toLowerCase())) return false;
+        int v = p.getVonisBulan();
+        return v > 0 && v >= vMin && v <= vMax;
+    }
+
     @Test
-    @Disabled("TODO Adinda")
     void skenario5_filterGabungan_cocokDenganPemeriksaanManual() {
+        // Cari record acuan yang datanya lengkap, lalu bangun kriteria dari nilainya
+        Putusan acuan = null;
+        Node<Putusan> cur = data.getHead();
+        while (cur != null && acuan == null) {
+            Putusan p = cur.data;
+            if (p.getJenisNarkotika() != null && p.getPasalTerbukti() != null
+                    && p.getBeratBarangBuktiGram() > 0 && p.getVonisBulan() > 0) {
+                acuan = p;
+            }
+            cur = cur.next;
+        }
+        assertNotNull(acuan, "Tidak ada record dengan jenis, pasal, berat, dan vonis lengkap");
+
+        String jenis = acuan.getJenisNarkotika();
+        String pasal = acuan.getPasalTerbukti();
+        double bMin = acuan.getBeratBarangBuktiGram() * 0.5;
+        double bMax = acuan.getBeratBarangBuktiGram() * 2.0;
+        int vMin = Math.max(1, acuan.getVonisBulan() - 12);
+        int vMax = acuan.getVonisBulan() + 12;
+
+        PutusanFilter f = new PutusanFilter()
+                .jenisNarkotika(jenis)
+                .beratBetween(bMin, bMax)
+                .pasalTerbukti(pasal)
+                .vonisBetween(vMin, vMax);
+        assertEquals(4, f.jumlahKriteriAktif());
+
+        SinglyLinkedList<Putusan> hasil = f.terapkan(data);
+        hasil.validateInvariant();
+
+        // Pembanding independen: urutan dan isi harus sama persis
+        Putusan[] semua = snapshot(data);
+        int diharapkan = 0;
+        Putusan[] hasilArr = snapshot(hasil);
+        for (Putusan p : semua) {
+            if (cocokManual(p, jenis, bMin, bMax, pasal, vMin, vMax)) {
+                assertTrue(diharapkan < hasilArr.length, "Filter kehilangan " + id(p));
+                assertSame(p, hasilArr[diharapkan], "Urutan/isi beda di indeks " + diharapkan);
+                diharapkan++;
+            }
+        }
+        assertEquals(diharapkan, hasilArr.length, "Filter mengembalikan record berlebih");
+        assertTrue(hasilArr.length >= 1, "Record acuan harus lolos");
+
+        // Daftar ini yang dicocokkan ke dokumen putusan asli (provenance) lewat sourcePages
+        cetak("5. kriteria: jenis=" + jenis + ", berat=" + bMin + ".." + bMax
+                + ", pasal=" + pasal + ", vonis=" + vMin + ".." + vMax);
+        for (Putusan p : hasilArr) {
+            cetak("5.   " + id(p) + " | " + p.getNomorPerkara() + " | hal " + p.getSourcePages());
+        }
+        cetak("5. hasil=" + hasilArr.length + " dari " + data.size());
+
+        // Pemeriksaan manual (aktif setelah CASE_ID_HASIL_MANUAL diisi)
+        if (CASE_ID_HASIL_MANUAL.length > 0) {
+            assertEquals(CASE_ID_HASIL_MANUAL.length, hasilArr.length);
+            for (int i = 0; i < hasilArr.length; i++) {
+                assertEquals(CASE_ID_HASIL_MANUAL[i], hasilArr[i].getCaseId());
+            }
+        }
+
+        // List asli tidak berubah, dan filter tanpa hasil menghasilkan list kosong yang valid
+        assertEquals(JUMLAH_DATA, data.size());
+        SinglyLinkedList<Putusan> kosong =
+                new PutusanFilter().jenisNarkotika("zzz-tidak-ada").terapkan(data);
+        assertEquals(0, kosong.size());
+        kosong.validateInvariant();
     }
 
     @Test
