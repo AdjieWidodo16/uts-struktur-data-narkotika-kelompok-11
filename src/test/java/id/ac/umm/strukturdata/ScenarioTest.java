@@ -332,8 +332,51 @@ class ScenarioTest {
     }
 
     @Test
-    @Disabled("TODO Adinda")
     void skenario6_pencarianStack_tidakMengubahUrutanAkhir() {
+        // Bagian A: Stack langsung
+        Stack<Integer> s = new Stack<>();
+        for (int i = 1; i <= 5; i++) {
+            s.push(i);
+        }
+        int ada = s.searchPreserve(3);        // kedalaman dari puncak: 5,4,3 -> 2
+        int langkahAda = s.getLastSearchSteps();
+        int tidakAda = s.searchPreserve(99);
+        int langkahTidakAda = s.getLastSearchSteps();
+        assertEquals(2, ada);
+        assertEquals(-1, tidakAda);
+        assertEquals(5, s.size());
+        s.validateInvariant();
+        for (int diharapkan = 5; diharapkan >= 1; diharapkan--) {
+            assertEquals(diharapkan, s.pop(), "Urutan Stack berubah setelah pencarian");
+        }
+        assertTrue(s.isEmpty());
+        cetak("6A. Stack: posisi(3)=" + ada + " langkah=" + langkahAda
+                + ", posisi(99)=" + tidakAda + " langkah=" + langkahTidakAda
+                + ", urutan pop akhir 5,4,3,2,1 utuh");
+
+        // Bagian B: Stack di dalam AuditLog
+        AuditLog audit = new AuditLog();
+        audit.catat("entri-A");
+        audit.catat("entri-B");
+        audit.catat("entri-C");
+        String riwayatSebelum = audit.riwayat();
+        String terbaruSebelum = audit.terbaru();
+        int jumlahSebelum = audit.jumlah();
+
+        int posisiA = audit.posisiDariTerbaru("entri-A");   // paling dalam -> 2
+        int langkahA = audit.getLastSearchSteps();
+        int posisiX = audit.posisiDariTerbaru("tidak-ada");
+        int langkahX = audit.getLastSearchSteps();
+
+        assertEquals(2, posisiA);
+        assertEquals(-1, posisiX);
+        assertEquals(riwayatSebelum, audit.riwayat(), "Riwayat berubah setelah pencarian");
+        assertEquals(terbaruSebelum, audit.terbaru());
+        assertEquals(jumlahSebelum, audit.jumlah());
+        audit.validateInvariant();
+        cetak("6B. AuditLog: posisi(entri-A)=" + posisiA + " langkah=" + langkahA
+                + ", posisi(tidak-ada)=" + posisiX + " langkah=" + langkahX
+                + ", riwayat identik sebelum dan sesudah");
     }
 
     @Test
