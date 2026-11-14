@@ -88,6 +88,7 @@ public class Main {
                 case 6 -> filter();
                 case 7 -> agregasi();
                 case 8 -> urutan();
+                case 9 -> menuAudit();
                 default -> System.out.println("Menu belum tersedia.");
             }
         } catch (InputHelper.InputBerakhirException e) {
@@ -287,6 +288,40 @@ public class Main {
         System.out.print(PutusanDisplay.ringkasan(terurut));
         System.out.println("(List asli tidak diubah; size asli = " + data.size() + ")");
         catat(URUTAN, "vonis " + (naik ? "naik" : "turun") + ", n=" + terurut.size());
+    }
+
+    private void menuAudit() {
+        int mode = in.bacaIntDalam("1) Tampilkan riwayat  2) Cari entri di riwayat: ", 1, 2);
+        if (mode == 1) {
+            audit.tampilkanRiwayat();
+            catat(AUDIT, "tampilkan riwayat");
+        } else {
+            cariDiAudit();
+        }
+    }
+
+    private void cariDiAudit() {
+        if (audit.isEmpty()) {
+            System.out.println("Riwayat masih kosong.");
+            return;
+        }
+        String entri = in.bacaTeksWajib(
+                "Tempel entri lengkap dari riwayat (tanpa nomor urut): ");
+        String terbaruSebelum = audit.terbaru();
+        int jumlahSebelum = audit.jumlah();
+
+        int posisi = audit.posisiDariTerbaru(entri);
+        int langkah = audit.getLastSearchSteps();
+
+        System.out.println(posisi == -1
+                ? "Entri tidak ditemukan."
+                : "Entri ditemukan pada kedalaman " + posisi + " dari puncak.");
+        System.out.println("Langkah pencarian: " + langkah);
+
+        boolean utuh = terbaruSebelum.equals(audit.terbaru()) && jumlahSebelum == audit.jumlah();
+        audit.validateInvariant();
+        System.out.println("Urutan stack tidak berubah: " + (utuh ? "ya" : "TIDAK"));
+        catat(AUDIT, "cari entri, posisi=" + posisi + ", langkah=" + langkah);
     }
 
 }
